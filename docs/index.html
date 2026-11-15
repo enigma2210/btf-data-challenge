@@ -1,0 +1,4373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Feed Balance Label · Label Lab · EpicDevs</title>
+<meta name="color-scheme" content="light">
+<style>
+@font-face{font-family:"Pagella";src:url("fonts/texgyrepagella-regular.otf");font-weight:400}
+@font-face{font-family:"Pagella";src:url("fonts/texgyrepagella-bold.otf");font-weight:700}
+@font-face{font-family:"Heros";src:url("fonts/texgyreheros-regular.otf");font-weight:400}
+@font-face{font-family:"Heros";src:url("fonts/texgyreheros-bold.otf");font-weight:700}
+@font-face{font-family:"HerosCn";src:url("fonts/texgyreheroscn-bold.otf");font-weight:700}
+:root{--bg:#f3f5f8;--panel:#e9eef4;--panel2:#f8fafc;--ink:#0f2240;--ink2:#44546a;--muted:#7b8798;--brand:#0f2240;--rust:#2f62d8;--teal:#1aa37a;--sand:#b9c3d1;--grid:#d3dae4;
+--serif:"Pagella","Palatino Linotype",Palatino,Georgia,serif;--sans:"Heros","Helvetica Neue",Helvetica,Arial,sans-serif;--cond:"HerosCn","Arial Narrow","Helvetica Neue",Arial,sans-serif}
+*{box-sizing:border-box}[hidden]{display:none!important}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:14px;line-height:1.45}
+.wrap{max-width:1200px;margin:0 auto;padding:22px 28px 60px}
+.topline{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink2);border-bottom:1px solid var(--ink);padding-bottom:10px;margin-bottom:16px}
+.topline img{height:22px}
+.kicker{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--rust);font-weight:700}
+h1{font-family:var(--serif);font-size:40px;line-height:1.08;margin:6px 0 8px}
+h2{font-family:var(--serif);font-size:21px;margin:0 0 4px}
+.lede{font-family:var(--serif);font-size:17px;color:var(--ink2);max-width:900px;margin:0}
+.section{margin-top:22px}
+.small{font-size:12px;color:var(--ink2)}
+.panel{background:var(--panel);padding:14px 16px}
+.bt{border-top:6px solid var(--brand)}.br{border-top:6px solid var(--rust)}.bk{border-top:6px solid var(--ink)}
+
+.loop{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.step{background:var(--panel);border-top:6px solid var(--ink);padding:10px 12px;position:relative}
+.step .n{color:var(--rust);font-size:12px;font-weight:700}.step b{display:block;font-family:var(--serif);font-size:18px}
+.step:not(:last-child)::after{content:"→";position:absolute;right:-10px;top:40%;font-size:16px;color:var(--rust);font-weight:700}
+
+.controls{display:grid;grid-template-columns:auto 1fr 1fr;gap:18px;align-items:center;background:var(--panel);padding:12px 16px}
+.presets{display:flex;gap:6px;flex-wrap:wrap}
+.chip{font:inherit;font-size:12px;border:1px solid var(--ink2);background:transparent;border-radius:14px;padding:5px 11px;cursor:pointer;color:var(--ink)}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.chip:focus-visible,input[type=range]:focus-visible{outline:2px solid var(--teal);outline-offset:2px}
+.sl label{display:flex;justify-content:space-between;font-size:12px;color:var(--ink2)}.sl label b{color:var(--ink);white-space:nowrap;padding-left:8px}
+input[type=range]{width:100%;accent-color:var(--ink)}
+.ticks{display:flex;justify-content:space-between;font-size:10px;color:var(--muted)}
+
+.main{display:grid;grid-template-columns:330px 300px 1fr;gap:16px;align-items:start}
+@media(max-width:1100px){.main{grid-template-columns:1fr 1fr}.main .chartbox{grid-column:1/-1}}
+@media(max-width:700px){.main,.loop,.g2,.crop3{grid-template-columns:1fr}}
+
+.nl{background:#ffffff;border:3px solid var(--ink);padding:10px 12px 8px;font-family:var(--cond)}
+.nl .t1{font-size:34px;font-weight:700;line-height:.95;letter-spacing:-.01em}
+.nl .t2{color:var(--rust);font-weight:700;font-size:15px;letter-spacing:.02em;border-bottom:9px solid var(--ink);padding-bottom:4px;margin-bottom:2px}
+.nl .ln{border-bottom:1px solid var(--ink);padding:5px 0 4px}
+.nl .ln .h{display:flex;justify-content:space-between;align-items:baseline;font-weight:700;font-size:17px;text-transform:uppercase}
+.nl .ln .h span:last-child{font-size:17px}
+.nl .ln .meter{height:7px;background:#e3e8ef;margin:4px 0 3px;position:relative}
+.nl .ln .meter i{position:absolute;left:0;top:0;bottom:0;border-radius:0 3px 3px 0}
+.nl .ln .s{font-size:11.5px;color:var(--ink2)}
+.nl .ln .h{gap:10px}.nl .tagp{white-space:nowrap;display:inline-block;font-size:9px;font-weight:700;color:#fff;background:var(--brand);border-radius:2px;padding:0 4px;margin-left:6px;vertical-align:2px;text-transform:none;letter-spacing:0}
+.nl .ft{border-top:9px solid var(--ink);margin-top:4px;padding-top:4px;font-size:11px;color:var(--ink2)}
+.up{color:var(--teal);font-weight:700}.down{color:var(--rust);font-weight:700}
+
+.phone{background:#0f2240;border-radius:34px;padding:12px 10px 16px;box-shadow:0 1px 0 #000}
+.phone .scr{background:#ffffff;border-radius:24px;padding:10px 10px 8px;min-height:520px}
+.phone .bar{display:flex;justify-content:space-between;font-size:10px;color:var(--ink2);padding:0 6px 6px}
+.phone .tabs{display:flex;gap:14px;justify-content:center;font-size:12px;border-bottom:1px solid var(--grid);margin-bottom:6px}
+.phone .tabs span{padding:4px 2px}.phone .tabs .on{border-bottom:2px solid var(--rust);font-weight:700}
+.phone ol{list-style:none;margin:0;padding:0;counter-reset:r}
+.phone li{counter-increment:r;display:grid;grid-template-columns:18px 1fr;gap:4px;padding:5px 2px;border-bottom:1px solid #e3e8ef;font-size:12px;line-height:1.25}
+.phone li::before{content:counter(r);color:var(--muted);font-size:11px}
+.phone .meta{font-size:10px;color:var(--muted)}
+.bd{display:inline-block;font-size:9px;font-weight:700;border-radius:3px;padding:0 4px;margin-left:3px;vertical-align:1px}
+.hd{background:var(--sand)}.ca{background:var(--rust);color:#fff}.hit{border:1px solid var(--ink)}
+.under{margin-top:8px}.under .chip{font-size:11px;padding:3px 8px;margin:2px 2px 0 0}
+
+.chartbox{background:var(--panel);padding:12px 14px;position:relative;border-top:6px solid var(--rust)}
+.legend{display:flex;gap:14px;font-size:12px;color:var(--ink2);flex-wrap:wrap;margin:4px 0}
+.legend i{display:inline-block;width:14px;height:2px;vertical-align:middle;margin-right:5px}.legend i.d{width:8px;height:8px;border-radius:50%}
+svg text{font-family:var(--sans);fill:var(--ink2);font-size:11px}
+.tip{position:absolute;pointer-events:none;background:var(--ink);color:var(--bg);font-size:12px;padding:7px 9px;border-radius:4px;max-width:250px;opacity:0;z-index:5}
+.ledger{width:100%;border-collapse:collapse;font-size:12px;margin-top:6px;font-variant-numeric:tabular-nums}
+.ledger td,.ledger th{padding:4px 6px;border-bottom:1px solid var(--grid);text-align:right}.ledger th:first-child,.ledger td:first-child{text-align:left}
+.ledger th{font-size:10.5px;text-transform:uppercase;letter-spacing:.04em;color:var(--ink2)}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.hbar{display:grid;grid-template-columns:200px 1fr 64px;gap:10px;align-items:center;margin:7px 0}
+.hbar .track{height:14px;background:var(--panel2);position:relative}.hbar .fill{position:absolute;left:0;top:0;bottom:0;border-radius:0 4px 4px 0}
+.hbar .val{font-variant-numeric:tabular-nums;font-weight:700;text-align:right}
+.crop3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.crop{background:var(--panel);padding:12px 14px;border-top:6px solid var(--brand)}
+.crop .k{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--brand);font-weight:700}.crop .big{font-size:26px;font-weight:700;margin:4px 0}
+table.t{border-collapse:collapse;width:100%;font-size:12px;font-variant-numeric:tabular-nums}
+table.t th,table.t td{text-align:right;padding:4px 6px;border-bottom:1px solid var(--grid)}table.t th:first-child,table.t td:first-child{text-align:left}
+details summary{cursor:pointer;font-size:12px;color:var(--ink2);margin-top:6px}
+.foot{font-size:12px;color:var(--ink2);border-top:1px solid var(--grid);margin-top:28px;padding-top:12px}
+a{color:var(--brand)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="topline"><span>Phase 2 · Feed Balance Label · Label Lab</span><img src="epicdevs_logo.png" alt="EpicDevs"></div>
+  <div class="kicker">Behind the Feed Data Challenge · live prototype · real data</div>
+  <h1>Print the numbers. Cap the head. Keep the ledger.</h1>
+  <p class="lede">Move the Head Cap and the popularity penalty. The label, the phone screen and the accuracy ledger all update from real top-10 lists for <span id="nusers"></span> MovieLens&nbsp;32M viewers, using the same data split as Phase&nbsp;1.</p>
+
+  <div class="section loop">
+    <div class="step"><span class="n">01</span><b>Measure</b><span class="small">Share of the screen vs. a baseline in the data</span></div>
+    <div class="step"><span class="n">02</span><b>Publish</b><span class="small">Print the Feed Balance Label beside the list</span></div>
+    <div class="step"><span class="n">03</span><b>Cap</b><span class="small">Limit top-1% films to K of 10 slots, plus a mild penalty</span></div>
+    <div class="step"><span class="n">04</span><b>Ledger</b><span class="small">Record what the fix costs in accuracy, with an interval</span></div>
+  </div>
+
+  <div class="section controls">
+    <div><div class="small" style="margin-bottom:4px">Settings</div><div class="presets" id="presets"></div></div>
+    <div class="sl"><label for="k">Head Cap (top-1% films per 10 slots) <b id="kval"></b></label><input type="range" id="k" min="0" max="6" step="1"><div class="ticks" id="kt"></div></div>
+    <div class="sl"><label for="a">Popularity penalty α <b id="aval"></b></label><input type="range" id="a" min="0" max="5" step="1"><div class="ticks" id="at"></div></div>
+  </div>
+
+  <div class="section main">
+    <div>
+      <div class="nl" aria-live="polite">
+        <div class="t1">FEED BALANCE</div>
+        <div class="t2">LABEL · THIS SCREEN</div>
+        <div id="nlrows"></div>
+        <div class="ft">Baselines: population · catalog · site menu · viewers' next likes</div>
+      </div>
+      <div class="small" style="margin-top:6px">Live lines recompute for the setting above. Lines tagged "news · Phase 1" come from our Phase 1 analysis of GDELT and Microsoft MIND.</div>
+    </div>
+    <div>
+      <div class="phone"><div class="scr">
+        <div class="bar"><span>Top 10 for you</span><span id="phonelabel"></span></div>
+        <div class="tabs"><span id="tabT">Today</span><span id="tabF">With fix</span></div>
+        <ol id="phonelist"></ol>
+      </div></div>
+      <div class="under"><div class="small">Real test viewer (titles from MovieLens):</div><div id="viewers"></div><div id="which"></div></div>
+    </div>
+    <div class="chartbox">
+      <h2>The ledger: what balance costs</h2>
+      <div class="small">Each dot is one setting on the same test viewers. Higher = more accurate. Further left = less screen for the top 1%.</div>
+      <div class="legend"><span><i style="background:var(--rust)"></i>Head Cap only</span><span><i style="background:var(--teal)"></i>Penalty only</span><span><i class="d" style="background:#8a96a8"></i>Cap + penalty</span><span><i class="d" style="background:var(--ink)"></i>Canadian quota</span></div>
+      <svg id="fr" viewBox="0 0 520 300" width="100%" role="img" aria-label="Recall versus top-1% share for all settings"></svg>
+      <div class="tip" id="tip"></div>
+      <table class="ledger" id="ledger"></table>
+      <details><summary>Table view: all settings</summary><div id="alltable"></div></details>
+    </div>
+  </div>
+
+  <div class="section g2">
+    <div class="panel br">
+      <h2>Canadian films: shelf, demand, screen</h2>
+      <div class="small">Canadian = Canada is one of the film's countries of origin (Wikidata). Demand = share of the films viewers actually liked next.</div>
+      <div id="cabars" style="margin-top:6px"></div>
+      <div class="small" id="canote"></div>
+    </div>
+    <div class="panel bk">
+      <h2>Why genre spread is the wrong dial</h2>
+      <div class="small">The Blockbuster Test: a diversity score is trusted only if it marks an all-blockbuster list as narrow.</div>
+      <div id="bb" style="margin-top:6px"></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Same pattern as Phase 1</h2>
+    <div class="crop3" style="margin-top:8px" id="phase1"></div>
+  </div>
+
+  <div class="section panel">
+    <h2>Reproduction check against Phase 1</h2>
+    <div class="small">Same split rules give the same population: <span id="splitline"></span>. Shelf counts differ slightly because the 12,000 test viewers are a fresh random draw.</div>
+    <div id="rep" style="margin-top:6px"></div>
+  </div>
+
+  <div class="foot">
+    <b>Data.</b> GroupLens MovieLens 32M (positive = rating ≥ 4). Canadian tags: Wikidata country of origin (P495), joined on IMDb ID. Phase 1 lines: GDELT GKG 2.0, World Bank, Microsoft MIND.<br>
+    <b>Method.</b> Item–item cosine with 40 neighbours; viewers with ≥ 15 liked films; last 5 held out; 10,952 eligible films. Settings re-rank the same scores. The team setting was picked on a separate 12,000 validation viewers with a rule fixed in advance: as little top-1% share as possible without losing accuracy.<br>
+    <b>Limits.</b> Top-10 lists are simulated from rating logs, not shown to people. MovieLens viewers are not a Canadian audience. Wikidata tags are a proxy, not CAVCO certification. No age, gender, race or politics is in these data or inferred.<br>
+    <b>Code.</b> <a id="repolink" href="#">github.com/enigma2210/btf-data-challenge</a> · every number on this page is generated by the scripts in <code>code/</code>.
+  </div>
+</div>
+<script>
+const DATA = {
+ "meta": {
+  "users_test": 12000,
+  "eligible_films": 10952,
+  "split": {
+   "ratings": 32000204,
+   "positives": 15938231,
+   "users_ge15": 176028,
+   "eligible_items": 10952,
+   "train_positives": 15058091,
+   "wikidata_rows": 30811,
+   "wikidata_rows_by_tag": {
+    "FR": 16161,
+    "CA": 14650
+   },
+   "catalog_movies": 87585,
+   "catalog_ca": 3092,
+   "catalog_fr": 4565,
+   "eligible_ca": 416,
+   "eligible_fr": 647,
+   "eligible_ca_and_fr": 45
+  },
+  "head1_films": 110,
+  "validation_rule": "largest alpha with validation recall >= alpha 0",
+  "chosen_alpha": 0.4
+ },
+ "reproduction": {
+  "most_rated": {
+   "recall@10_eligible_holdout": 0.04586207494139671,
+   "recall_ci95": null,
+   "recall_delta_vs_personalized": null,
+   "recall_delta_ci95": null,
+   "pop_pct_mean": 99.91600537192598,
+   "head1_share": 0.9999916666666666,
+   "shelf_used": 102,
+   "shelf_used_share": 0.00931336742147553,
+   "slot_gini": 0.9983756635013392,
+   "share_1990s": 0.6105666666666667,
+   "genre_spread": 0.7956932187080383,
+   "CA_catalog_share": 0.03798392987582177,
+   "CA_slot_share": 0.0,
+   "CA_heldout_share": null,
+   "CA_demand_ratio": null,
+   "CA_exposure_ratio": 0.0,
+   "CA_screens_with_any": 0.0,
+   "FR_catalog_share": 0.059075967859751645,
+   "FR_slot_share": 0.008558333333333333,
+   "FR_heldout_share": null,
+   "FR_demand_ratio": null,
+   "FR_exposure_ratio": 0.1448699639361154,
+   "FR_screens_with_any": 0.08266666666666667,
+   "recall": 0.04586207494139671
+  },
+  "personalized": {
+   "recall@10_eligible_holdout": 0.076284259557724,
+   "recall_ci95": null,
+   "recall_delta_vs_personalized": null,
+   "recall_delta_ci95": null,
+   "pop_pct_mean": 99.22292861273436,
+   "head1_share": 0.8695833333333334,
+   "shelf_used": 1114,
+   "shelf_used_share": 0.10171658144631118,
+   "slot_gini": 0.991589134404675,
+   "share_1990s": 0.40763333333333335,
+   "genre_spread": 0.7785171270370483,
+   "CA_catalog_share": 0.03798392987582177,
+   "CA_slot_share": 0.0007416666666666666,
+   "CA_heldout_share": null,
+   "CA_demand_ratio": null,
+   "CA_exposure_ratio": 0.01952580128205128,
+   "CA_screens_with_any": 0.005583333333333333,
+   "FR_catalog_share": 0.059075967859751645,
+   "FR_slot_share": 0.029966666666666666,
+   "FR_heldout_share": null,
+   "FR_demand_ratio": null,
+   "FR_exposure_ratio": 0.5072564657393096,
+   "FR_screens_with_any": 0.2674166666666667,
+   "recall": 0.076284259557724
+  },
+  "genre_cap3": {
+   "recall@10_eligible_holdout": 0.07165737450122833,
+   "recall_ci95": null,
+   "recall_delta_vs_personalized": null,
+   "recall_delta_ci95": null,
+   "pop_pct_mean": 99.30255082785489,
+   "head1_share": 0.8800416666666667,
+   "shelf_used": 1028,
+   "shelf_used_share": 0.09386413440467495,
+   "slot_gini": 0.9923101138300463,
+   "share_1990s": 0.40774166666666667,
+   "genre_spread": 0.8019050359725952,
+   "CA_catalog_share": 0.03798392987582177,
+   "CA_slot_share": 0.0006833333333333333,
+   "CA_heldout_share": null,
+   "CA_demand_ratio": null,
+   "CA_exposure_ratio": 0.017990064102564103,
+   "CA_screens_with_any": 0.005666666666666667,
+   "FR_catalog_share": 0.059075967859751645,
+   "FR_slot_share": 0.024166666666666666,
+   "FR_heldout_share": null,
+   "FR_demand_ratio": null,
+   "FR_exposure_ratio": 0.4090777949510561,
+   "FR_screens_with_any": 0.217,
+   "recall": 0.07165737450122833
+  },
+  "random": {
+   "recall@10_eligible_holdout": 0.0009491042583249509,
+   "recall_ci95": null,
+   "recall_delta_vs_personalized": null,
+   "recall_delta_ci95": null,
+   "pop_pct_mean": 49.6718139761383,
+   "head1_share": 0.008483333333333334,
+   "shelf_used": 10952,
+   "shelf_used_share": 1.0,
+   "slot_gini": 0.16869906105429755,
+   "share_1990s": 0.199,
+   "genre_spread": 0.8270136713981628,
+   "CA_catalog_share": 0.03798392987582177,
+   "CA_slot_share": 0.037491666666666666,
+   "CA_heldout_share": null,
+   "CA_demand_ratio": null,
+   "CA_exposure_ratio": 0.9870402243589743,
+   "CA_screens_with_any": 0.31783333333333336,
+   "FR_catalog_share": 0.059075967859751645,
+   "FR_slot_share": 0.058916666666666666,
+   "FR_heldout_share": null,
+   "FR_demand_ratio": null,
+   "FR_exposure_ratio": 0.9973034518289541,
+   "FR_screens_with_any": 0.4513333333333333,
+   "recall": 0.0009491042583249509
+  }
+ },
+ "configs": {
+  "cap10": {
+   "recall@10_eligible_holdout": 0.076284259557724,
+   "recall_ci95": [
+    0.07355274260044098,
+    0.0789608359336853
+   ],
+   "recall_delta_vs_personalized": 0.0,
+   "recall_delta_ci95": [
+    0.0,
+    0.0
+   ],
+   "pop_pct_mean": 99.22292861273436,
+   "head1_share": 0.8695833333333334,
+   "shelf_used": 1114,
+   "shelf_used_share": 0.10171658144631118,
+   "slot_gini": 0.991589134404675,
+   "share_1990s": 0.40763333333333335,
+   "genre_spread": 0.7785171270370483,
+   "CA_catalog_share": 0.03798392987582177,
+   "CA_slot_share": 0.0007416666666666666,
+   "CA_heldout_share": 0.020558276697795027,
+   "CA_demand_ratio": 0.03607630530365485,
+   "CA_exposure_ratio": 0.01952580128205128,
+   "CA_screens_with_any": 0.005583333333333333,
+   "FR_catalog_share": 0.059075967859751645,
+   "FR_slot_share": 0.029966666666666666,
+   "FR_heldout_share": 0.041218243140179314,
+   "FR_demand_ratio": 0.7270243558114035,
+   "FR_exposure_ratio": 0.5072564657393096,
+   "FR_screens_with_any": 0.2674166666666667
+  },
+  "cap8": {
+   "recall@10_eligible_holdout": 0.07780960202217102,
+   "recall_ci95": [
+    0.07523440569639206,
+    0.08043736219406128
+   ],
+   "recall_delta_vs_personalized": 0.00152534618973732,
+   "recall_delta_ci95": [
+    0.000492118124384433,
+    0.002557493979111314
+   ],
+   "pop_pct_mean": 99.04133483990748,
+   "head1_share": 0.7418833333333333,
+   "shelf_used": 1181,
+   "shelf_used_share": 0.10783418553688824,
+   "slot_gini": 0.9894245495495495,
+   "share_1990s": 0.3764166666666667,
+   "genre_spread": 0.775725245475769,
+   "CA_catalog_share": 0.03798392987582177,
+   "CA_slot_share": 0.0009166666666666666,
+   "CA_heldout_share": 0.020558276697795027,
+   "CA_demand_ratio": 0.04458869194833746,
+   "CA_exposure_ratio": 0.02413301282051282,
+   "CA_screens_with_any": 0.007333333333333333,
+   "FR_catalog_share": 0.059075967859751645,
+   "FR_slot_share": 0.029,
+   "FR_heldout_share": 0.041218243140179314,
+   "FR_demand_ratio": 0.7035719572368421,
+   "FR_exposure_ratio": 0.4908933539412674,
+   "FR_screens_with_any": 0.2574166666666667
+  },
+  "cap6": {
+   "recall@10_eligible_holdout": 0.07740284502506256,
+   "recall_ci95": [
+    0.07497447729110718,
+    0.07987701147794724
+   ],
+   "recall_delta_vs_personalized": 0.0011185872135683894,
+   "recall_delta_ci95": [
+    -0.0004415324074216187,
+    0.002746059326454997
+   ],
+   "pop_pct_mean": 98.74372960798637,
+   "head1_share": 0.57525,
+   "shelf_used": 1284,
+   "shelf_used_share": 0.11723886048210373,
+   "slot_gini": 0.9866839679206233,
+   "share_1990s": 0.3394083333333333,
+   "genre_spread": 0.7707945704460144,
+   "CA_catalog_share": 0.03798392987582177,
+   "CA_slot_share": 0.0013416666666666666,
+   "CA_heldout_share": 0.020558276697795027,
+   "CA_demand_ratio": 0.06526163094256664,
+   "CA_exposure_ratio": 0.03532195512820512,
+   "CA_screens_with_any": 0.01125,
+   "FR_catalog_share": 0.059075967859751645,
+   "FR_slot_share": 0.028208333333333332,
+   "FR_heldout_share": 0.041218243140179314,
+   "FR_demand_ratio": 0.6843652515076754,
+   "FR_exposure_ratio": 0.47749252962390515,
+   "FR_screens_with_any": 0.25225
+  },
+  "cap5": {
+   "recall@10_eligible_holdout": 0.07635205239057541,
+   "recall_ci95": [
+    0.07393400371074677,
+    0.07886397838592529
+   ],
+   "recall_delta_vs_personalized": 6.779316026950255e-05,
+   "recall_delta_ci95": [
+    -0.0017460633534938097,
+    0.0020355461165308952
+   ],
+   "pop_pct_mean": 98.55469921779887,
+   "head1_share": 0.48404166666666665,
+   "shelf_used": 1336,
+   "shelf_used_share": 0.12198685171658144,
+   "slot_gini": 0.9852354425371317,
+   "share_1990s": 0.319975,
+   "genre_spread": 0.7678953409194946,
+   "CA_catalog_share": 0.03798392987582177,
+   "CA_slot_share": 0.00165,
+   "CA_heldout_share": 0.020558276697795027,
+   "CA_demand_ratio": 0.08025964550700743,
+   "CA_exposure_ratio": 0.04343942307692308,
+   "CA_screens_with_any": 0.01425,
+   "FR_catalog_share": 0.059075967859751645,
+   "FR_slot_share": 0.027733333333333332,
+   "FR_heldout_share": 0.041218243140179314,
+   "FR_demand_ratio": 0.6728412280701754,
+   "FR_exposure_ratio": 0.46945203503348787,
+   "FR_screens_with_any": 0.24908333333333332
+  },
+  "cap4": {
+   "recall@10_eligible_holdout": 0.07411487400531769,
+   "recall_ci95": [
+    0.07173501700162888,
+    0.07664646208286285
+   ],
+   "recall_delta_vs_personalized": -0.0021693811286240816,
+   "recall_delta_ci95": [
+    -0.004220129456371069,
+    -6.780563126085326e-05
+   ],
+   "pop_pct_mean": 98.34754063184808,
+   "head1_share": 0.3899916666666667,
+   "shelf_used": 1389,
+   "shelf_used_share": 0.12682615047479912,
+   "slot_gini": 0.9838668097151205,
+   "share_1990s": 0.301075,
+   "genre_spread": 0.7642114758491516,
+   "CA_catalog_share": 0.03798392987582177,
+   "CA_slot_share": 0.0020583333333333335,
+   "CA_heldout_share": 0.020558276697795027,
+   "CA_demand_ratio": 0.10012188101126684,
+   "CA_exposure_ratio": 0.05418958333333333,
+   "CA_screens_with_any": 0.018,
+   "FR_catalog_share": 0.059075967859751645,
+   "FR_slot_share": 0.026966666666666667,
+   "FR_heldout_share": 0.041218243140179314,
+   "FR_demand_ratio": 0.6542410498903508,
+   "FR_exposure_ratio": 0.4564743946419371,
+   "FR_screens_with_any": 0.24283333333333335
+  },
+  "cap3": {
+   "recall@10_eligible_holdout": 0.07238615304231644,
+   "recall_ci95": [
+    0.07007922232151031,
+    0.07471756637096405
+   ],
+   "recall_delta_vs_personalized": -0.0038981069810688496,
+   "recall_delta_ci95": [
+    -0.0062319617718458176,
+    -0.0016081513604149222
+   ],
+   "pop_pct_mean": 98.12276159605551,
+   "head1_share": 0.29415833333333335,
+   "shelf_used": 1451,
+   "shelf_used_share": 0.1324872169466764,
+   "slot_gini": 0.982636964329194,
+   "share_1990s": 0.28205833333333336,
+   "genre_spread": 0.7609282732009888,
+   "CA_catalog_share": 0.03798392987582177,
+   "CA_slot_share": 0.002608333333333333,
+   "CA_heldout_share": 0.020558276697795027,
+   "CA_demand_ratio": 0.1268750961802693,
+   "CA_exposure_ratio": 0.06866939102564101,
+   "CA_screens_with_any": 0.023333333333333334,
+   "FR_catalog_share": 0.059075967859751645,
+   "FR_slot_share": 0.026158333333333332,
+   "FR_heldout_share": 0.041218243140179314,
+   "FR_demand_ratio": 0.6346299924616228,
+   "FR_exposure_ratio": 0.4427914477073673,
+   "FR_screens_with_any": 0.23733333333333334
+  },
+  "cap2": {
+   "recall@10_eligible_holdout": 0.06953883916139603,
+   "recall_ci95": [
+    0.06717927008867264,
+    0.07197228819131851
+   ],
+   "recall_delta_vs_personalized": -0.006745419930666685,
+   "recall_delta_ci95": [
+    -0.009416443295776844,
+    -0.004100066609680653
+   ],
+   "pop_pct_mean": 97.87779492330169,
+   "head1_share": 0.19705833333333334,
+   "shelf_used": 1507,
+   "shelf_used_share": 0.13760043827611396,
+   "slot_gini": 0.9817104775383492,
+   "share_1990s": 0.26348333333333335,
+   "genre_spread": 0.7573831677436829,
+   "CA_catalog_share": 0.03798392987582177,
+   "CA_slot_share": 0.0029916666666666668,
+   "CA_heldout_share": 0.020558276697795027,
+   "CA_demand_ratio": 0.14552127644957408,
+   "CA_exposure_ratio": 0.0787613782051282,
+   "CA_screens_with_any": 0.026916666666666665,
+   "FR_catalog_share": 0.059075967859751645,
+   "FR_slot_share": 0.024683333333333335,
+   "FR_heldout_share": 0.041218243140179314,
+   "FR_demand_ratio": 0.5988448670504386,
+   "FR_exposure_ratio": 0.41782359608449254,
+   "FR_screens_with_any": 0.22558333333333333
+  },
+  "cap1": {
+   "recall@10_eligible_holdout": 0.06506448984146118,
+   "recall_ci95": [
+    0.06281783431768417,
+    0.06731176376342773
+   ],
+   "recall_delta_vs_personalized": -0.011219768784940243,
+   "recall_delta_ci95": [
+    -0.013997279107570648,
+    -0.008566061966121197
+   ],
+   "pop_pct_mean": 97.61626430484537,
+   "head1_share": 0.09901666666666667,
+   "shelf_used": 1570,
+   "shelf_used_share": 0.1433528122717312,
+   "slot_gini": 0.9812620617238861,
+   "share_1990s": 0.243125,
+   "genre_spread": 0.7529280185699463,
+   "CA_catalog_share": 0.03798392987582177,
+   "CA_slot_share": 0.0036333333333333335,
+   "CA_heldout_share": 0.020558276697795027,
+   "CA_demand_ratio": 0.1767333608134103,
+   "CA_exposure_ratio": 0.09565448717948719,
+   "CA_screens_with_any": 0.033,
+   "FR_catalog_share": 0.059075967859751645,
+   "FR_slot_share": 0.023466666666666667,
+   "FR_heldout_share": 0.041218243140179314,
+   "FR_demand_ratio": 0.5693271929824562,
+   "FR_exposure_ratio": 0.3972286450283359,
+   "FR_screens_with_any": 0.21716666666666667
+  },
+  "cap0": {
+   "recall@10_eligible_holdout": 0.058420758694410324,
+   "recall_ci95": [
+    0.05630733445286751,
+    0.06058267503976822
+   ],
+   "recall_delta_vs_personalized": -0.017863499000668526,
+   "recall_delta_ci95": [
+    -0.021002797409892082,
+    -0.014894905500113964
+   ],
+   "pop_pct_mean": 97.33251422875578,
+   "head1_share": 0.0,
+   "shelf_used": 1540,
+   "shelf_used_share": 0.14061358655953252,
+   "slot_gini": 0.9829411796932067,
+   "share_1990s": 0.21845833333333334,
+   "genre_spread": 0.7499792575836182,
+   "CA_catalog_share": 0.03798392987582177,
+   "CA_slot_share": 0.004316666666666667,
+   "CA_heldout_share": 0.020558276697795027,
+   "CA_demand_ratio": 0.20997220390217092,
+   "CA_exposure_ratio": 0.11364455128205128,
+   "CA_screens_with_any": 0.03908333333333333,
+   "FR_catalog_share": 0.059075967859751645,
+   "FR_slot_share": 0.020716666666666668,
+   "FR_heldout_share": 0.041218243140179314,
+   "FR_demand_ratio": 0.5026091625548246,
+   "FR_exposure_ratio": 0.35067841318907783,
+   "FR_screens_with_any": 0.19391666666666665
+  },
+  "pen0.0": {
+   "recall@10_eligible_holdout": 0.076284259557724,
+   "recall_ci95": [
+    0.07355274260044098,
+    0.0789608359336853
+   ],
+   "recall_delta_vs_personalized": 0.0,
+   "recall_delta_ci95": [
+    0.0,
+    0.0
+   ],
+   "pop_pct_mean": 99.22292861273436,
+   "head1_share": 0.8695833333333334,
+   "shelf_used": 1114,
+   "shelf_used_share": 0.10171658144631118,
+   "slot_gini": 0.991589134404675,
+   "share_1990s": 0.40763333333333335,
+   "genre_spread": 0.7785171270370483,
+   "CA_catalog_share": 0.03798392987582177,
+   "CA_slot_share": 0.0007416666666666666,
+   "CA_heldout_share": 0.020558276697795027,
+   "CA_demand_ratio": 0.03607630530365485,
+   "CA_exposure_ratio": 0.01952580128205128,
+   "CA_screens_with_any": 0.005583333333333333,
+   "FR_catalog_share": 0.059075967859751645,
+   "FR_slot_share": 0.029966666666666666,
+   "FR_heldout_share": 0.041218243140179314,
+   "FR_demand_ratio": 0.7270243558114035,
+   "FR_exposure_ratio": 0.5072564657393096,
+   "FR_screens_with_any": 0.2674166666666667
+  },
+  "pen0.1": {
+   "recall@10_eligible_holdout": 0.07748758792877197,
+   "recall_ci95": [
+    0.07483520358800888,
+    0.07997793704271317
+   ],
+   "recall_delta_vs_personalized": 0.0012033286038786173,
+   "recall_delta_ci95": [
+    0.00033900976995937526,
+    0.0020000177901238203
+   ],
+   "pop_pct_mean": 98.82974045836376,
+   "head1_share": 0.8235333333333333,
+   "shelf_used": 1442,
+   "shelf_used_share": 0.1316654492330168,
+   "slot_gini": 0.9891426360482104,
+   "share_1990s": 0.38635,
+   "genre_spread": 0.7740755677223206,
+   "CA_catalog_share": 0.03798392987582177,
+   "CA_slot_share": 0.0012583333333333333,
+   "CA_heldout_share": 0.020558276697795027,
+   "CA_demand_ratio": 0.06120811349271778,
+   "CA_exposure_ratio": 0.03312804487179487,
+   "CA_screens_with_any": 0.00975,
+   "FR_catalog_share": 0.059075967859751645,
+   "FR_slot_share": 0.03174166666666667,
+   "FR_heldout_share": 0.041218243140179314,
+   "FR_demand_ratio": 0.770087811814693,
+   "FR_exposure_ratio": 0.5373025244719217,
+   "FR_screens_with_any": 0.27975
+  },
+  "pen0.2": {
+   "recall@10_eligible_holdout": 0.07886039465665817,
+   "recall_ci95": [
+    0.07617389410734177,
+    0.08141416311264038
+   ],
+   "recall_delta_vs_personalized": 0.002576140221208334,
+   "recall_delta_ci95": [
+    0.0013563367538154125,
+    0.003782000858336687
+   ],
+   "pop_pct_mean": 98.07424846299001,
+   "head1_share": 0.764725,
+   "shelf_used": 1968,
+   "shelf_used_share": 0.17969320672023376,
+   "slot_gini": 0.9849534849038227,
+   "share_1990s": 0.364175,
+   "genre_spread": 0.767655074596405,
+   "CA_catalog_share": 0.03798392987582177,
+   "CA_slot_share": 0.002125,
+   "CA_heldout_share": 0.020558276697795027,
+   "CA_demand_ratio": 0.10336469497114593,
+   "CA_exposure_ratio": 0.05594471153846154,
+   "CA_screens_with_any": 0.01633333333333333,
+   "FR_catalog_share": 0.059075967859751645,
+   "FR_slot_share": 0.033875,
+   "FR_heldout_share": 0.041218243140179314,
+   "FR_demand_ratio": 0.8218448293585526,
+   "FR_exposure_ratio": 0.5734142194744977,
+   "FR_screens_with_any": 0.29225
+  },
+  "pen0.3": {
+   "recall@10_eligible_holdout": 0.07964001595973969,
+   "recall_ci95": [
+    0.07702172547578812,
+    0.08221111446619034
+   ],
+   "recall_delta_vs_personalized": 0.0033557615242898464,
+   "recall_delta_ci95": [
+    0.0017291278345510364,
+    0.004948805086314678
+   ],
+   "pop_pct_mean": 96.5927198228634,
+   "head1_share": 0.6895083333333333,
+   "shelf_used": 2744,
+   "shelf_used_share": 0.2505478451424397,
+   "slot_gini": 0.9771708028974921,
+   "share_1990s": 0.34105833333333335,
+   "genre_spread": 0.7583853006362915,
+   "CA_catalog_share": 0.03798392987582177,
+   "CA_slot_share": 0.0037166666666666667,
+   "CA_heldout_share": 0.020558276697795027,
+   "CA_demand_ratio": 0.18078687826325915,
+   "CA_exposure_ratio": 0.09784839743589743,
+   "CA_screens_with_any": 0.028416666666666666,
+   "FR_catalog_share": 0.059075967859751645,
+   "FR_slot_share": 0.03610833333333333,
+   "FR_heldout_share": 0.041218243140179314,
+   "FR_demand_ratio": 0.8760279570997807,
+   "FR_exposure_ratio": 0.6112186501803194,
+   "FR_screens_with_any": 0.302
+  },
+  "pen0.4": {
+   "recall@10_eligible_holdout": 0.07864006608724594,
+   "recall_ci95": [
+    0.076089046895504,
+    0.08108478784561157
+   ],
+   "recall_delta_vs_personalized": 0.0023558123502880335,
+   "recall_delta_ci95": [
+    0.0005417923093773425,
+    0.004332590848207474
+   ],
+   "pop_pct_mean": 93.55222630569757,
+   "head1_share": 0.59375,
+   "shelf_used": 3885,
+   "shelf_used_share": 0.3547297297297297,
+   "slot_gini": 0.9613307280253226,
+   "share_1990s": 0.31709166666666666,
+   "genre_spread": 0.745344340801239,
+   "CA_catalog_share": 0.03798392987582177,
+   "CA_slot_share": 0.006441666666666667,
+   "CA_heldout_share": 0.020558276697795027,
+   "CA_demand_ratio": 0.31333689887331684,
+   "CA_exposure_ratio": 0.16958926282051281,
+   "CA_screens_with_any": 0.047,
+   "FR_catalog_share": 0.059075967859751645,
+   "FR_slot_share": 0.038891666666666665,
+   "FR_heldout_share": 0.041218243140179314,
+   "FR_demand_ratio": 0.943554690926535,
+   "FR_exposure_ratio": 0.6583331272539927,
+   "FR_screens_with_any": 0.31
+  },
+  "pen0.5": {
+   "recall@10_eligible_holdout": 0.07414877414703369,
+   "recall_ci95": [
+    0.07158512622117996,
+    0.07678800076246262
+   ],
+   "recall_delta_vs_personalized": -0.0021354847121983767,
+   "recall_delta_ci95": [
+    -0.00418882118538022,
+    -1.6086469258880243e-05
+   ],
+   "pop_pct_mean": 87.7183764761383,
+   "head1_share": 0.4757166666666667,
+   "shelf_used": 5198,
+   "shelf_used_share": 0.4746165084002922,
+   "slot_gini": 0.9303102097029462,
+   "share_1990s": 0.29270833333333335,
+   "genre_spread": 0.7263997793197632,
+   "CA_catalog_share": 0.03798392987582177,
+   "CA_slot_share": 0.01025,
+   "CA_heldout_share": 0.020558276697795027,
+   "CA_demand_ratio": 0.49858264633140975,
+   "CA_exposure_ratio": 0.26985096153846155,
+   "CA_screens_with_any": 0.07425,
+   "FR_catalog_share": 0.059075967859751645,
+   "FR_slot_share": 0.04066666666666666,
+   "FR_heldout_share": 0.041218243140179314,
+   "FR_demand_ratio": 0.9866181469298244,
+   "FR_exposure_ratio": 0.6883791859866047,
+   "FR_screens_with_any": 0.3075833333333333
+  },
+  "pen0.6": {
+   "recall@10_eligible_holdout": 0.06481026113033295,
+   "recall_ci95": [
+    0.06263778358697891,
+    0.06710975617170334
+   ],
+   "recall_delta_vs_personalized": -0.011473992839455605,
+   "recall_delta_ci95": [
+    -0.013640555553138256,
+    -0.009203647263348103
+   ],
+   "pop_pct_mean": 78.4299731403701,
+   "head1_share": 0.34175833333333333,
+   "shelf_used": 6376,
+   "shelf_used_share": 0.5821767713659606,
+   "slot_gini": 0.8809217616264914,
+   "share_1990s": 0.27265,
+   "genre_spread": 0.7051793336868286,
+   "CA_catalog_share": 0.03798392987582177,
+   "CA_slot_share": 0.01564166666666667,
+   "CA_heldout_share": 0.020558276697795027,
+   "CA_demand_ratio": 0.760845225336631,
+   "CA_exposure_ratio": 0.41179695512820513,
+   "CA_screens_with_any": 0.11133333333333334,
+   "FR_catalog_share": 0.059075967859751645,
+   "FR_slot_share": 0.04345,
+   "FR_heldout_share": 0.041218243140179314,
+   "FR_demand_ratio": 1.054144880756579,
+   "FR_exposure_ratio": 0.7354936630602782,
+   "FR_screens_with_any": 0.30791666666666667
+  },
+  "pen0.7": {
+   "recall@10_eligible_holdout": 0.05362439155578613,
+   "recall_ci95": [
+    0.05163859575986862,
+    0.05582035332918167
+   ],
+   "recall_delta_vs_personalized": -0.022659864276647568,
+   "recall_delta_ci95": [
+    -0.025161389261484146,
+    -0.020076649263501167
+   ],
+   "pop_pct_mean": 66.95293888483077,
+   "head1_share": 0.21425833333333333,
+   "shelf_used": 7190,
+   "shelf_used_share": 0.6565010956902849,
+   "slot_gini": 0.822094386109082,
+   "share_1990s": 0.25865,
+   "genre_spread": 0.6821895837783813,
+   "CA_catalog_share": 0.03798392987582177,
+   "CA_slot_share": 0.0205,
+   "CA_heldout_share": 0.020558276697795027,
+   "CA_demand_ratio": 0.9971652926628195,
+   "CA_exposure_ratio": 0.5397019230769231,
+   "CA_screens_with_any": 0.146,
+   "FR_catalog_share": 0.059075967859751645,
+   "FR_slot_share": 0.046408333333333336,
+   "FR_heldout_share": 0.041218243140179314,
+   "FR_demand_ratio": 1.125917307428728,
+   "FR_exposure_ratio": 0.7855704276146317,
+   "FR_screens_with_any": 0.3075
+  },
+  "pen0.8": {
+   "recall@10_eligible_holdout": 0.04403166100382805,
+   "recall_ci95": [
+    0.04209332913160324,
+    0.04598395153880119
+   ],
+   "recall_delta_vs_personalized": -0.03225259855389595,
+   "recall_delta_ci95": [
+    -0.035058289766311646,
+    -0.02957846224308014
+   ],
+   "pop_pct_mean": 57.23397149683467,
+   "head1_share": 0.12575,
+   "shelf_used": 7717,
+   "shelf_used_share": 0.7046201607012418,
+   "slot_gini": 0.7733111029948868,
+   "share_1990s": 0.25388333333333335,
+   "genre_spread": 0.6684520840644836,
+   "CA_catalog_share": 0.03798392987582177,
+   "CA_slot_share": 0.02420833333333333,
+   "CA_heldout_share": 0.020558276697795027,
+   "CA_demand_ratio": 1.1775468191810936,
+   "CA_exposure_ratio": 0.6373309294871794,
+   "CA_screens_with_any": 0.17483333333333334,
+   "FR_catalog_share": 0.059075967859751645,
+   "FR_slot_share": 0.04805,
+   "FR_heldout_share": 0.041218243140179314,
+   "FR_demand_ratio": 1.1657459498355263,
+   "FR_exposure_ratio": 0.8133595054095827,
+   "FR_screens_with_any": 0.3050833333333333
+  },
+  "pen1.0": {
+   "recall@10_eligible_holdout": 0.03099842369556427,
+   "recall_ci95": [
+    0.029391499236226082,
+    0.032758839428424835
+   ],
+   "recall_delta_vs_personalized": -0.04528583213686943,
+   "recall_delta_ci95": [
+    -0.048081766813993454,
+    -0.04252834990620613
+   ],
+   "pop_pct_mean": 47.408920668979796,
+   "head1_share": 0.05134166666666667,
+   "shelf_used": 8297,
+   "shelf_used_share": 0.7575785244704164,
+   "slot_gini": 0.721570264183102,
+   "share_1990s": 0.2555,
+   "genre_spread": 0.6624990701675415,
+   "CA_catalog_share": 0.03798392987582177,
+   "CA_slot_share": 0.027441666666666666,
+   "CA_heldout_share": 0.020558276697795027,
+   "CA_demand_ratio": 1.3348232962352296,
+   "CA_exposure_ratio": 0.7224546474358974,
+   "CA_screens_with_any": 0.19966666666666666,
+   "FR_catalog_share": 0.059075967859751645,
+   "FR_slot_share": 0.048791666666666664,
+   "FR_heldout_share": 0.041218243140179314,
+   "FR_demand_ratio": 1.1837396004660086,
+   "FR_exposure_ratio": 0.825913961875322,
+   "FR_screens_with_any": 0.29825
+  },
+  "ca_slot": {
+   "recall@10_eligible_holdout": 0.0727759599685669,
+   "recall_ci95": [
+    0.07015328109264374,
+    0.07547691464424133
+   ],
+   "recall_delta_vs_personalized": -0.0035082960966974497,
+   "recall_delta_ci95": [
+    -0.004220557399094105,
+    -0.0027799305971711874
+   ],
+   "pop_pct_mean": 98.14320489408327,
+   "head1_share": 0.7872916666666666,
+   "shelf_used": 1179,
+   "shelf_used_share": 0.10765157048940832,
+   "slot_gini": 0.9903758080715851,
+   "share_1990s": 0.38945,
+   "genre_spread": 0.7869192957878113,
+   "CA_catalog_share": 0.03798392987582177,
+   "CA_slot_share": 0.10018333333333333,
+   "CA_heldout_share": 0.020558276697795027,
+   "CA_demand_ratio": 4.873138678208299,
+   "CA_exposure_ratio": 2.6375189102564103,
+   "CA_screens_with_any": 1.0,
+   "FR_catalog_share": 0.059075967859751645,
+   "FR_slot_share": 0.030883333333333332,
+   "FR_heldout_share": 0.041218243140179314,
+   "FR_demand_ratio": 0.7492636992872806,
+   "FR_exposure_ratio": 0.5227732096857289,
+   "FR_screens_with_any": 0.272
+  },
+  "cap3_ca_slot": {
+   "recall@10_eligible_holdout": 0.06969137489795685,
+   "recall_ci95": [
+    0.06734359264373779,
+    0.07209496945142746
+   ],
+   "recall_delta_vs_personalized": -0.006592885125428438,
+   "recall_delta_ci95": [
+    -0.008945286273956299,
+    -0.004321434535086155
+   ],
+   "pop_pct_mean": 97.23197072072072,
+   "head1_share": 0.29349166666666665,
+   "shelf_used": 1483,
+   "shelf_used_share": 0.135409057706355,
+   "slot_gini": 0.982020213963964,
+   "share_1990s": 0.28015833333333334,
+   "genre_spread": 0.7688536643981934,
+   "CA_catalog_share": 0.03798392987582177,
+   "CA_slot_share": 0.100275,
+   "CA_heldout_share": 0.020558276697795027,
+   "CA_demand_ratio": 4.877597547403133,
+   "CA_exposure_ratio": 2.6399322115384614,
+   "CA_screens_with_any": 1.0,
+   "FR_catalog_share": 0.059075967859751645,
+   "FR_slot_share": 0.0278,
+   "FR_heldout_share": 0.041218243140179314,
+   "FR_demand_ratio": 0.674458634868421,
+   "FR_exposure_ratio": 0.4705805255023183,
+   "FR_screens_with_any": 0.25033333333333335
+  }
+ },
+ "validation": {
+  "0.0": {
+   "recall": 0.07516428083181381,
+   "shelf_used": 1040,
+   "head1_share": 0.8698083333333333
+  },
+  "0.1": {
+   "recall": 0.07695955783128738,
+   "shelf_used": 1384,
+   "head1_share": 0.823625
+  },
+  "0.2": {
+   "recall": 0.07777250558137894,
+   "shelf_used": 1916,
+   "head1_share": 0.7654083333333334
+  },
+  "0.3": {
+   "recall": 0.07777250558137894,
+   "shelf_used": 2728,
+   "head1_share": 0.6891083333333333
+  },
+  "0.4": {
+   "recall": 0.07618047297000885,
+   "shelf_used": 3892,
+   "head1_share": 0.5931666666666666
+  },
+  "0.5": {
+   "recall": 0.07209877669811249,
+   "shelf_used": 5230,
+   "head1_share": 0.47258333333333336
+  },
+  "0.6": {
+   "recall": 0.06320709735155106,
+   "shelf_used": 6414,
+   "head1_share": 0.33689166666666664
+  }
+ },
+ "strict_tags": {
+  "cap10": {
+   "CA_catalog_share": 0.008400292184075968,
+   "CA_heldout_share": 0.002101588054844669,
+   "CA_slot_share": 6.666666666666667e-05,
+   "CA_exposure_ratio": 0.007936231884057971,
+   "CA_demand_ratio": 0.03172204301075269,
+   "CA_screens_with_any": 0.0005
+  },
+  "cap8": {
+   "CA_catalog_share": 0.008400292184075968,
+   "CA_heldout_share": 0.002101588054844669,
+   "CA_slot_share": 9.166666666666667e-05,
+   "CA_exposure_ratio": 0.010912318840579709,
+   "CA_demand_ratio": 0.04361780913978495,
+   "CA_screens_with_any": 0.00075
+  },
+  "cap6": {
+   "CA_catalog_share": 0.008400292184075968,
+   "CA_heldout_share": 0.002101588054844669,
+   "CA_slot_share": 0.00013333333333333334,
+   "CA_exposure_ratio": 0.015872463768115942,
+   "CA_demand_ratio": 0.06344408602150538,
+   "CA_screens_with_any": 0.0011666666666666668
+  },
+  "cap5": {
+   "CA_catalog_share": 0.008400292184075968,
+   "CA_heldout_share": 0.002101588054844669,
+   "CA_slot_share": 0.00014166666666666668,
+   "CA_exposure_ratio": 0.01686449275362319,
+   "CA_demand_ratio": 0.06740934139784947,
+   "CA_screens_with_any": 0.00125
+  },
+  "cap4": {
+   "CA_catalog_share": 0.008400292184075968,
+   "CA_heldout_share": 0.002101588054844669,
+   "CA_slot_share": 0.00016666666666666666,
+   "CA_exposure_ratio": 0.019840579710144926,
+   "CA_demand_ratio": 0.07930510752688172,
+   "CA_screens_with_any": 0.0015
+  },
+  "cap3": {
+   "CA_catalog_share": 0.008400292184075968,
+   "CA_heldout_share": 0.002101588054844669,
+   "CA_slot_share": 0.00020833333333333335,
+   "CA_exposure_ratio": 0.02480072463768116,
+   "CA_demand_ratio": 0.09913138440860216,
+   "CA_screens_with_any": 0.0019166666666666666
+  },
+  "cap2": {
+   "CA_catalog_share": 0.008400292184075968,
+   "CA_heldout_share": 0.002101588054844669,
+   "CA_slot_share": 0.00021666666666666666,
+   "CA_exposure_ratio": 0.025792753623188405,
+   "CA_demand_ratio": 0.10309663978494624,
+   "CA_screens_with_any": 0.002
+  },
+  "cap1": {
+   "CA_catalog_share": 0.008400292184075968,
+   "CA_heldout_share": 0.002101588054844669,
+   "CA_slot_share": 0.00024166666666666667,
+   "CA_exposure_ratio": 0.028768840579710145,
+   "CA_demand_ratio": 0.1149924059139785,
+   "CA_screens_with_any": 0.00225
+  },
+  "cap0": {
+   "CA_catalog_share": 0.008400292184075968,
+   "CA_heldout_share": 0.002101588054844669,
+   "CA_slot_share": 0.0002916666666666667,
+   "CA_exposure_ratio": 0.034721014492753624,
+   "CA_demand_ratio": 0.13878393817204301,
+   "CA_screens_with_any": 0.00275
+  },
+  "pen0.0": {
+   "CA_catalog_share": 0.008400292184075968,
+   "CA_heldout_share": 0.002101588054844669,
+   "CA_slot_share": 6.666666666666667e-05,
+   "CA_exposure_ratio": 0.007936231884057971,
+   "CA_demand_ratio": 0.03172204301075269,
+   "CA_screens_with_any": 0.0005
+  },
+  "pen0.1": {
+   "CA_catalog_share": 0.008400292184075968,
+   "CA_heldout_share": 0.002101588054844669,
+   "CA_slot_share": 0.00014166666666666668,
+   "CA_exposure_ratio": 0.01686449275362319,
+   "CA_demand_ratio": 0.06740934139784947,
+   "CA_screens_with_any": 0.00125
+  },
+  "pen0.2": {
+   "CA_catalog_share": 0.008400292184075968,
+   "CA_heldout_share": 0.002101588054844669,
+   "CA_slot_share": 0.000225,
+   "CA_exposure_ratio": 0.02678478260869565,
+   "CA_demand_ratio": 0.10706189516129032,
+   "CA_screens_with_any": 0.0020833333333333333
+  },
+  "pen0.3": {
+   "CA_catalog_share": 0.008400292184075968,
+   "CA_heldout_share": 0.002101588054844669,
+   "CA_slot_share": 0.00046666666666666666,
+   "CA_exposure_ratio": 0.055553623188405794,
+   "CA_demand_ratio": 0.22205430107526883,
+   "CA_screens_with_any": 0.0045
+  },
+  "pen0.4": {
+   "CA_catalog_share": 0.008400292184075968,
+   "CA_heldout_share": 0.002101588054844669,
+   "CA_slot_share": 0.0009333333333333333,
+   "CA_exposure_ratio": 0.11110724637681159,
+   "CA_demand_ratio": 0.44410860215053766,
+   "CA_screens_with_any": 0.008833333333333334
+  },
+  "pen0.5": {
+   "CA_catalog_share": 0.008400292184075968,
+   "CA_heldout_share": 0.002101588054844669,
+   "CA_slot_share": 0.0015916666666666666,
+   "CA_exposure_ratio": 0.18947753623188404,
+   "CA_demand_ratio": 0.7573637768817204,
+   "CA_screens_with_any": 0.014833333333333334
+  },
+  "pen0.6": {
+   "CA_catalog_share": 0.008400292184075968,
+   "CA_heldout_share": 0.002101588054844669,
+   "CA_slot_share": 0.0027083333333333334,
+   "CA_exposure_ratio": 0.3224094202898551,
+   "CA_demand_ratio": 1.288707997311828,
+   "CA_screens_with_any": 0.024833333333333332
+  },
+  "pen0.7": {
+   "CA_catalog_share": 0.008400292184075968,
+   "CA_heldout_share": 0.002101588054844669,
+   "CA_slot_share": 0.0037166666666666667,
+   "CA_exposure_ratio": 0.4424449275362319,
+   "CA_demand_ratio": 1.7685038978494625,
+   "CA_screens_with_any": 0.0335
+  },
+  "pen0.8": {
+   "CA_catalog_share": 0.008400292184075968,
+   "CA_heldout_share": 0.002101588054844669,
+   "CA_slot_share": 0.004508333333333333,
+   "CA_exposure_ratio": 0.5366876811594202,
+   "CA_demand_ratio": 2.1452031586021505,
+   "CA_screens_with_any": 0.04033333333333333
+  },
+  "pen1.0": {
+   "CA_catalog_share": 0.008400292184075968,
+   "CA_heldout_share": 0.002101588054844669,
+   "CA_slot_share": 0.005216666666666666,
+   "CA_exposure_ratio": 0.6210101449275361,
+   "CA_demand_ratio": 2.4822498655913976,
+   "CA_screens_with_any": 0.04591666666666667
+  },
+  "ca_slot": {
+   "CA_catalog_share": 0.008400292184075968,
+   "CA_heldout_share": 0.002101588054844669,
+   "CA_slot_share": 0.01595,
+   "CA_exposure_ratio": 1.8987434782608694,
+   "CA_demand_ratio": 7.589498790322581,
+   "CA_screens_with_any": 0.15933333333333333
+  },
+  "cap3_ca_slot": {
+   "CA_catalog_share": 0.008400292184075968,
+   "CA_heldout_share": 0.002101588054844669,
+   "CA_slot_share": 0.01595,
+   "CA_exposure_ratio": 1.8987434782608694,
+   "CA_demand_ratio": 7.589498790322581,
+   "CA_screens_with_any": 0.15933333333333333
+  },
+  "most_rated": {
+   "CA_catalog_share": 0.008400292184075968,
+   "CA_heldout_share": 0.002101588054844669,
+   "CA_slot_share": 0.0,
+   "CA_exposure_ratio": 0.0,
+   "CA_demand_ratio": 0.0,
+   "CA_screens_with_any": 0.0
+  },
+  "personalized": {
+   "CA_catalog_share": 0.008400292184075968,
+   "CA_heldout_share": 0.002101588054844669,
+   "CA_slot_share": 6.666666666666667e-05,
+   "CA_exposure_ratio": 0.007936231884057971,
+   "CA_demand_ratio": 0.03172204301075269,
+   "CA_screens_with_any": 0.0005
+  },
+  "genre_cap3": {
+   "CA_catalog_share": 0.008400292184075968,
+   "CA_heldout_share": 0.002101588054844669,
+   "CA_slot_share": 3.3333333333333335e-05,
+   "CA_exposure_ratio": 0.0039681159420289856,
+   "CA_demand_ratio": 0.015861021505376344,
+   "CA_screens_with_any": 0.00016666666666666666
+  },
+  "random": {
+   "CA_catalog_share": 0.008400292184075968,
+   "CA_heldout_share": 0.002101588054844669,
+   "CA_slot_share": 0.008433333333333333,
+   "CA_exposure_ratio": 1.0039333333333331,
+   "CA_demand_ratio": 4.0128384408602145,
+   "CA_screens_with_any": 0.08166666666666667
+  },
+  "combo": {
+   "CA_catalog_share": 0.008400292184075968,
+   "CA_heldout_share": 0.002101588054844669,
+   "CA_slot_share": 0.00034166666666666666,
+   "CA_exposure_ratio": 0.040673188405797096,
+   "CA_demand_ratio": 0.16257547043010753,
+   "CA_screens_with_any": 0.00325
+  }
+ },
+ "strict_counts": {
+  "CA": 92,
+  "FR": 0
+ },
+ "demos": [
+  {
+   "label": "Viewer A",
+   "n_history": 50,
+   "history_sample": [
+    "Shrek (2001)",
+    "Monsters, Inc. (2001)",
+    "WALL\u00b7E (2008)",
+    "Toy Story 2 (1999)",
+    "When Harry Met Sally... (1989)"
+   ],
+   "screens": {
+    "cap10": [
+     {
+      "t": "Finding Nemo (2003)",
+      "pct": 99.5,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": true
+     },
+     {
+      "t": "Incredibles, The (2004)",
+      "pct": 99.4,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": true
+     },
+     {
+      "t": "Holiday, The (2006)",
+      "pct": 87.6,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": false
+     },
+     {
+      "t": "Made of Honor (2008)",
+      "pct": 59.3,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": false
+     },
+     {
+      "t": "Lord of the Rings: The Fellowship of the Ring, The (2001)",
+      "pct": 99.9,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": true
+     },
+     {
+      "t": "Wedding Date, The (2005)",
+      "pct": 63.4,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": false
+     },
+     {
+      "t": "Princess Diaries 2: Royal Engagement, The (2004)",
+      "pct": 73.6,
+      "ca": false,
+      "fr": false,
+      "hit": true,
+      "head": false
+     },
+     {
+      "t": "Cinderella Story, A (2004)",
+      "pct": 70.8,
+      "ca": true,
+      "fr": false,
+      "hit": false,
+      "head": false
+     },
+     {
+      "t": "Lord of the Rings: The Two Towers, The (2002)",
+      "pct": 99.9,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": true
+     },
+     {
+      "t": "She's the Man (2006)",
+      "pct": 77.9,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": false
+     }
+    ],
+    "combo": [
+     {
+      "t": "Made of Honor (2008)",
+      "pct": 59.3,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": false
+     },
+     {
+      "t": "Wedding Date, The (2005)",
+      "pct": 63.4,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": false
+     },
+     {
+      "t": "Prince & Me, The (2004)",
+      "pct": 61.1,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": false
+     },
+     {
+      "t": "Cinderella Story, A (2004)",
+      "pct": 70.8,
+      "ca": true,
+      "fr": false,
+      "hit": false,
+      "head": false
+     },
+     {
+      "t": "Princess Diaries 2: Royal Engagement, The (2004)",
+      "pct": 73.6,
+      "ca": false,
+      "fr": false,
+      "hit": true,
+      "head": false
+     },
+     {
+      "t": "She's the Man (2006)",
+      "pct": 77.9,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": false
+     },
+     {
+      "t": "Holiday, The (2006)",
+      "pct": 87.6,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": false
+     },
+     {
+      "t": "Ugly Truth, The (2009)",
+      "pct": 76.4,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": false
+     },
+     {
+      "t": "Letters to Juliet (2010)",
+      "pct": 69.2,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": false
+     },
+     {
+      "t": "Walk to Remember, A (2002)",
+      "pct": 82.5,
+      "ca": false,
+      "fr": false,
+      "hit": true,
+      "head": false
+     }
+    ],
+    "pen0.4": [
+     {
+      "t": "Made of Honor (2008)",
+      "pct": 59.3,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": false
+     },
+     {
+      "t": "Wedding Date, The (2005)",
+      "pct": 63.4,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": false
+     },
+     {
+      "t": "Prince & Me, The (2004)",
+      "pct": 61.1,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": false
+     },
+     {
+      "t": "Cinderella Story, A (2004)",
+      "pct": 70.8,
+      "ca": true,
+      "fr": false,
+      "hit": false,
+      "head": false
+     },
+     {
+      "t": "Princess Diaries 2: Royal Engagement, The (2004)",
+      "pct": 73.6,
+      "ca": false,
+      "fr": false,
+      "hit": true,
+      "head": false
+     },
+     {
+      "t": "Ugly Truth, The (2009)",
+      "pct": 76.4,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": false
+     },
+     {
+      "t": "She's the Man (2006)",
+      "pct": 77.9,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": false
+     },
+     {
+      "t": "Letters to Juliet (2010)",
+      "pct": 69.2,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": false
+     },
+     {
+      "t": "When in Rome (2010)",
+      "pct": 49.3,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": false
+     },
+     {
+      "t": "Holiday, The (2006)",
+      "pct": 87.6,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": false
+     }
+    ],
+    "cap5": [
+     {
+      "t": "Finding Nemo (2003)",
+      "pct": 99.5,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": true
+     },
+     {
+      "t": "Incredibles, The (2004)",
+      "pct": 99.4,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": true
+     },
+     {
+      "t": "Holiday, The (2006)",
+      "pct": 87.6,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": false
+     },
+     {
+      "t": "Made of Honor (2008)",
+      "pct": 59.3,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": false
+     },
+     {
+      "t": "Lord of the Rings: The Fellowship of the Ring, The (2001)",
+      "pct": 99.9,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": true
+     },
+     {
+      "t": "Wedding Date, The (2005)",
+      "pct": 63.4,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": false
+     },
+     {
+      "t": "Princess Diaries 2: Royal Engagement, The (2004)",
+      "pct": 73.6,
+      "ca": false,
+      "fr": false,
+      "hit": true,
+      "head": false
+     },
+     {
+      "t": "Cinderella Story, A (2004)",
+      "pct": 70.8,
+      "ca": true,
+      "fr": false,
+      "hit": false,
+      "head": false
+     },
+     {
+      "t": "Lord of the Rings: The Two Towers, The (2002)",
+      "pct": 99.9,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": true
+     },
+     {
+      "t": "She's the Man (2006)",
+      "pct": 77.9,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": false
+     }
+    ],
+    "ca_slot": [
+     {
+      "t": "Finding Nemo (2003)",
+      "pct": 99.5,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": true
+     },
+     {
+      "t": "Incredibles, The (2004)",
+      "pct": 99.4,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": true
+     },
+     {
+      "t": "Holiday, The (2006)",
+      "pct": 87.6,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": false
+     },
+     {
+      "t": "Made of Honor (2008)",
+      "pct": 59.3,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": false
+     },
+     {
+      "t": "Lord of the Rings: The Fellowship of the Ring, The (2001)",
+      "pct": 99.9,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": true
+     },
+     {
+      "t": "Wedding Date, The (2005)",
+      "pct": 63.4,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": false
+     },
+     {
+      "t": "Princess Diaries 2: Royal Engagement, The (2004)",
+      "pct": 73.6,
+      "ca": false,
+      "fr": false,
+      "hit": true,
+      "head": false
+     },
+     {
+      "t": "Cinderella Story, A (2004)",
+      "pct": 70.8,
+      "ca": true,
+      "fr": false,
+      "hit": false,
+      "head": false
+     },
+     {
+      "t": "Lord of the Rings: The Two Towers, The (2002)",
+      "pct": 99.9,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": true
+     },
+     {
+      "t": "She's the Man (2006)",
+      "pct": 77.9,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": false
+     }
+    ]
+   }
+  },
+  {
+   "label": "Viewer B",
+   "n_history": 118,
+   "history_sample": [
+    "Pulp Fiction (1994)",
+    "American Beauty (1999)",
+    "Gladiator (2000)",
+    "One Flew Over the Cuckoo's Nest (1975)",
+    "Blade Runner (1982)"
+   ],
+   "screens": {
+    "cap10": [
+     {
+      "t": "Fargo (1996)",
+      "pct": 99.8,
+      "ca": false,
+      "fr": false,
+      "hit": true,
+      "head": true
+     },
+     {
+      "t": "Graduate, The (1967)",
+      "pct": 98.5,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": false
+     },
+     {
+      "t": "Chinatown (1974)",
+      "pct": 98.5,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": false
+     },
+     {
+      "t": "L.A. Confidential (1997)",
+      "pct": 99.2,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": true
+     },
+     {
+      "t": "Clockwork Orange, A (1971)",
+      "pct": 99.4,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": true
+     },
+     {
+      "t": "Amadeus (1984)",
+      "pct": 98.8,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": false
+     },
+     {
+      "t": "Reservoir Dogs (1992)",
+      "pct": 99.6,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": true
+     },
+     {
+      "t": "Godfather, The (1972)",
+      "pct": 99.9,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": true
+     },
+     {
+      "t": "Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb (1964)",
+      "pct": 99.3,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": true
+     },
+     {
+      "t": "Shining, The (1980)",
+      "pct": 99.4,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": true
+     }
+    ],
+    "combo": [
+     {
+      "t": "Graduate, The (1967)",
+      "pct": 98.5,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": false
+     },
+     {
+      "t": "Chinatown (1974)",
+      "pct": 98.5,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": false
+     },
+     {
+      "t": "Fargo (1996)",
+      "pct": 99.8,
+      "ca": false,
+      "fr": false,
+      "hit": true,
+      "head": true
+     },
+     {
+      "t": "L.A. Confidential (1997)",
+      "pct": 99.2,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": true
+     },
+     {
+      "t": "Clockwork Orange, A (1971)",
+      "pct": 99.4,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": true
+     },
+     {
+      "t": "Amadeus (1984)",
+      "pct": 98.8,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": false
+     },
+     {
+      "t": "Room with a View, A (1986)",
+      "pct": 92.8,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": false
+     },
+     {
+      "t": "Midnight Cowboy (1969)",
+      "pct": 93.8,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": false
+     },
+     {
+      "t": "Raging Bull (1980)",
+      "pct": 96.8,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": false
+     },
+     {
+      "t": "Big Night (1996)",
+      "pct": 91.3,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": false
+     }
+    ],
+    "pen0.4": [
+     {
+      "t": "Graduate, The (1967)",
+      "pct": 98.5,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": false
+     },
+     {
+      "t": "Chinatown (1974)",
+      "pct": 98.5,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": false
+     },
+     {
+      "t": "Sweet Hereafter, The (1997)",
+      "pct": 88.8,
+      "ca": true,
+      "fr": false,
+      "hit": false,
+      "head": false
+     },
+     {
+      "t": "Big Night (1996)",
+      "pct": 91.3,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": false
+     },
+     {
+      "t": "Room with a View, A (1986)",
+      "pct": 92.8,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": false
+     },
+     {
+      "t": "Midnight Cowboy (1969)",
+      "pct": 93.8,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": false
+     },
+     {
+      "t": "Lone Star (1996)",
+      "pct": 93.8,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": false
+     },
+     {
+      "t": "Fargo (1996)",
+      "pct": 99.8,
+      "ca": false,
+      "fr": false,
+      "hit": true,
+      "head": true
+     },
+     {
+      "t": "Raging Bull (1980)",
+      "pct": 96.8,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": false
+     },
+     {
+      "t": "L.A. Confidential (1997)",
+      "pct": 99.2,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": true
+     }
+    ],
+    "cap5": [
+     {
+      "t": "Fargo (1996)",
+      "pct": 99.8,
+      "ca": false,
+      "fr": false,
+      "hit": true,
+      "head": true
+     },
+     {
+      "t": "Graduate, The (1967)",
+      "pct": 98.5,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": false
+     },
+     {
+      "t": "Chinatown (1974)",
+      "pct": 98.5,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": false
+     },
+     {
+      "t": "L.A. Confidential (1997)",
+      "pct": 99.2,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": true
+     },
+     {
+      "t": "Clockwork Orange, A (1971)",
+      "pct": 99.4,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": true
+     },
+     {
+      "t": "Amadeus (1984)",
+      "pct": 98.8,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": false
+     },
+     {
+      "t": "Reservoir Dogs (1992)",
+      "pct": 99.6,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": true
+     },
+     {
+      "t": "Godfather, The (1972)",
+      "pct": 99.9,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": true
+     },
+     {
+      "t": "Raging Bull (1980)",
+      "pct": 96.8,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": false
+     },
+     {
+      "t": "Psycho (1960)",
+      "pct": 99.0,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": false
+     }
+    ],
+    "ca_slot": [
+     {
+      "t": "Fargo (1996)",
+      "pct": 99.8,
+      "ca": false,
+      "fr": false,
+      "hit": true,
+      "head": true
+     },
+     {
+      "t": "Graduate, The (1967)",
+      "pct": 98.5,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": false
+     },
+     {
+      "t": "Chinatown (1974)",
+      "pct": 98.5,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": false
+     },
+     {
+      "t": "L.A. Confidential (1997)",
+      "pct": 99.2,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": true
+     },
+     {
+      "t": "Clockwork Orange, A (1971)",
+      "pct": 99.4,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": true
+     },
+     {
+      "t": "Amadeus (1984)",
+      "pct": 98.8,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": false
+     },
+     {
+      "t": "Reservoir Dogs (1992)",
+      "pct": 99.6,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": true
+     },
+     {
+      "t": "Godfather, The (1972)",
+      "pct": 99.9,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": true
+     },
+     {
+      "t": "Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb (1964)",
+      "pct": 99.3,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": true
+     },
+     {
+      "t": "Sweet Hereafter, The (1997)",
+      "pct": 88.8,
+      "ca": true,
+      "fr": false,
+      "hit": false,
+      "head": false
+     }
+    ]
+   }
+  },
+  {
+   "label": "Viewer C",
+   "n_history": 39,
+   "history_sample": [
+    "Shawshank Redemption, The (1994)",
+    "Matrix, The (1999)",
+    "Fight Club (1999)",
+    "Schindler's List (1993)",
+    "Usual Suspects, The (1995)"
+   ],
+   "screens": {
+    "cap10": [
+     {
+      "t": "Lord of the Rings: The Fellowship of the Ring, The (2001)",
+      "pct": 99.9,
+      "ca": false,
+      "fr": false,
+      "hit": true,
+      "head": true
+     },
+     {
+      "t": "Pulp Fiction (1994)",
+      "pct": 100.0,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": true
+     },
+     {
+      "t": "Django Unchained (2012)",
+      "pct": 99.1,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": true
+     },
+     {
+      "t": "Lord of the Rings: The Two Towers, The (2002)",
+      "pct": 99.9,
+      "ca": false,
+      "fr": false,
+      "hit": true,
+      "head": true
+     },
+     {
+      "t": "Wolf of Wall Street, The (2013)",
+      "pct": 98.7,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": false
+     },
+     {
+      "t": "Mad Max: Fury Road (2015)",
+      "pct": 98.1,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": false
+     },
+     {
+      "t": "Reservoir Dogs (1992)",
+      "pct": 99.6,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": true
+     },
+     {
+      "t": "No Country for Old Men (2007)",
+      "pct": 98.9,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": false
+     },
+     {
+      "t": "Gone Girl (2014)",
+      "pct": 98.1,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": false
+     },
+     {
+      "t": "Seven (a.k.a. Se7en) (1995)",
+      "pct": 99.8,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": true
+     }
+    ],
+    "combo": [
+     {
+      "t": "Django Unchained (2012)",
+      "pct": 99.1,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": true
+     },
+     {
+      "t": "Lord of the Rings: The Fellowship of the Ring, The (2001)",
+      "pct": 99.9,
+      "ca": false,
+      "fr": false,
+      "hit": true,
+      "head": true
+     },
+     {
+      "t": "Mad Max: Fury Road (2015)",
+      "pct": 98.1,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": false
+     },
+     {
+      "t": "Wolf of Wall Street, The (2013)",
+      "pct": 98.7,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": false
+     },
+     {
+      "t": "Lord of the Rings: The Two Towers, The (2002)",
+      "pct": 99.9,
+      "ca": false,
+      "fr": false,
+      "hit": true,
+      "head": true
+     },
+     {
+      "t": "Gone Girl (2014)",
+      "pct": 98.1,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": false
+     },
+     {
+      "t": "Pulp Fiction (1994)",
+      "pct": 100.0,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": true
+     },
+     {
+      "t": "No Country for Old Men (2007)",
+      "pct": 98.9,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": false
+     },
+     {
+      "t": "Dark Knight Rises, The (2012)",
+      "pct": 99.0,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": true
+     },
+     {
+      "t": "Shutter Island (2010)",
+      "pct": 99.0,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": false
+     }
+    ],
+    "pen0.4": [
+     {
+      "t": "Django Unchained (2012)",
+      "pct": 99.1,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": true
+     },
+     {
+      "t": "Mad Max: Fury Road (2015)",
+      "pct": 98.1,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": false
+     },
+     {
+      "t": "Wolf of Wall Street, The (2013)",
+      "pct": 98.7,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": false
+     },
+     {
+      "t": "Gone Girl (2014)",
+      "pct": 98.1,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": false
+     },
+     {
+      "t": "Blade Runner 2049 (2017)",
+      "pct": 95.7,
+      "ca": true,
+      "fr": false,
+      "hit": false,
+      "head": false
+     },
+     {
+      "t": "No Country for Old Men (2007)",
+      "pct": 98.9,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": false
+     },
+     {
+      "t": "Dark Knight Rises, The (2012)",
+      "pct": 99.0,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": true
+     },
+     {
+      "t": "Lord of the Rings: The Fellowship of the Ring, The (2001)",
+      "pct": 99.9,
+      "ca": false,
+      "fr": false,
+      "hit": true,
+      "head": true
+     },
+     {
+      "t": "Shutter Island (2010)",
+      "pct": 99.0,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": false
+     },
+     {
+      "t": "Big Short, The (2015)",
+      "pct": 97.2,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": false
+     }
+    ],
+    "cap5": [
+     {
+      "t": "Lord of the Rings: The Fellowship of the Ring, The (2001)",
+      "pct": 99.9,
+      "ca": false,
+      "fr": false,
+      "hit": true,
+      "head": true
+     },
+     {
+      "t": "Pulp Fiction (1994)",
+      "pct": 100.0,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": true
+     },
+     {
+      "t": "Django Unchained (2012)",
+      "pct": 99.1,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": true
+     },
+     {
+      "t": "Lord of the Rings: The Two Towers, The (2002)",
+      "pct": 99.9,
+      "ca": false,
+      "fr": false,
+      "hit": true,
+      "head": true
+     },
+     {
+      "t": "Wolf of Wall Street, The (2013)",
+      "pct": 98.7,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": false
+     },
+     {
+      "t": "Mad Max: Fury Road (2015)",
+      "pct": 98.1,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": false
+     },
+     {
+      "t": "Reservoir Dogs (1992)",
+      "pct": 99.6,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": true
+     },
+     {
+      "t": "No Country for Old Men (2007)",
+      "pct": 98.9,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": false
+     },
+     {
+      "t": "Gone Girl (2014)",
+      "pct": 98.1,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": false
+     },
+     {
+      "t": "Shutter Island (2010)",
+      "pct": 99.0,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": false
+     }
+    ],
+    "ca_slot": [
+     {
+      "t": "Lord of the Rings: The Fellowship of the Ring, The (2001)",
+      "pct": 99.9,
+      "ca": false,
+      "fr": false,
+      "hit": true,
+      "head": true
+     },
+     {
+      "t": "Pulp Fiction (1994)",
+      "pct": 100.0,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": true
+     },
+     {
+      "t": "Django Unchained (2012)",
+      "pct": 99.1,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": true
+     },
+     {
+      "t": "Lord of the Rings: The Two Towers, The (2002)",
+      "pct": 99.9,
+      "ca": false,
+      "fr": false,
+      "hit": true,
+      "head": true
+     },
+     {
+      "t": "Wolf of Wall Street, The (2013)",
+      "pct": 98.7,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": false
+     },
+     {
+      "t": "Mad Max: Fury Road (2015)",
+      "pct": 98.1,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": false
+     },
+     {
+      "t": "Reservoir Dogs (1992)",
+      "pct": 99.6,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": true
+     },
+     {
+      "t": "No Country for Old Men (2007)",
+      "pct": 98.9,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": false
+     },
+     {
+      "t": "Gone Girl (2014)",
+      "pct": 98.1,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": false
+     },
+     {
+      "t": "Blade Runner 2049 (2017)",
+      "pct": 95.7,
+      "ca": true,
+      "fr": false,
+      "hit": false,
+      "head": false
+     }
+    ]
+   }
+  },
+  {
+   "label": "Viewer D",
+   "n_history": 27,
+   "history_sample": [
+    "Shawshank Redemption, The (1994)",
+    "Star Wars: Episode IV - A New Hope (1977)",
+    "Star Wars: Episode V - The Empire Strikes Back (1980)",
+    "Godfather, The (1972)",
+    "Star Wars: Episode VI - Return of the Jedi (1983)"
+   ],
+   "screens": {
+    "cap10": [
+     {
+      "t": "Fight Club (1999)",
+      "pct": 99.9,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": true
+     },
+     {
+      "t": "Matrix, The (1999)",
+      "pct": 100.0,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": true
+     },
+     {
+      "t": "Arrival (2016)",
+      "pct": 98.2,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": false
+     },
+     {
+      "t": "Mad Max: Fury Road (2015)",
+      "pct": 98.1,
+      "ca": false,
+      "fr": false,
+      "hit": true,
+      "head": false
+     },
+     {
+      "t": "Lord of the Rings: The Fellowship of the Ring, The (2001)",
+      "pct": 99.9,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": true
+     },
+     {
+      "t": "Django Unchained (2012)",
+      "pct": 99.1,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": true
+     },
+     {
+      "t": "Lord of the Rings: The Return of the King, The (2003)",
+      "pct": 99.9,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": true
+     },
+     {
+      "t": "Lord of the Rings: The Two Towers, The (2002)",
+      "pct": 99.9,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": true
+     },
+     {
+      "t": "Get Out (2017)",
+      "pct": 96.1,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": false
+     },
+     {
+      "t": "Departed, The (2006)",
+      "pct": 99.4,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": true
+     }
+    ],
+    "combo": [
+     {
+      "t": "Mad Max: Fury Road (2015)",
+      "pct": 98.1,
+      "ca": false,
+      "fr": false,
+      "hit": true,
+      "head": false
+     },
+     {
+      "t": "Arrival (2016)",
+      "pct": 98.2,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": false
+     },
+     {
+      "t": "Get Out (2017)",
+      "pct": 96.1,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": false
+     },
+     {
+      "t": "Fight Club (1999)",
+      "pct": 99.9,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": true
+     },
+     {
+      "t": "Django Unchained (2012)",
+      "pct": 99.1,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": true
+     },
+     {
+      "t": "Matrix, The (1999)",
+      "pct": 100.0,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": true
+     },
+     {
+      "t": "Lord of the Rings: The Fellowship of the Ring, The (2001)",
+      "pct": 99.9,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": true
+     },
+     {
+      "t": "The Martian (2015)",
+      "pct": 98.9,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": false
+     },
+     {
+      "t": "Nightcrawler (2014)",
+      "pct": 96.6,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": false
+     },
+     {
+      "t": "Dark Knight Rises, The (2012)",
+      "pct": 99.0,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": true
+     }
+    ],
+    "pen0.4": [
+     {
+      "t": "Get Out (2017)",
+      "pct": 96.1,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": false
+     },
+     {
+      "t": "Mad Max: Fury Road (2015)",
+      "pct": 98.1,
+      "ca": false,
+      "fr": false,
+      "hit": true,
+      "head": false
+     },
+     {
+      "t": "Arrival (2016)",
+      "pct": 98.2,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": false
+     },
+     {
+      "t": "It Follows (2014)",
+      "pct": 86.6,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": false
+     },
+     {
+      "t": "Nightcrawler (2014)",
+      "pct": 96.6,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": false
+     },
+     {
+      "t": "Django Unchained (2012)",
+      "pct": 99.1,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": true
+     },
+     {
+      "t": "It (2017)",
+      "pct": 86.8,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": false
+     },
+     {
+      "t": "The Witch (2015)",
+      "pct": 87.2,
+      "ca": true,
+      "fr": false,
+      "hit": false,
+      "head": false
+     },
+     {
+      "t": "The Martian (2015)",
+      "pct": 98.9,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": false
+     },
+     {
+      "t": "Us (2019)",
+      "pct": 83.7,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": false
+     }
+    ],
+    "cap5": [
+     {
+      "t": "Fight Club (1999)",
+      "pct": 99.9,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": true
+     },
+     {
+      "t": "Matrix, The (1999)",
+      "pct": 100.0,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": true
+     },
+     {
+      "t": "Arrival (2016)",
+      "pct": 98.2,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": false
+     },
+     {
+      "t": "Mad Max: Fury Road (2015)",
+      "pct": 98.1,
+      "ca": false,
+      "fr": false,
+      "hit": true,
+      "head": false
+     },
+     {
+      "t": "Lord of the Rings: The Fellowship of the Ring, The (2001)",
+      "pct": 99.9,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": true
+     },
+     {
+      "t": "Django Unchained (2012)",
+      "pct": 99.1,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": true
+     },
+     {
+      "t": "Lord of the Rings: The Return of the King, The (2003)",
+      "pct": 99.9,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": true
+     },
+     {
+      "t": "Get Out (2017)",
+      "pct": 96.1,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": false
+     },
+     {
+      "t": "The Martian (2015)",
+      "pct": 98.9,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": false
+     },
+     {
+      "t": "Shutter Island (2010)",
+      "pct": 99.0,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": false
+     }
+    ],
+    "ca_slot": [
+     {
+      "t": "Fight Club (1999)",
+      "pct": 99.9,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": true
+     },
+     {
+      "t": "Matrix, The (1999)",
+      "pct": 100.0,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": true
+     },
+     {
+      "t": "Arrival (2016)",
+      "pct": 98.2,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": false
+     },
+     {
+      "t": "Mad Max: Fury Road (2015)",
+      "pct": 98.1,
+      "ca": false,
+      "fr": false,
+      "hit": true,
+      "head": false
+     },
+     {
+      "t": "Lord of the Rings: The Fellowship of the Ring, The (2001)",
+      "pct": 99.9,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": true
+     },
+     {
+      "t": "Django Unchained (2012)",
+      "pct": 99.1,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": true
+     },
+     {
+      "t": "Lord of the Rings: The Return of the King, The (2003)",
+      "pct": 99.9,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": true
+     },
+     {
+      "t": "Lord of the Rings: The Two Towers, The (2002)",
+      "pct": 99.9,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": true
+     },
+     {
+      "t": "Get Out (2017)",
+      "pct": 96.1,
+      "ca": false,
+      "fr": false,
+      "hit": false,
+      "head": false
+     },
+     {
+      "t": "The Witch (2015)",
+      "pct": 87.2,
+      "ca": true,
+      "fr": false,
+      "hit": false,
+      "head": false
+     }
+    ]
+   }
+  }
+ ],
+ "grid": {
+  "a0.0_K10": {
+   "recall@10_eligible_holdout": 0.076284259557724,
+   "recall_ci95": [
+    0.07355274260044098,
+    0.0789608359336853
+   ],
+   "recall_delta_vs_personalized": 0.0,
+   "recall_delta_ci95": [
+    0.0,
+    0.0
+   ],
+   "pop_pct_mean": 99.22292861273436,
+   "head1_share": 0.8695833333333334,
+   "shelf_used": 1114,
+   "shelf_used_share": 0.10171658144631118,
+   "slot_gini": 0.991589134404675,
+   "share_1990s": 0.40763333333333335,
+   "genre_spread": 0.7785171270370483,
+   "CA_catalog_share": 0.03798392987582177,
+   "CA_slot_share": 0.0007416666666666666,
+   "CA_heldout_share": 0.020558276697795027,
+   "CA_demand_ratio": 0.03607630530365485,
+   "CA_exposure_ratio": 0.01952580128205128,
+   "CA_screens_with_any": 0.005583333333333333,
+   "FR_catalog_share": 0.059075967859751645,
+   "FR_slot_share": 0.029966666666666666,
+   "FR_heldout_share": 0.041218243140179314,
+   "FR_demand_ratio": 0.7270243558114035,
+   "FR_exposure_ratio": 0.5072564657393096,
+   "FR_screens_with_any": 0.2674166666666667
+  },
+  "a0.0_K8": {
+   "recall@10_eligible_holdout": 0.07780960202217102,
+   "recall_ci95": [
+    0.07523440569639206,
+    0.08043736219406128
+   ],
+   "recall_delta_vs_personalized": 0.00152534618973732,
+   "recall_delta_ci95": [
+    0.000492118124384433,
+    0.002557493979111314
+   ],
+   "pop_pct_mean": 99.04133483990748,
+   "head1_share": 0.7418833333333333,
+   "shelf_used": 1181,
+   "shelf_used_share": 0.10783418553688824,
+   "slot_gini": 0.9894245495495495,
+   "share_1990s": 0.3764166666666667,
+   "genre_spread": 0.775725245475769,
+   "CA_catalog_share": 0.03798392987582177,
+   "CA_slot_share": 0.0009166666666666666,
+   "CA_heldout_share": 0.020558276697795027,
+   "CA_demand_ratio": 0.04458869194833746,
+   "CA_exposure_ratio": 0.02413301282051282,
+   "CA_screens_with_any": 0.007333333333333333,
+   "FR_catalog_share": 0.059075967859751645,
+   "FR_slot_share": 0.029,
+   "FR_heldout_share": 0.041218243140179314,
+   "FR_demand_ratio": 0.7035719572368421,
+   "FR_exposure_ratio": 0.4908933539412674,
+   "FR_screens_with_any": 0.2574166666666667
+  },
+  "a0.0_K7": {
+   "recall@10_eligible_holdout": 0.07757232338190079,
+   "recall_ci95": [
+    0.07512826472520828,
+    0.08016093820333481
+   ],
+   "recall_delta_vs_personalized": 0.001288070110604167,
+   "recall_delta_ci95": [
+    -8.458161755697802e-05,
+    0.0025778315030038357
+   ],
+   "pop_pct_mean": 98.9070213963964,
+   "head1_share": 0.6619666666666667,
+   "shelf_used": 1222,
+   "shelf_used_share": 0.11157779401022644,
+   "slot_gini": 0.9881027681397614,
+   "share_1990s": 0.35836666666666667,
+   "genre_spread": 0.7732576131820679,
+   "CA_catalog_share": 0.03798392987582177,
+   "CA_slot_share": 0.0011083333333333333,
+   "CA_heldout_share": 0.020558276697795027,
+   "CA_demand_ratio": 0.053911782082989836,
+   "CA_exposure_ratio": 0.02917900641025641,
+   "CA_screens_with_any": 0.009083333333333334,
+   "FR_catalog_share": 0.059075967859751645,
+   "FR_slot_share": 0.028566666666666667,
+   "FR_heldout_share": 0.041218243140179314,
+   "FR_demand_ratio": 0.6930588130482456,
+   "FR_exposure_ratio": 0.48355816589386913,
+   "FR_screens_with_any": 0.25533333333333336
+  },
+  "a0.0_K6": {
+   "recall@10_eligible_holdout": 0.07740284502506256,
+   "recall_ci95": [
+    0.07497447729110718,
+    0.07987701147794724
+   ],
+   "recall_delta_vs_personalized": 0.0011185872135683894,
+   "recall_delta_ci95": [
+    -0.0004415324074216187,
+    0.002746059326454997
+   ],
+   "pop_pct_mean": 98.74372960798637,
+   "head1_share": 0.57525,
+   "shelf_used": 1284,
+   "shelf_used_share": 0.11723886048210373,
+   "slot_gini": 0.9866839679206233,
+   "share_1990s": 0.3394083333333333,
+   "genre_spread": 0.7707945704460144,
+   "CA_catalog_share": 0.03798392987582177,
+   "CA_slot_share": 0.0013416666666666666,
+   "CA_heldout_share": 0.020558276697795027,
+   "CA_demand_ratio": 0.06526163094256664,
+   "CA_exposure_ratio": 0.03532195512820512,
+   "CA_screens_with_any": 0.01125,
+   "FR_catalog_share": 0.059075967859751645,
+   "FR_slot_share": 0.028208333333333332,
+   "FR_heldout_share": 0.041218243140179314,
+   "FR_demand_ratio": 0.6843652515076754,
+   "FR_exposure_ratio": 0.47749252962390515,
+   "FR_screens_with_any": 0.25225
+  },
+  "a0.0_K5": {
+   "recall@10_eligible_holdout": 0.07635205239057541,
+   "recall_ci95": [
+    0.07393400371074677,
+    0.07886397838592529
+   ],
+   "recall_delta_vs_personalized": 6.779316026950255e-05,
+   "recall_delta_ci95": [
+    -0.0017460633534938097,
+    0.0020355461165308952
+   ],
+   "pop_pct_mean": 98.55469921779887,
+   "head1_share": 0.48404166666666665,
+   "shelf_used": 1336,
+   "shelf_used_share": 0.12198685171658144,
+   "slot_gini": 0.9852354425371317,
+   "share_1990s": 0.319975,
+   "genre_spread": 0.7678953409194946,
+   "CA_catalog_share": 0.03798392987582177,
+   "CA_slot_share": 0.00165,
+   "CA_heldout_share": 0.020558276697795027,
+   "CA_demand_ratio": 0.08025964550700743,
+   "CA_exposure_ratio": 0.04343942307692308,
+   "CA_screens_with_any": 0.01425,
+   "FR_catalog_share": 0.059075967859751645,
+   "FR_slot_share": 0.027733333333333332,
+   "FR_heldout_share": 0.041218243140179314,
+   "FR_demand_ratio": 0.6728412280701754,
+   "FR_exposure_ratio": 0.46945203503348787,
+   "FR_screens_with_any": 0.24908333333333332
+  },
+  "a0.0_K4": {
+   "recall@10_eligible_holdout": 0.07411487400531769,
+   "recall_ci95": [
+    0.07173501700162888,
+    0.07664646208286285
+   ],
+   "recall_delta_vs_personalized": -0.0021693811286240816,
+   "recall_delta_ci95": [
+    -0.004220129456371069,
+    -6.780563126085326e-05
+   ],
+   "pop_pct_mean": 98.34754063184808,
+   "head1_share": 0.3899916666666667,
+   "shelf_used": 1389,
+   "shelf_used_share": 0.12682615047479912,
+   "slot_gini": 0.9838668097151205,
+   "share_1990s": 0.301075,
+   "genre_spread": 0.7642114758491516,
+   "CA_catalog_share": 0.03798392987582177,
+   "CA_slot_share": 0.0020583333333333335,
+   "CA_heldout_share": 0.020558276697795027,
+   "CA_demand_ratio": 0.10012188101126684,
+   "CA_exposure_ratio": 0.05418958333333333,
+   "CA_screens_with_any": 0.018,
+   "FR_catalog_share": 0.059075967859751645,
+   "FR_slot_share": 0.026966666666666667,
+   "FR_heldout_share": 0.041218243140179314,
+   "FR_demand_ratio": 0.6542410498903508,
+   "FR_exposure_ratio": 0.4564743946419371,
+   "FR_screens_with_any": 0.24283333333333335
+  },
+  "a0.0_K3": {
+   "recall@10_eligible_holdout": 0.07238615304231644,
+   "recall_ci95": [
+    0.07007922232151031,
+    0.07471756637096405
+   ],
+   "recall_delta_vs_personalized": -0.0038981069810688496,
+   "recall_delta_ci95": [
+    -0.0062319617718458176,
+    -0.0016081513604149222
+   ],
+   "pop_pct_mean": 98.12276159605551,
+   "head1_share": 0.29415833333333335,
+   "shelf_used": 1451,
+   "shelf_used_share": 0.1324872169466764,
+   "slot_gini": 0.982636964329194,
+   "share_1990s": 0.28205833333333336,
+   "genre_spread": 0.7609282732009888,
+   "CA_catalog_share": 0.03798392987582177,
+   "CA_slot_share": 0.002608333333333333,
+   "CA_heldout_share": 0.020558276697795027,
+   "CA_demand_ratio": 0.1268750961802693,
+   "CA_exposure_ratio": 0.06866939102564101,
+   "CA_screens_with_any": 0.023333333333333334,
+   "FR_catalog_share": 0.059075967859751645,
+   "FR_slot_share": 0.026158333333333332,
+   "FR_heldout_share": 0.041218243140179314,
+   "FR_demand_ratio": 0.6346299924616228,
+   "FR_exposure_ratio": 0.4427914477073673,
+   "FR_screens_with_any": 0.23733333333333334
+  },
+  "a0.1_K10": {
+   "recall@10_eligible_holdout": 0.07748758792877197,
+   "recall_ci95": [
+    0.07483520358800888,
+    0.07997793704271317
+   ],
+   "recall_delta_vs_personalized": 0.0012033286038786173,
+   "recall_delta_ci95": [
+    0.00033900976995937526,
+    0.0020000177901238203
+   ],
+   "pop_pct_mean": 98.82974045836376,
+   "head1_share": 0.8235333333333333,
+   "shelf_used": 1442,
+   "shelf_used_share": 0.1316654492330168,
+   "slot_gini": 0.9891426360482104,
+   "share_1990s": 0.38635,
+   "genre_spread": 0.7740755677223206,
+   "CA_catalog_share": 0.03798392987582177,
+   "CA_slot_share": 0.0012583333333333333,
+   "CA_heldout_share": 0.020558276697795027,
+   "CA_demand_ratio": 0.06120811349271778,
+   "CA_exposure_ratio": 0.03312804487179487,
+   "CA_screens_with_any": 0.00975,
+   "FR_catalog_share": 0.059075967859751645,
+   "FR_slot_share": 0.03174166666666667,
+   "FR_heldout_share": 0.041218243140179314,
+   "FR_demand_ratio": 0.770087811814693,
+   "FR_exposure_ratio": 0.5373025244719217,
+   "FR_screens_with_any": 0.27975
+  },
+  "a0.1_K8": {
+   "recall@10_eligible_holdout": 0.07884345203638077,
+   "recall_ci95": [
+    0.07637856155633926,
+    0.08130452781915665
+   ],
+   "recall_delta_vs_personalized": 0.0025591920129954815,
+   "recall_delta_ci95": [
+    0.0013904845109209418,
+    0.0038495687767863274
+   ],
+   "pop_pct_mean": 98.64051999634769,
+   "head1_share": 0.7112,
+   "shelf_used": 1519,
+   "shelf_used_share": 0.13869612856099342,
+   "slot_gini": 0.9868960646457268,
+   "share_1990s": 0.3588166666666667,
+   "genre_spread": 0.7716178297996521,
+   "CA_catalog_share": 0.03798392987582177,
+   "CA_slot_share": 0.001475,
+   "CA_heldout_share": 0.020558276697795027,
+   "CA_demand_ratio": 0.07174725886232482,
+   "CA_exposure_ratio": 0.03883221153846154,
+   "CA_screens_with_any": 0.011583333333333333,
+   "FR_catalog_share": 0.059075967859751645,
+   "FR_slot_share": 0.031025,
+   "FR_heldout_share": 0.041218243140179314,
+   "FR_demand_ratio": 0.7527006887335527,
+   "FR_exposure_ratio": 0.5251712519319938,
+   "FR_screens_with_any": 0.27275
+  },
+  "a0.1_K7": {
+   "recall@10_eligible_holdout": 0.07872480899095535,
+   "recall_ci95": [
+    0.07613635808229446,
+    0.08143094927072525
+   ],
+   "recall_delta_vs_personalized": 0.002440553857013583,
+   "recall_delta_ci95": [
+    0.0010349811054766178,
+    0.0039002341218292713
+   ],
+   "pop_pct_mean": 98.49508453554905,
+   "head1_share": 0.63915,
+   "shelf_used": 1577,
+   "shelf_used_share": 0.1439919649379109,
+   "slot_gini": 0.9854358701607012,
+   "share_1990s": 0.3426166666666667,
+   "genre_spread": 0.7695611715316772,
+   "CA_catalog_share": 0.03798392987582177,
+   "CA_slot_share": 0.00175,
+   "CA_heldout_share": 0.020558276697795027,
+   "CA_demand_ratio": 0.08512386644682605,
+   "CA_exposure_ratio": 0.046072115384615385,
+   "CA_screens_with_any": 0.014333333333333333,
+   "FR_catalog_share": 0.059075967859751645,
+   "FR_slot_share": 0.030633333333333332,
+   "FR_heldout_share": 0.041218243140179314,
+   "FR_demand_ratio": 0.7431984237938596,
+   "FR_exposure_ratio": 0.5185413704276146,
+   "FR_screens_with_any": 0.2694166666666667
+  },
+  "a0.1_K6": {
+   "recall@10_eligible_holdout": 0.07789434492588043,
+   "recall_ci95": [
+    0.07548045367002487,
+    0.08056537061929703
+   ],
+   "recall_delta_vs_personalized": 0.0016100875800475478,
+   "recall_delta_ci95": [
+    0.0,
+    0.003355516353622079
+   ],
+   "pop_pct_mean": 98.32013368943268,
+   "head1_share": 0.5595833333333333,
+   "shelf_used": 1635,
+   "shelf_used_share": 0.14928780131482836,
+   "slot_gini": 0.9838809045532019,
+   "share_1990s": 0.3258916666666667,
+   "genre_spread": 0.7668393850326538,
+   "CA_catalog_share": 0.03798392987582177,
+   "CA_slot_share": 0.0020083333333333333,
+   "CA_heldout_share": 0.020558276697795027,
+   "CA_demand_ratio": 0.09768977054135752,
+   "CA_exposure_ratio": 0.05287323717948718,
+   "CA_screens_with_any": 0.0165,
+   "FR_catalog_share": 0.059075967859751645,
+   "FR_slot_share": 0.030116666666666667,
+   "FR_heldout_share": 0.041218243140179314,
+   "FR_demand_ratio": 0.7306635211074561,
+   "FR_exposure_ratio": 0.5097955692941782,
+   "FR_screens_with_any": 0.26608333333333334
+  },
+  "a0.1_K5": {
+   "recall@10_eligible_holdout": 0.07680965214967728,
+   "recall_ci95": [
+    0.0742904543876648,
+    0.07936486601829529
+   ],
+   "recall_delta_vs_personalized": 0.000525397015735507,
+   "recall_delta_ci95": [
+    -0.0012890268117189407,
+    0.0025431783869862556
+   ],
+   "pop_pct_mean": 98.11434380326273,
+   "head1_share": 0.47351666666666664,
+   "shelf_used": 1703,
+   "shelf_used_share": 0.15549671292914535,
+   "slot_gini": 0.9822469138056976,
+   "share_1990s": 0.30893333333333334,
+   "genre_spread": 0.763649046421051,
+   "CA_catalog_share": 0.03798392987582177,
+   "CA_slot_share": 0.002425,
+   "CA_heldout_share": 0.020558276697795027,
+   "CA_demand_ratio": 0.11795735779060182,
+   "CA_exposure_ratio": 0.06384278846153846,
+   "CA_screens_with_any": 0.02025,
+   "FR_catalog_share": 0.059075967859751645,
+   "FR_slot_share": 0.029441666666666668,
+   "FR_heldout_share": 0.041218243140179314,
+   "FR_demand_ratio": 0.7142872772752193,
+   "FR_exposure_ratio": 0.4983696032972695,
+   "FR_screens_with_any": 0.26016666666666666
+  },
+  "a0.1_K4": {
+   "recall@10_eligible_holdout": 0.07518261671066284,
+   "recall_ci95": [
+    0.07262953370809555,
+    0.07768768817186356
+   ],
+   "recall_delta_vs_personalized": -0.0011016388889402151,
+   "recall_delta_ci95": [
+    -0.0031826463527977467,
+    0.0010679527185857296
+   ],
+   "pop_pct_mean": 97.88126316350133,
+   "head1_share": 0.3832833333333333,
+   "shelf_used": 1772,
+   "shelf_used_share": 0.16179693206720233,
+   "slot_gini": 0.9805884435110787,
+   "share_1990s": 0.29156666666666664,
+   "genre_spread": 0.7598597407341003,
+   "CA_catalog_share": 0.03798392987582177,
+   "CA_slot_share": 0.0029083333333333335,
+   "CA_heldout_share": 0.020558276697795027,
+   "CA_demand_ratio": 0.14146775899972522,
+   "CA_exposure_ratio": 0.07656746794871795,
+   "CA_screens_with_any": 0.024666666666666667,
+   "FR_catalog_share": 0.059075967859751645,
+   "FR_slot_share": 0.028991666666666666,
+   "FR_heldout_share": 0.041218243140179314,
+   "FR_demand_ratio": 0.7033697813870614,
+   "FR_exposure_ratio": 0.49075229263266357,
+   "FR_screens_with_any": 0.25683333333333336
+  },
+  "a0.1_K3": {
+   "recall@10_eligible_holdout": 0.07319966703653336,
+   "recall_ci95": [
+    0.07078548520803452,
+    0.07576705515384674
+   ],
+   "recall_delta_vs_personalized": -0.0030845890287309885,
+   "recall_delta_ci95": [
+    -0.005460347980260849,
+    -0.0007289124187082052
+   ],
+   "pop_pct_mean": 97.62328615777939,
+   "head1_share": 0.2901916666666667,
+   "shelf_used": 1842,
+   "shelf_used_share": 0.16818845872899926,
+   "slot_gini": 0.9790284788166544,
+   "share_1990s": 0.274275,
+   "genre_spread": 0.755920946598053,
+   "CA_catalog_share": 0.03798392987582177,
+   "CA_slot_share": 0.0034583333333333332,
+   "CA_heldout_share": 0.020558276697795027,
+   "CA_demand_ratio": 0.16822097416872767,
+   "CA_exposure_ratio": 0.09104727564102563,
+   "CA_screens_with_any": 0.029916666666666668,
+   "FR_catalog_share": 0.059075967859751645,
+   "FR_slot_share": 0.028158333333333334,
+   "FR_heldout_share": 0.041218243140179314,
+   "FR_demand_ratio": 0.6831521964089912,
+   "FR_exposure_ratio": 0.4766461617722823,
+   "FR_screens_with_any": 0.2509166666666667
+  },
+  "a0.2_K10": {
+   "recall@10_eligible_holdout": 0.07886039465665817,
+   "recall_ci95": [
+    0.07617389410734177,
+    0.08141416311264038
+   ],
+   "recall_delta_vs_personalized": 0.002576140221208334,
+   "recall_delta_ci95": [
+    0.0013563367538154125,
+    0.003782000858336687
+   ],
+   "pop_pct_mean": 98.07424846299001,
+   "head1_share": 0.764725,
+   "shelf_used": 1968,
+   "shelf_used_share": 0.17969320672023376,
+   "slot_gini": 0.9849534849038227,
+   "share_1990s": 0.364175,
+   "genre_spread": 0.767655074596405,
+   "CA_catalog_share": 0.03798392987582177,
+   "CA_slot_share": 0.002125,
+   "CA_heldout_share": 0.020558276697795027,
+   "CA_demand_ratio": 0.10336469497114593,
+   "CA_exposure_ratio": 0.05594471153846154,
+   "CA_screens_with_any": 0.01633333333333333,
+   "FR_catalog_share": 0.059075967859751645,
+   "FR_slot_share": 0.033875,
+   "FR_heldout_share": 0.041218243140179314,
+   "FR_demand_ratio": 0.8218448293585526,
+   "FR_exposure_ratio": 0.5734142194744977,
+   "FR_screens_with_any": 0.29225
+  },
+  "a0.2_K8": {
+   "recall@10_eligible_holdout": 0.07940274477005005,
+   "recall_ci95": [
+    0.07690144330263138,
+    0.08196349442005157
+   ],
+   "recall_delta_vs_personalized": 0.0031184854451566935,
+   "recall_delta_ci95": [
+    0.0016928090481087565,
+    0.004521557595580816
+   ],
+   "pop_pct_mean": 97.8729391891892,
+   "head1_share": 0.6685333333333333,
+   "shelf_used": 2061,
+   "shelf_used_share": 0.18818480642804966,
+   "slot_gini": 0.9825230688458729,
+   "share_1990s": 0.3417,
+   "genre_spread": 0.7655365467071533,
+   "CA_catalog_share": 0.03798392987582177,
+   "CA_slot_share": 0.0023666666666666667,
+   "CA_heldout_share": 0.020558276697795027,
+   "CA_demand_ratio": 0.11511989557570762,
+   "CA_exposure_ratio": 0.06230705128205128,
+   "CA_screens_with_any": 0.018666666666666668,
+   "FR_catalog_share": 0.059075967859751645,
+   "FR_slot_share": 0.03295,
+   "FR_heldout_share": 0.041218243140179314,
+   "FR_demand_ratio": 0.7994033100328947,
+   "FR_exposure_ratio": 0.5577564142194745,
+   "FR_screens_with_any": 0.28291666666666665
+  },
+  "a0.2_K7": {
+   "recall@10_eligible_holdout": 0.07897903770208359,
+   "recall_ci95": [
+    0.07637768983840942,
+    0.08157974481582642
+   ],
+   "recall_delta_vs_personalized": 0.0026947781443595886,
+   "recall_delta_ci95": [
+    0.0010513245360925794,
+    0.004325226414948702
+   ],
+   "pop_pct_mean": 97.711841064037,
+   "head1_share": 0.6049666666666667,
+   "shelf_used": 2125,
+   "shelf_used_share": 0.19402848794740687,
+   "slot_gini": 0.9808954650596543,
+   "share_1990s": 0.32710833333333333,
+   "genre_spread": 0.7638959288597107,
+   "CA_catalog_share": 0.03798392987582177,
+   "CA_slot_share": 0.00265,
+   "CA_heldout_share": 0.020558276697795027,
+   "CA_demand_ratio": 0.12890185490519374,
+   "CA_exposure_ratio": 0.06976634615384615,
+   "CA_screens_with_any": 0.021333333333333333,
+   "FR_catalog_share": 0.059075967859751645,
+   "FR_slot_share": 0.03249166666666667,
+   "FR_heldout_share": 0.041218243140179314,
+   "FR_demand_ratio": 0.7882836382949562,
+   "FR_exposure_ratio": 0.5499980422462648,
+   "FR_screens_with_any": 0.28025
+  },
+  "a0.2_K6": {
+   "recall@10_eligible_holdout": 0.07877565175294876,
+   "recall_ci95": [
+    0.07620979845523834,
+    0.08146758377552032
+   ],
+   "recall_delta_vs_personalized": 0.0024913987144827843,
+   "recall_delta_ci95": [
+    0.0006610365817323327,
+    0.004373759031295776
+   ],
+   "pop_pct_mean": 97.5192898557341,
+   "head1_share": 0.5333416666666667,
+   "shelf_used": 2197,
+   "shelf_used_share": 0.2006026296566837,
+   "slot_gini": 0.9791165647065985,
+   "share_1990s": 0.31209166666666666,
+   "genre_spread": 0.7614403963088989,
+   "CA_catalog_share": 0.03798392987582177,
+   "CA_slot_share": 0.0030833333333333333,
+   "CA_heldout_share": 0.020558276697795027,
+   "CA_demand_ratio": 0.14998014564440781,
+   "CA_exposure_ratio": 0.08117467948717949,
+   "CA_screens_with_any": 0.025166666666666667,
+   "FR_catalog_share": 0.059075967859751645,
+   "FR_slot_share": 0.03194166666666667,
+   "FR_heldout_share": 0.041218243140179314,
+   "FR_demand_ratio": 0.7749400322094298,
+   "FR_exposure_ratio": 0.5406879958784132,
+   "FR_screens_with_any": 0.27625
+  },
+  "a0.2_K5": {
+   "recall@10_eligible_holdout": 0.07691134512424469,
+   "recall_ci95": [
+    0.07450218498706818,
+    0.07950863987207413
+   ],
+   "recall_delta_vs_personalized": 0.0006270867306739092,
+   "recall_delta_ci95": [
+    -0.001338611589744687,
+    0.00271446886472404
+   ],
+   "pop_pct_mean": 97.29256186084731,
+   "head1_share": 0.455,
+   "shelf_used": 2283,
+   "shelf_used_share": 0.20845507669831995,
+   "slot_gini": 0.9771841490138787,
+   "share_1990s": 0.297525,
+   "genre_spread": 0.7576282620429993,
+   "CA_catalog_share": 0.03798392987582177,
+   "CA_slot_share": 0.0035583333333333335,
+   "CA_heldout_share": 0.020558276697795027,
+   "CA_demand_ratio": 0.1730851951085463,
+   "CA_exposure_ratio": 0.09367996794871795,
+   "CA_screens_with_any": 0.02975,
+   "FR_catalog_share": 0.059075967859751645,
+   "FR_slot_share": 0.031241666666666668,
+   "FR_heldout_share": 0.041218243140179314,
+   "FR_demand_ratio": 0.7579572608278509,
+   "FR_exposure_ratio": 0.528838845955693,
+   "FR_screens_with_any": 0.27116666666666667
+  },
+  "a0.2_K4": {
+   "recall@10_eligible_holdout": 0.07511482387781143,
+   "recall_ci95": [
+    0.0726194679737091,
+    0.07757512480020523
+   ],
+   "recall_delta_vs_personalized": -0.0011694320710375905,
+   "recall_delta_ci95": [
+    -0.0033233175054192543,
+    0.0010852338746190071
+   ],
+   "pop_pct_mean": 97.0221414657901,
+   "head1_share": 0.37094166666666667,
+   "shelf_used": 2371,
+   "shelf_used_share": 0.2164901387874361,
+   "slot_gini": 0.9751179160579498,
+   "share_1990s": 0.2830083333333333,
+   "genre_spread": 0.7538225650787354,
+   "CA_catalog_share": 0.03798392987582177,
+   "CA_slot_share": 0.0040416666666666665,
+   "CA_heldout_share": 0.020558276697795027,
+   "CA_demand_ratio": 0.19659559631766968,
+   "CA_exposure_ratio": 0.10640464743589743,
+   "CA_screens_with_any": 0.034,
+   "FR_catalog_share": 0.059075967859751645,
+   "FR_slot_share": 0.030958333333333334,
+   "FR_heldout_share": 0.041218243140179314,
+   "FR_demand_ratio": 0.751083281935307,
+   "FR_exposure_ratio": 0.5240427614631633,
+   "FR_screens_with_any": 0.26858333333333334
+  },
+  "a0.2_K3": {
+   "recall@10_eligible_holdout": 0.07365727424621582,
+   "recall_ci95": [
+    0.0712849497795105,
+    0.07616359740495682
+   ],
+   "recall_delta_vs_personalized": -0.002626985078677535,
+   "recall_delta_ci95": [
+    -0.004895486403256655,
+    -0.0001694408420007676
+   ],
+   "pop_pct_mean": 96.71607529827125,
+   "head1_share": 0.2823833333333333,
+   "shelf_used": 2449,
+   "shelf_used_share": 0.22361212563915267,
+   "slot_gini": 0.9731272583394205,
+   "share_1990s": 0.267625,
+   "genre_spread": 0.749434769153595,
+   "CA_catalog_share": 0.03798392987582177,
+   "CA_slot_share": 0.004691666666666667,
+   "CA_heldout_share": 0.020558276697795027,
+   "CA_demand_ratio": 0.2282130324264908,
+   "CA_exposure_ratio": 0.12351714743589744,
+   "CA_screens_with_any": 0.03958333333333333,
+   "FR_catalog_share": 0.059075967859751645,
+   "FR_slot_share": 0.030133333333333335,
+   "FR_heldout_share": 0.041218243140179314,
+   "FR_demand_ratio": 0.7310678728070176,
+   "FR_exposure_ratio": 0.5100776919113859,
+   "FR_screens_with_any": 0.26166666666666666
+  },
+  "a0.3_K10": {
+   "recall@10_eligible_holdout": 0.07964001595973969,
+   "recall_ci95": [
+    0.07702172547578812,
+    0.08221111446619034
+   ],
+   "recall_delta_vs_personalized": 0.0033557615242898464,
+   "recall_delta_ci95": [
+    0.0017291278345510364,
+    0.004948805086314678
+   ],
+   "pop_pct_mean": 96.5927198228634,
+   "head1_share": 0.6895083333333333,
+   "shelf_used": 2744,
+   "shelf_used_share": 0.2505478451424397,
+   "slot_gini": 0.9771708028974921,
+   "share_1990s": 0.34105833333333335,
+   "genre_spread": 0.7583853006362915,
+   "CA_catalog_share": 0.03798392987582177,
+   "CA_slot_share": 0.0037166666666666667,
+   "CA_heldout_share": 0.020558276697795027,
+   "CA_demand_ratio": 0.18078687826325915,
+   "CA_exposure_ratio": 0.09784839743589743,
+   "CA_screens_with_any": 0.028416666666666666,
+   "FR_catalog_share": 0.059075967859751645,
+   "FR_slot_share": 0.03610833333333333,
+   "FR_heldout_share": 0.041218243140179314,
+   "FR_demand_ratio": 0.8760279570997807,
+   "FR_exposure_ratio": 0.6112186501803194,
+   "FR_screens_with_any": 0.302
+  },
+  "a0.3_K8": {
+   "recall@10_eligible_holdout": 0.07999593019485474,
+   "recall_ci95": [
+    0.0774310752749443,
+    0.08260513097047806
+   ],
+   "recall_delta_vs_personalized": 0.0037116757594048977,
+   "recall_delta_ci95": [
+    0.0019489155383780599,
+    0.005421606358140707
+   ],
+   "pop_pct_mean": 96.34520521365961,
+   "head1_share": 0.6106333333333334,
+   "shelf_used": 2869,
+   "shelf_used_share": 0.26196128560993426,
+   "slot_gini": 0.9743143474555637,
+   "share_1990s": 0.32255,
+   "genre_spread": 0.7569155097007751,
+   "CA_catalog_share": 0.03798392987582177,
+   "CA_slot_share": 0.0041,
+   "CA_heldout_share": 0.020558276697795027,
+   "CA_demand_ratio": 0.1994330585325639,
+   "CA_exposure_ratio": 0.10794038461538462,
+   "CA_screens_with_any": 0.03183333333333333,
+   "FR_catalog_share": 0.059075967859751645,
+   "FR_slot_share": 0.035475,
+   "FR_heldout_share": 0.041218243140179314,
+   "FR_demand_ratio": 0.8606625925164473,
+   "FR_exposure_ratio": 0.6004979907264296,
+   "FR_screens_with_any": 0.2951666666666667
+  },
+  "a0.3_K7": {
+   "recall@10_eligible_holdout": 0.07896208763122559,
+   "recall_ci95": [
+    0.076346255838871,
+    0.08160483092069626
+   ],
+   "recall_delta_vs_personalized": 0.002677829936146736,
+   "recall_delta_ci95": [
+    0.0008647820213809609,
+    0.004530853591859341
+   ],
+   "pop_pct_mean": 96.14613974616509,
+   "head1_share": 0.5568166666666666,
+   "shelf_used": 2959,
+   "shelf_used_share": 0.2701789627465303,
+   "slot_gini": 0.9723252069637205,
+   "share_1990s": 0.310825,
+   "genre_spread": 0.7553139925003052,
+   "CA_catalog_share": 0.03798392987582177,
+   "CA_slot_share": 0.004491666666666666,
+   "CA_heldout_share": 0.020558276697795027,
+   "CA_demand_ratio": 0.2184845905468535,
+   "CA_exposure_ratio": 0.1182517628205128,
+   "CA_screens_with_any": 0.035333333333333335,
+   "FR_catalog_share": 0.059075967859751645,
+   "FR_slot_share": 0.03496666666666667,
+   "FR_heldout_share": 0.041218243140179314,
+   "FR_demand_ratio": 0.8483298656798245,
+   "FR_exposure_ratio": 0.5918932509015971,
+   "FR_screens_with_any": 0.29158333333333336
+  },
+  "a0.3_K6": {
+   "recall@10_eligible_holdout": 0.07847058773040771,
+   "recall_ci95": [
+    0.07587087154388428,
+    0.0811488926410675
+   ],
+   "recall_delta_vs_personalized": 0.0021863295696675777,
+   "recall_delta_ci95": [
+    0.00030438927933573723,
+    0.004254159517586231
+   ],
+   "pop_pct_mean": 95.90410670805942,
+   "head1_share": 0.49514166666666665,
+   "shelf_used": 3056,
+   "shelf_used_share": 0.27903579254930605,
+   "slot_gini": 0.9700724159970782,
+   "share_1990s": 0.2993,
+   "genre_spread": 0.7530736923217773,
+   "CA_catalog_share": 0.03798392987582177,
+   "CA_slot_share": 0.00495,
+   "CA_heldout_share": 0.020558276697795027,
+   "CA_demand_ratio": 0.24077893652102228,
+   "CA_exposure_ratio": 0.13031826923076922,
+   "CA_screens_with_any": 0.03925,
+   "FR_catalog_share": 0.059075967859751645,
+   "FR_slot_share": 0.0345,
+   "FR_heldout_share": 0.041218243140179314,
+   "FR_demand_ratio": 0.8370080180921053,
+   "FR_exposure_ratio": 0.5839938176197836,
+   "FR_screens_with_any": 0.2885
+  },
+  "a0.3_K5": {
+   "recall@10_eligible_holdout": 0.07667406648397446,
+   "recall_ci95": [
+    0.07429027557373047,
+    0.07929070293903351
+   ],
+   "recall_delta_vs_personalized": 0.0003898106806445867,
+   "recall_delta_ci95": [
+    -0.001626193872652948,
+    0.002697017975151539
+   ],
+   "pop_pct_mean": 95.62134328585341,
+   "head1_share": 0.4260333333333333,
+   "shelf_used": 3136,
+   "shelf_used_share": 0.28634039444850257,
+   "slot_gini": 0.9676604455807158,
+   "share_1990s": 0.28655,
+   "genre_spread": 0.7497096061706543,
+   "CA_catalog_share": 0.03798392987582177,
+   "CA_slot_share": 0.005508333333333333,
+   "CA_heldout_share": 0.020558276697795027,
+   "CA_demand_ratio": 0.2679375034350096,
+   "CA_exposure_ratio": 0.14501746794871792,
+   "CA_screens_with_any": 0.04416666666666667,
+   "FR_catalog_share": 0.059075967859751645,
+   "FR_slot_share": 0.0341,
+   "FR_heldout_share": 0.041218243140179314,
+   "FR_demand_ratio": 0.8273035773026315,
+   "FR_exposure_ratio": 0.5772228748068006,
+   "FR_screens_with_any": 0.2845
+  },
+  "a0.3_K4": {
+   "recall@10_eligible_holdout": 0.0749114453792572,
+   "recall_ci95": [
+    0.07248622179031372,
+    0.07738133519887924
+   ],
+   "recall_delta_vs_personalized": -0.0013728115009143949,
+   "recall_delta_ci95": [
+    -0.0035276850685477257,
+    0.0009847194887697697
+   ],
+   "pop_pct_mean": 95.28587503043583,
+   "head1_share": 0.3506416666666667,
+   "shelf_used": 3254,
+   "shelf_used_share": 0.2971146822498174,
+   "slot_gini": 0.9649874710859508,
+   "share_1990s": 0.2746166666666667,
+   "genre_spread": 0.7455542683601379,
+   "CA_catalog_share": 0.03798392987582177,
+   "CA_slot_share": 0.0060416666666666665,
+   "CA_heldout_share": 0.020558276697795027,
+   "CA_demand_ratio": 0.2938800151140423,
+   "CA_exposure_ratio": 0.15905849358974358,
+   "CA_screens_with_any": 0.049,
+   "FR_catalog_share": 0.059075967859751645,
+   "FR_slot_share": 0.033525,
+   "FR_heldout_share": 0.041218243140179314,
+   "FR_demand_ratio": 0.8133534436677631,
+   "FR_exposure_ratio": 0.5674896445131375,
+   "FR_screens_with_any": 0.27908333333333335
+  },
+  "a0.3_K3": {
+   "recall@10_eligible_holdout": 0.0727929100394249,
+   "recall_ci95": [
+    0.07033029198646545,
+    0.07522270828485489
+   ],
+   "recall_delta_vs_personalized": -0.003491347888484597,
+   "recall_delta_ci95": [
+    -0.005909105762839317,
+    -0.0010479798074811697
+   ],
+   "pop_pct_mean": 94.91714709642075,
+   "head1_share": 0.2692583333333333,
+   "shelf_used": 3353,
+   "shelf_used_share": 0.30615412710007306,
+   "slot_gini": 0.9623220979425371,
+   "share_1990s": 0.2614416666666667,
+   "genre_spread": 0.740867018699646,
+   "CA_catalog_share": 0.03798392987582177,
+   "CA_slot_share": 0.0068,
+   "CA_heldout_share": 0.020558276697795027,
+   "CA_demand_ratio": 0.33076702390766693,
+   "CA_exposure_ratio": 0.1790230769230769,
+   "CA_screens_with_any": 0.05516666666666667,
+   "FR_catalog_share": 0.059075967859751645,
+   "FR_slot_share": 0.03278333333333333,
+   "FR_heldout_share": 0.041218243140179314,
+   "FR_demand_ratio": 0.7953597930372807,
+   "FR_exposure_ratio": 0.5549351880473982,
+   "FR_screens_with_any": 0.27291666666666664
+  },
+  "a0.4_K10": {
+   "recall@10_eligible_holdout": 0.07864006608724594,
+   "recall_ci95": [
+    0.076089046895504,
+    0.08108478784561157
+   ],
+   "recall_delta_vs_personalized": 0.0023558123502880335,
+   "recall_delta_ci95": [
+    0.0005417923093773425,
+    0.004332590848207474
+   ],
+   "pop_pct_mean": 93.55222630569757,
+   "head1_share": 0.59375,
+   "shelf_used": 3885,
+   "shelf_used_share": 0.3547297297297297,
+   "slot_gini": 0.9613307280253226,
+   "share_1990s": 0.31709166666666666,
+   "genre_spread": 0.745344340801239,
+   "CA_catalog_share": 0.03798392987582177,
+   "CA_slot_share": 0.006441666666666667,
+   "CA_heldout_share": 0.020558276697795027,
+   "CA_demand_ratio": 0.31333689887331684,
+   "CA_exposure_ratio": 0.16958926282051281,
+   "CA_screens_with_any": 0.047,
+   "FR_catalog_share": 0.059075967859751645,
+   "FR_slot_share": 0.038891666666666665,
+   "FR_heldout_share": 0.041218243140179314,
+   "FR_demand_ratio": 0.943554690926535,
+   "FR_exposure_ratio": 0.6583331272539927,
+   "FR_screens_with_any": 0.31
+  },
+  "a0.4_K8": {
+   "recall@10_eligible_holdout": 0.07847058773040771,
+   "recall_ci95": [
+    0.07594054937362671,
+    0.08094870299100876
+   ],
+   "recall_delta_vs_personalized": 0.0021863295696675777,
+   "recall_delta_ci95": [
+    0.00018585215730126947,
+    0.004243406001478434
+   ],
+   "pop_pct_mean": 93.23836475833942,
+   "head1_share": 0.5330416666666666,
+   "shelf_used": 4028,
+   "shelf_used_share": 0.36778670562454346,
+   "slot_gini": 0.9578550812636961,
+   "share_1990s": 0.303475,
+   "genre_spread": 0.7443687319755554,
+   "CA_catalog_share": 0.03798392987582177,
+   "CA_slot_share": 0.006891666666666667,
+   "CA_heldout_share": 0.020558276697795027,
+   "CA_demand_ratio": 0.33522589310250067,
+   "CA_exposure_ratio": 0.1814363782051282,
+   "CA_screens_with_any": 0.050916666666666666,
+   "FR_catalog_share": 0.059075967859751645,
+   "FR_slot_share": 0.038441666666666666,
+   "FR_heldout_share": 0.041218243140179314,
+   "FR_demand_ratio": 0.9326371950383772,
+   "FR_exposure_ratio": 0.6507158165893869,
+   "FR_screens_with_any": 0.30575
+  },
+  "a0.4_K7": {
+   "recall@10_eligible_holdout": 0.07762317359447479,
+   "recall_ci95": [
+    0.07523121684789658,
+    0.08017119765281677
+   ],
+   "recall_delta_vs_personalized": 0.001338914968073368,
+   "recall_delta_ci95": [
+    -0.000644097977783531,
+    0.0034625595435500145
+   ],
+   "pop_pct_mean": 92.99372527087898,
+   "head1_share": 0.4898,
+   "shelf_used": 4117,
+   "shelf_used_share": 0.3759130752373996,
+   "slot_gini": 0.9553452702702703,
+   "share_1990s": 0.2945833333333333,
+   "genre_spread": 0.743068277835846,
+   "CA_catalog_share": 0.03798392987582177,
+   "CA_slot_share": 0.007275,
+   "CA_heldout_share": 0.020558276697795027,
+   "CA_demand_ratio": 0.3538720733718055,
+   "CA_exposure_ratio": 0.19152836538461537,
+   "CA_screens_with_any": 0.05408333333333333,
+   "FR_catalog_share": 0.059075967859751645,
+   "FR_slot_share": 0.03791666666666667,
+   "FR_heldout_share": 0.041218243140179314,
+   "FR_demand_ratio": 0.9199001165021929,
+   "FR_exposure_ratio": 0.6418289541473468,
+   "FR_screens_with_any": 0.30125
+  },
+  "a0.4_K6": {
+   "recall@10_eligible_holdout": 0.07633510231971741,
+   "recall_ci95": [
+    0.07392627000808716,
+    0.0788552463054657
+   ],
+   "recall_delta_vs_personalized": 5.0844872021116316e-05,
+   "recall_delta_ci95": [
+    -0.0019829729571938515,
+    0.00220342050306499
+   ],
+   "pop_pct_mean": 92.68739423545166,
+   "head1_share": 0.4396333333333333,
+   "shelf_used": 4217,
+   "shelf_used_share": 0.38504382761139516,
+   "slot_gini": 0.9524557584611638,
+   "share_1990s": 0.284925,
+   "genre_spread": 0.7408294677734375,
+   "CA_catalog_share": 0.03798392987582177,
+   "CA_slot_share": 0.007666666666666666,
+   "CA_heldout_share": 0.020558276697795027,
+   "CA_demand_ratio": 0.3729236053860951,
+   "CA_exposure_ratio": 0.20183974358974358,
+   "CA_screens_with_any": 0.057416666666666664,
+   "FR_catalog_share": 0.059075967859751645,
+   "FR_slot_share": 0.037408333333333335,
+   "FR_heldout_share": 0.041218243140179314,
+   "FR_demand_ratio": 0.9075673896655702,
+   "FR_exposure_ratio": 0.6332242143225142,
+   "FR_screens_with_any": 0.29733333333333334
+  },
+  "a0.4_K5": {
+   "recall@10_eligible_holdout": 0.07450468838214874,
+   "recall_ci95": [
+    0.07211044430732727,
+    0.07695634663105011
+   ],
+   "recall_delta_vs_personalized": -0.0017795704770833254,
+   "recall_delta_ci95": [
+    -0.003979478031396866,
+    0.0006102488841861486
+   ],
+   "pop_pct_mean": 92.32387859142925,
+   "head1_share": 0.38243333333333335,
+   "shelf_used": 4334,
+   "shelf_used_share": 0.3957268078889701,
+   "slot_gini": 0.9491611684319454,
+   "share_1990s": 0.2752833333333333,
+   "genre_spread": 0.7378792762756348,
+   "CA_catalog_share": 0.03798392987582177,
+   "CA_slot_share": 0.00825,
+   "CA_heldout_share": 0.020558276697795027,
+   "CA_demand_ratio": 0.40129822753503713,
+   "CA_exposure_ratio": 0.2171971153846154,
+   "CA_screens_with_any": 0.06191666666666667,
+   "FR_catalog_share": 0.059075967859751645,
+   "FR_slot_share": 0.037116666666666666,
+   "FR_heldout_share": 0.041218243140179314,
+   "FR_demand_ratio": 0.9004912349232456,
+   "FR_exposure_ratio": 0.6282870685213807,
+   "FR_screens_with_any": 0.29483333333333334
+  },
+  "a0.4_K4": {
+   "recall@10_eligible_holdout": 0.07267427444458008,
+   "recall_ci95": [
+    0.07018284499645233,
+    0.07517074793577194
+   ],
+   "recall_delta_vs_personalized": -0.0036099860444664955,
+   "recall_delta_ci95": [
+    -0.005999293178319931,
+    -0.0011690838728100061
+   ],
+   "pop_pct_mean": 91.89769600681763,
+   "head1_share": 0.318275,
+   "shelf_used": 4452,
+   "shelf_used_share": 0.40650109569028486,
+   "slot_gini": 0.9454850681762844,
+   "share_1990s": 0.265875,
+   "genre_spread": 0.7337270975112915,
+   "CA_catalog_share": 0.03798392987582177,
+   "CA_slot_share": 0.008966666666666666,
+   "CA_heldout_share": 0.020558276697795027,
+   "CA_demand_ratio": 0.43615847760373727,
+   "CA_exposure_ratio": 0.23606474358974358,
+   "CA_screens_with_any": 0.06808333333333333,
+   "FR_catalog_share": 0.059075967859751645,
+   "FR_slot_share": 0.03641666666666667,
+   "FR_heldout_share": 0.041218243140179314,
+   "FR_demand_ratio": 0.8835084635416667,
+   "FR_exposure_ratio": 0.6164379185986605,
+   "FR_screens_with_any": 0.288
+  },
+  "a0.4_K3": {
+   "recall@10_eligible_holdout": 0.07030151039361954,
+   "recall_ci95": [
+    0.06796916574239731,
+    0.07266296446323395
+   ],
+   "recall_delta_vs_personalized": -0.005982746835798025,
+   "recall_delta_ci95": [
+    -0.008449080400168896,
+    -0.0034683600533753633
+   ],
+   "pop_pct_mean": 91.40188648953006,
+   "head1_share": 0.24754166666666666,
+   "shelf_used": 4586,
+   "shelf_used_share": 0.418736303871439,
+   "slot_gini": 0.9415907094594594,
+   "share_1990s": 0.2559666666666667,
+   "genre_spread": 0.7285425066947937,
+   "CA_catalog_share": 0.03798392987582177,
+   "CA_slot_share": 0.009866666666666666,
+   "CA_heldout_share": 0.020558276697795027,
+   "CA_demand_ratio": 0.47993646606210494,
+   "CA_exposure_ratio": 0.2597589743589743,
+   "CA_screens_with_any": 0.075,
+   "FR_catalog_share": 0.059075967859751645,
+   "FR_slot_share": 0.035675,
+   "FR_heldout_share": 0.041218243140179314,
+   "FR_demand_ratio": 0.8655148129111842,
+   "FR_exposure_ratio": 0.6038834621329211,
+   "FR_screens_with_any": 0.28208333333333335
+  },
+  "a0.5_K10": {
+   "recall@10_eligible_holdout": 0.07414877414703369,
+   "recall_ci95": [
+    0.07158512622117996,
+    0.07678800076246262
+   ],
+   "recall_delta_vs_personalized": -0.0021354847121983767,
+   "recall_delta_ci95": [
+    -0.00418882118538022,
+    -1.6086469258880243e-05
+   ],
+   "pop_pct_mean": 87.7183764761383,
+   "head1_share": 0.4757166666666667,
+   "shelf_used": 5198,
+   "shelf_used_share": 0.4746165084002922,
+   "slot_gini": 0.9303102097029462,
+   "share_1990s": 0.29270833333333335,
+   "genre_spread": 0.7263997793197632,
+   "CA_catalog_share": 0.03798392987582177,
+   "CA_slot_share": 0.01025,
+   "CA_heldout_share": 0.020558276697795027,
+   "CA_demand_ratio": 0.49858264633140975,
+   "CA_exposure_ratio": 0.26985096153846155,
+   "CA_screens_with_any": 0.07425,
+   "FR_catalog_share": 0.059075967859751645,
+   "FR_slot_share": 0.04066666666666666,
+   "FR_heldout_share": 0.041218243140179314,
+   "FR_demand_ratio": 0.9866181469298244,
+   "FR_exposure_ratio": 0.6883791859866047,
+   "FR_screens_with_any": 0.3075833333333333
+  },
+  "a0.5_K8": {
+   "recall@10_eligible_holdout": 0.07340304553508759,
+   "recall_ci95": [
+    0.07092013955116272,
+    0.07601889967918396
+   ],
+   "recall_delta_vs_personalized": -0.0028812093660235405,
+   "recall_delta_ci95": [
+    -0.005051605403423309,
+    -0.0006276014028117061
+   ],
+   "pop_pct_mean": 87.32917846055516,
+   "head1_share": 0.43351666666666666,
+   "shelf_used": 5296,
+   "shelf_used_share": 0.4835646457268079,
+   "slot_gini": 0.9264167275383491,
+   "share_1990s": 0.2839,
+   "genre_spread": 0.7259743809700012,
+   "CA_catalog_share": 0.03798392987582177,
+   "CA_slot_share": 0.010691666666666667,
+   "CA_heldout_share": 0.020558276697795027,
+   "CA_demand_ratio": 0.5200662888156087,
+   "CA_exposure_ratio": 0.2814786858974359,
+   "CA_screens_with_any": 0.07816666666666666,
+   "FR_catalog_share": 0.059075967859751645,
+   "FR_slot_share": 0.04044166666666667,
+   "FR_heldout_share": 0.041218243140179314,
+   "FR_demand_ratio": 0.9811593989857456,
+   "FR_exposure_ratio": 0.684570530654302,
+   "FR_screens_with_any": 0.30516666666666664
+  },
+  "a0.5_K7": {
+   "recall@10_eligible_holdout": 0.0727759599685669,
+   "recall_ci95": [
+    0.07033233344554901,
+    0.07529053092002869
+   ],
+   "recall_delta_vs_personalized": -0.0035082960966974497,
+   "recall_delta_ci95": [
+    -0.005678971763700247,
+    -0.0012027054326608777
+   ],
+   "pop_pct_mean": 87.04260584063793,
+   "head1_share": 0.40191666666666664,
+   "shelf_used": 5381,
+   "shelf_used_share": 0.49132578524470416,
+   "slot_gini": 0.9234869338933528,
+   "share_1990s": 0.2777833333333333,
+   "genre_spread": 0.7250890135765076,
+   "CA_catalog_share": 0.03798392987582177,
+   "CA_slot_share": 0.010991666666666667,
+   "CA_heldout_share": 0.020558276697795027,
+   "CA_demand_ratio": 0.5346589516350646,
+   "CA_exposure_ratio": 0.28937676282051283,
+   "CA_screens_with_any": 0.08041666666666666,
+   "FR_catalog_share": 0.059075967859751645,
+   "FR_slot_share": 0.040125,
+   "FR_heldout_share": 0.041218243140179314,
+   "FR_demand_ratio": 0.973476716694079,
+   "FR_exposure_ratio": 0.6792102009273571,
+   "FR_screens_with_any": 0.3015
+  },
+  "a0.5_K6": {
+   "recall@10_eligible_holdout": 0.07175906002521515,
+   "recall_ci95": [
+    0.06925018876791,
+    0.07426101714372635
+   ],
+   "recall_delta_vs_personalized": -0.004525193478912115,
+   "recall_delta_ci95": [
+    -0.006712964735925198,
+    -0.0021019531413912773
+   ],
+   "pop_pct_mean": 86.6665579346238,
+   "head1_share": 0.3642916666666667,
+   "shelf_used": 5486,
+   "shelf_used_share": 0.5009130752373996,
+   "slot_gini": 0.9197758004626247,
+   "share_1990s": 0.27141666666666664,
+   "genre_spread": 0.7236732840538025,
+   "CA_catalog_share": 0.03798392987582177,
+   "CA_slot_share": 0.011425,
+   "CA_heldout_share": 0.020558276697795027,
+   "CA_demand_ratio": 0.5557372423742787,
+   "CA_exposure_ratio": 0.30078509615384613,
+   "CA_screens_with_any": 0.08441666666666667,
+   "FR_catalog_share": 0.059075967859751645,
+   "FR_slot_share": 0.039933333333333335,
+   "FR_heldout_share": 0.041218243140179314,
+   "FR_demand_ratio": 0.9688266721491228,
+   "FR_exposure_ratio": 0.6759657908294694,
+   "FR_screens_with_any": 0.29875
+  },
+  "a0.5_K5": {
+   "recall@10_eligible_holdout": 0.06972526758909225,
+   "recall_ci95": [
+    0.06730113178491592,
+    0.07209037244319916
+   ],
+   "recall_delta_vs_personalized": -0.006558988709002733,
+   "recall_delta_ci95": [
+    -0.008746846579015255,
+    -0.0040992023423314095
+   ],
+   "pop_pct_mean": 86.20855505843681,
+   "head1_share": 0.3206,
+   "shelf_used": 5594,
+   "shelf_used_share": 0.5107742878013148,
+   "slot_gini": 0.915430346055515,
+   "share_1990s": 0.26416666666666666,
+   "genre_spread": 0.7213950157165527,
+   "CA_catalog_share": 0.03798392987582177,
+   "CA_slot_share": 0.011941666666666666,
+   "CA_heldout_share": 0.020558276697795027,
+   "CA_demand_ratio": 0.5808690505633416,
+   "CA_exposure_ratio": 0.31438733974358973,
+   "CA_screens_with_any": 0.08866666666666667,
+   "FR_catalog_share": 0.059075967859751645,
+   "FR_slot_share": 0.03961666666666667,
+   "FR_heldout_share": 0.041218243140179314,
+   "FR_demand_ratio": 0.9611439898574562,
+   "FR_exposure_ratio": 0.6706054611025245,
+   "FR_screens_with_any": 0.2970833333333333
+  },
+  "a0.5_K4": {
+   "recall@10_eligible_holdout": 0.06772536784410477,
+   "recall_ci95": [
+    0.06540173292160034,
+    0.07009316235780716
+   ],
+   "recall_delta_vs_personalized": -0.008558887057006359,
+   "recall_delta_ci95": [
+    -0.010832589119672775,
+    -0.0059318882413208485
+   ],
+   "pop_pct_mean": 85.68858602690528,
+   "head1_share": 0.27043333333333336,
+   "shelf_used": 5716,
+   "shelf_used_share": 0.5219138056975895,
+   "slot_gini": 0.9106129184928171,
+   "share_1990s": 0.257425,
+   "genre_spread": 0.7178314924240112,
+   "CA_catalog_share": 0.03798392987582177,
+   "CA_slot_share": 0.012591666666666666,
+   "CA_heldout_share": 0.020558276697795027,
+   "CA_demand_ratio": 0.6124864866721627,
+   "CA_exposure_ratio": 0.3314998397435897,
+   "CA_screens_with_any": 0.09408333333333334,
+   "FR_catalog_share": 0.059075967859751645,
+   "FR_slot_share": 0.039358333333333335,
+   "FR_heldout_share": 0.041218243140179314,
+   "FR_demand_ratio": 0.9548765385142544,
+   "FR_exposure_ratio": 0.6662325605358063,
+   "FR_screens_with_any": 0.2925
+  },
+  "a0.5_K3": {
+   "recall@10_eligible_holdout": 0.0659288540482521,
+   "recall_ci95": [
+    0.06367868930101395,
+    0.06828431785106659
+   ],
+   "recall_delta_vs_personalized": -0.010355405509471893,
+   "recall_delta_ci95": [
+    -0.012787921354174614,
+    -0.007661014795303345
+   ],
+   "pop_pct_mean": 85.08628743608473,
+   "head1_share": 0.21324166666666666,
+   "shelf_used": 5850,
+   "shelf_used_share": 0.5341490138787436,
+   "slot_gini": 0.9051974936084733,
+   "share_1990s": 0.24944166666666667,
+   "genre_spread": 0.7127840518951416,
+   "CA_catalog_share": 0.03798392987582177,
+   "CA_slot_share": 0.013258333333333334,
+   "CA_heldout_share": 0.020558276697795027,
+   "CA_demand_ratio": 0.6449146262709536,
+   "CA_exposure_ratio": 0.3490511217948718,
+   "CA_screens_with_any": 0.09941666666666667,
+   "FR_catalog_share": 0.059075967859751645,
+   "FR_slot_share": 0.038808333333333334,
+   "FR_heldout_share": 0.041218243140179314,
+   "FR_demand_ratio": 0.941532932428728,
+   "FR_exposure_ratio": 0.6569225141679547,
+   "FR_screens_with_any": 0.287
+  }
+ },
+ "combo_choice": {
+  "alpha": 0.2,
+  "K": 5
+ },
+ "phase1": {
+  "gdelt": {
+   "articles": 671681,
+   "window": "11-17 Oct 2026",
+   "top6_share": 0.505,
+   "us_ratio": 6.2,
+   "africa_ratio": 0.32,
+   "asia_ratio": 0.46,
+   "china_india_people": 0.353,
+   "china_india_mentions": 0.084
+  },
+  "mind": {
+   "screens": 2609219,
+   "slots": 97592931,
+   "top293_slot_share": 0.373,
+   "top293_catalog_share": 0.0028,
+   "slot_gini": 0.93,
+   "taste_pp_min": 4.2,
+   "taste_pp_max": 5.5,
+   "novelty_short": 0.91,
+   "novelty_heavy": 0.7
+  }
+ }
+};
+const REPO = "https://github.com/enigma2210/btf-data-challenge";
+const $ = s => document.querySelector(s);
+const pct = (x,d=1) => (x*100).toFixed(d)+"%";
+const pp = x => (x>=0?"+":"−")+Math.abs(x*100).toFixed(2)+" pts";
+const fmt = x => x.toLocaleString("en-CA");
+$("#repolink").href = REPO; $("#nusers").textContent = fmt(DATA.meta.users_test);
+const KS=[10,8,7,6,5,4,3], AS=["0.0","0.1","0.2","0.3","0.4","0.5"];
+const G = DATA.grid, C = DATA.configs, P1 = DATA.phase1;
+const team = DATA.combo_choice; 
+const PRESETS = [
+  {id:"today", name:"Today", k:10, a:"0.0", list:"cap10"},
+  {id:"team", name:`Team setting · Cap ${team.K} + α ${team.alpha}`, k:team.K, a:team.alpha.toFixed(1), list:"combo"},
+  {id:"acc", name:"Accuracy-first · α 0.4", k:10, a:"0.4", list:"pen0.4"},
+  {id:"cap5", name:"Head Cap 5 only", k:5, a:"0.0", list:"cap5"},
+  {id:"quota", name:"Canadian quota", quota:true, list:"ca_slot"},
+];
+let st = {k:team.K, a:team.alpha.toFixed(1), quota:false, viewer:1};
+function cur(){ return st.quota ? C["ca_slot"] : G[`a${st.a}_K${st.k}`]; }
+function preset(){ return PRESETS.find(p => p.quota ? st.quota : (!st.quota && p.k===st.k && p.a===st.a)); }
+function base(){ return G["a0.0_K10"]; }
+
+$("#kt").innerHTML = KS.map(k=>`<span>${k===10?"off":k}</span>`).join("");
+$("#at").innerHTML = AS.map(a=>`<span>${a}</span>`).join("");
+$("#presets").innerHTML = PRESETS.map(p=>`<button class="chip" data-p="${p.id}">${p.name}</button>`).join("");
+$("#presets").querySelectorAll("button").forEach(b=>b.onclick=()=>{ const p=PRESETS.find(x=>x.id===b.dataset.p);
+  if(p.quota){st.quota=true;} else {st.quota=false; st.k=p.k; st.a=p.a;} sync(); });
+$("#k").oninput = e => { st.quota=false; st.k = KS[+e.target.value]; sync(); };
+$("#a").oninput = e => { st.quota=false; st.a = AS[+e.target.value]; sync(); };
+
+function nlLine(name, val, fill, color, sub, isStatic){
+  return `<div class="ln${isStatic?" static":""}"><div class="h"><span>${name}</span><span>${val}</span></div>`+
+    (fill==null?"":`<div class="meter"><i style="width:${Math.max(0,Math.min(1,fill))*100}%;background:${color}"></i></div>`)+
+    `<div class="s">${sub}${isStatic?'<span class="tagp">news · Phase 1</span>':''}</div></div>`;
+}
+function arrow(v,b,goodUp){ if(Math.abs(v-b)<1e-9) return ""; const up=v>b; return ` <span class="${(up===goodUp)?"up":"down"}">${up?"▲":"▼"}</span>`; }
+function renderLabel(){
+  const c=cur(), b=base();
+  const rec=c["recall@10_eligible_holdout"], brec=b["recall@10_eligible_holdout"];
+  const ca=c.CA_slot_share/c.CA_heldout_share, bca=b.CA_slot_share/b.CA_heldout_share;
+  let h="";
+  h+=nlLine("Places", `Africa ${P1.gdelt.africa_ratio}×`, P1.gdelt.africa_ratio, "var(--rust)", `U.S. ${P1.gdelt.us_ratio}× · top 6 countries = ${pct(P1.gdelt.top6_share)} of mentions`, true);
+  h+=nlLine("Most-shown", `${pct(c.head1_share)} of slots`, c.head1_share, "var(--rust)", `go to the top 1% of films${arrow(c.head1_share,b.head1_share,false)} · today ${pct(b.head1_share)} · ${fmt(c.shelf_used)} films shown (today ${fmt(b.shelf_used)})`);
+  h+=nlLine("Canadian", `${ca.toFixed(2)}× demand`, Math.min(ca,1), "var(--teal)", `${pct(c.CA_slot_share,2)} of slots${arrow(c.CA_slot_share,b.CA_slot_share,true)} vs ${pct(c.CA_heldout_share,1)} of next likes · ${pct(c.CA_screens_with_any,1)} of screens show one`);
+  h+=nlLine("Taste", `+${P1.mind.taste_pp_max} pp`, null, "", `above the site menu (51+ clicks) · novelty ${P1.mind.novelty_heavy}×`, true);
+  h+=nlLine("Head Cap", st.quota? "quota" : (st.k===10?"off":`${st.k} of 10`), st.quota?null:(st.k/10), "var(--brand)", st.quota? "one Canadian title forced onto every screen" : `penalty α = ${st.a}`);
+  h+=nlLine("Ledger", `${pct(rec,2)} recall`, null, "", st.quota||st.k!==10||st.a!=="0.0" ? `${pp(c.recall_delta_vs_personalized)} vs today (95% CI ${pp(c.recall_delta_ci95[0])} to ${pp(c.recall_delta_ci95[1])})${arrow(rec,brec,true)}` : `today's accuracy (95% CI ${pct(c.recall_ci95[0],2)}–${pct(c.recall_ci95[1],2)})`);
+  $("#nlrows").innerHTML=h;
+}
+function renderPhone(){
+  const p = preset(); const d = DATA.demos[st.viewer];
+  const key = p ? p.list : null;
+  const showKey = key || "cap10";
+  $("#tabT").className = showKey==="cap10" ? "on":""; $("#tabF").className = showKey!=="cap10" ? "on":"";
+  $("#phonelabel").textContent = p ? p.name.split(" · ")[0] : "Today";
+  $("#phonelist").innerHTML = d.screens[showKey].map(it=>`<li><div>${it.t}<div class="meta">popularity p${it.pct.toFixed(0)}${it.head?'<span class="bd hd">TOP 1%</span>':''}${it.ca?'<span class="bd ca">CA</span>':''}${it.hit?'<span class="bd hit">LIKED LATER</span>':''}</div></div></li>`).join("");
+  $("#viewers").innerHTML = DATA.demos.map((x,i)=>`<button class="chip" aria-pressed="${i===st.viewer}" data-i="${i}">${x.label} · ${x.n_history} liked</button>`).join("");
+  $("#viewers").querySelectorAll("button").forEach(b=>b.onclick=()=>{st.viewer=+b.dataset.i; renderPhone();});
+  $("#which").innerHTML = `<div class="small" style="margin-top:4px">${p? "" : "Phone screens exist for the named settings; showing today's screen."} Liked before: ${d.history_sample.slice(0,3).join(" · ")}</div>`;
+}
+
+const W=520,H=300,M={l:46,r:12,t:12,b:38};
+const X=v=>M.l+v*(W-M.l-M.r), y0=0.055,y1=0.082, Y=v=>M.t+(1-(v-y0)/(y1-y0))*(H-M.t-M.b);
+function renderChart(){
+  const pts=[];
+  for(const a of AS) for(const k of KS){ const g=G[`a${a}_K${k}`]; pts.push({k,a,quota:false,g,lab:(k===10?"no cap":`Cap ${k}`)+` · α ${a}`}); }
+  pts.push({quota:true,g:C["ca_slot"],lab:"Canadian quota"});
+  let s="";
+  for(let g=0;g<=1.0001;g+=0.2) s+=`<line x1="${X(g)}" x2="${X(g)}" y1="${M.t}" y2="${H-M.b}" stroke="var(--grid)"/><text x="${X(g)}" y="${H-M.b+15}" text-anchor="middle">${Math.round(g*100)}%</text>`;
+  for(let g=0.055;g<=0.0821;g+=0.005) s+=`<line x1="${M.l}" x2="${W-M.r}" y1="${Y(g)}" y2="${Y(g)}" stroke="var(--grid)"/><text x="${M.l-6}" y="${Y(g)+4}" text-anchor="end">${(g*100).toFixed(1)}%</text>`;
+  s+=`<text x="${(M.l+W-M.r)/2}" y="${H-5}" text-anchor="middle">share of slots taken by the top 1% of films</text><text transform="translate(11,${(M.t+H-M.b)/2}) rotate(-90)" text-anchor="middle">recall@10 (accuracy)</text>`;
+  const br=base()["recall@10_eligible_holdout"];
+  s+=`<line x1="${M.l}" x2="${W-M.r}" y1="${Y(br)}" y2="${Y(br)}" stroke="var(--ink2)"/><text x="${M.l+4}" y="${Y(br)+13}">today's accuracy ${pct(br,2)}</text>`;
+  const line=(arr,col)=>`<path d="${arr.map((p,i)=>(i?"L":"M")+X(p.head1_share)+","+Y(p["recall@10_eligible_holdout"])).join(" ")}" fill="none" stroke="${col}" stroke-width="2"/>`;
+  s+=line(KS.map(k=>G[`a0.0_K${k}`]),"var(--rust)")+line(AS.map(a=>G[`a${a}_K10`]),"var(--teal)");
+  pts.forEach((p,i)=>{ const col=p.quota?"var(--ink)":(p.a==="0.0"?"var(--rust)":(p.k===10?"var(--teal)":"#8a96a8"));
+    const sel = p.quota? st.quota : (!st.quota && p.k===st.k && p.a===st.a);
+    const cx=X(p.g.head1_share), cy=Y(p.g["recall@10_eligible_holdout"]);
+    s+=`<circle cx="${cx}" cy="${cy}" r="${sel?6:4}" fill="${col}" stroke="var(--panel)" stroke-width="2"/>`+(sel?`<circle cx="${cx}" cy="${cy}" r="10" fill="none" stroke="var(--ink)" stroke-width="1.5"/>`:"");
+    s+=`<circle class="hit" data-i="${i}" cx="${cx}" cy="${cy}" r="9" fill="transparent" tabindex="0"/>`; });
+  const t=G[`a${team.alpha.toFixed(1)}_K${team.K}`]; {const tx=X(t.head1_share), ty=Y(t["recall@10_eligible_holdout"]); s+=`<line x1="${tx-6}" y1="${ty+6}" x2="${tx-34}" y2="${ty+48}" stroke="var(--ink)" stroke-width="1"/><text x="${tx-36}" y="${ty+60}" text-anchor="middle" style="fill:var(--ink);font-weight:700">team setting</text>`;}
+  const a4=G["a0.4_K10"]; s+=`<text x="${X(a4.head1_share)+8}" y="${Y(a4["recall@10_eligible_holdout"])-8}" style="fill:var(--ink);font-weight:700">α 0.4</text>`;
+  $("#fr").innerHTML=s;
+  const tip=$("#tip"), box=$("#fr").parentElement;
+  $("#fr").querySelectorAll(".hit").forEach(el=>{ const p=pts[+el.dataset.i];
+    const show=()=>{ tip.innerHTML=`<b>${p.lab}</b><br>accuracy ${pct(p.g["recall@10_eligible_holdout"],2)} (${pp(p.g.recall_delta_vs_personalized)})<br>top 1% take ${pct(p.g.head1_share)} · ${fmt(p.g.shelf_used)} films shown`;
+      const r=box.getBoundingClientRect(), q=el.getBoundingClientRect(); tip.style.left=Math.min(q.left-r.left+14,r.width-255)+"px"; tip.style.top=(q.top-r.top-8)+"px"; tip.style.opacity=1; };
+    el.addEventListener("mouseenter",show); el.addEventListener("focus",show);
+    el.addEventListener("mouseleave",()=>tip.style.opacity=0); el.addEventListener("blur",()=>tip.style.opacity=0);
+    el.addEventListener("click",()=>{ if(p.quota){st.quota=true;} else {st.quota=false; st.k=p.k; st.a=p.a;} sync(); }); });
+ 
+  const rows=[["Today",base()],["This setting",cur()]];
+  $("#ledger").innerHTML=`<tr><th></th><th>Accuracy</th><th>Change (95% CI)</th><th>Top-1% share</th><th>Films shown</th></tr>`+
+    rows.map(([n,g],i)=>`<tr><td>${n}</td><td>${pct(g["recall@10_eligible_holdout"],2)}</td><td>${i?pp(g.recall_delta_vs_personalized)+` <span class="small">(${pp(g.recall_delta_ci95[0])} to ${pp(g.recall_delta_ci95[1])})</span>`:"—"}</td><td>${pct(g.head1_share)}</td><td>${fmt(g.shelf_used)}</td></tr>`).join("");
+  $("#alltable").innerHTML=`<table class="t"><tr><th>Setting</th><th>Accuracy</th><th>Change</th><th>Top-1% share</th><th>Films</th><th>Canadian ÷ demand</th></tr>`+
+    pts.map(p=>`<tr><td>${p.lab}</td><td>${pct(p.g["recall@10_eligible_holdout"],2)}</td><td>${pp(p.g.recall_delta_vs_personalized)}</td><td>${pct(p.g.head1_share)}</td><td>${fmt(p.g.shelf_used)}</td><td>${(p.g.CA_slot_share/p.g.CA_heldout_share).toFixed(2)}×</td></tr>`).join("")+"</table>";
+}
+function renderCanada(){
+  const b=base(), t=G[`a${team.alpha.toFixed(1)}_K${team.K}`], a4=G["a0.4_K10"], q=C["ca_slot"], c=cur();
+  const rows=[["Share of the eligible shelf",b.CA_catalog_share,"var(--sand)"],["Share of viewers' next likes",b.CA_heldout_share,"var(--sand)"],
+    ["Slots · today",b.CA_slot_share,"var(--rust)"],["Slots · team setting",t.CA_slot_share,"var(--teal)"],["Slots · accuracy-first α 0.4",a4.CA_slot_share,"var(--teal)"],["Slots · this setting",c.CA_slot_share,"var(--ink)"]];
+  const mx=Math.max(...rows.map(r=>r[1]));
+  $("#cabars").innerHTML=rows.map(r=>`<div class="hbar"><div class="small">${r[0]}</div><div class="track"><div class="fill" style="width:${Math.max(r[1]/mx*100,0.5)}%;background:${r[2]}"></div></div><div class="val">${pct(r[1],2)}</div></div>`).join("");
+  const sc=DATA.strict_counts;
+  $("#canote").innerHTML=`Screens showing any Canadian title: today ${pct(b.CA_screens_with_any,2)} · team setting ${pct(t.CA_screens_with_any,1)} · α 0.4 ${pct(a4.CA_screens_with_any,1)} · quota ${pct(q.CA_screens_with_any,0)} (but the quota overshoots demand ${(q.CA_slot_share/q.CA_heldout_share).toFixed(1)}× and costs ${pp(q.recall_delta_vs_personalized)}).`+
+    (sc?` Strict check (Canada the only country of origin, ${sc.CA} films): same direction, larger gap.`:"");
+}
+function renderBB(){
+  const R=DATA.reproduction; const L=[["All blockbusters (most-rated)",R.most_rated],["Today",base()],["Team setting",G[`a${team.alpha.toFixed(1)}_K${team.K}`]],["Random shelf",R.random]];
+  const bar=(v,mx,col)=>`<div class="track" style="height:10px;background:var(--panel2);position:relative"><div class="fill" style="position:absolute;left:0;top:0;bottom:0;width:${v/mx*100}%;background:${col};border-radius:0 3px 3px 0"></div></div>`;
+  $("#bb").innerHTML=`<table class="t"><tr><th>List</th><th style="text-align:left">Genre spread <span class="small">(says "diverse")</span></th><th></th><th style="text-align:left">Top-1% share <span class="small">(what it really is)</span></th><th></th></tr>`+
+    L.map(([n,m])=>`<tr><td>${n}</td><td style="width:22%">${bar(m.genre_spread,0.85,"#8a96a8")}</td><td>${m.genre_spread.toFixed(2)}</td><td style="width:22%">${bar(m.head1_share,1,"var(--rust)")}</td><td>${pct(m.head1_share,0)}</td></tr>`).join("")+
+    `</table><div class="small" style="margin-top:6px">Genre spread scores the all-blockbuster list (${R.most_rated.genre_spread.toFixed(2)}) as more diverse than the team setting. It fails the test, so the label reports head-share instead.</div>`;
+}
+function renderStatic(){
+  const g=P1.gdelt,m=P1.mind;
+  $("#phase1").innerHTML=`<div class="crop"><div class="k">Crop 1 · Places (news)</div><div class="big">${pct(g.top6_share)}</div><div class="small">of ${fmt(g.articles)} articles' place-mentions sit in 6 countries; Africa ${g.africa_ratio}× its population share.</div></div>
+  <div class="crop"><div class="k">Crop 2 · Most-shown</div><div class="big">${pct(m.top293_slot_share)} → ${pct(base().head1_share)}</div><div class="small">News: ${pct(m.top293_catalog_share,2)} of articles took ${pct(m.top293_slot_share)} of slots. Films: the top 1% take ${pct(base().head1_share)} of personalized slots.</div></div>
+  <div class="crop"><div class="k">Crop 3 · Taste (news)</div><div class="big">+${m.taste_pp_min}–${m.taste_pp_max} pts</div><div class="small">Personalization adds only this much above the site menu; novelty falls from ${m.novelty_short}× to ${m.novelty_heavy}×.</div></div>`;
+  const s=DATA.meta.split; $("#splitline").textContent=`${fmt(s.positives)} liked ratings · ${fmt(s.users_ge15)} viewers · ${fmt(s.eligible_items)} films (Phase 1: 15,938,231 · 176,028 · 10,952)`;
+  const R=DATA.reproduction, PH={most_rated:[4.6,61,124],personalized:[7.6,41,1062],genre_cap3:[7.2,40,963],random:[0.08,20,10952]};
+  const N={most_rated:"Most-rated",personalized:"Personalized",genre_cap3:"Genre cap 3 of 10",random:"Random shelf"};
+  $("#rep").innerHTML=`<table class="t"><tr><th>Ranker</th><th>Accuracy · Phase 1 / now</th><th>1990s share · Phase 1 / now</th><th>Films shown · Phase 1 / now</th></tr>`+
+    Object.keys(PH).map(k=>`<tr><td>${N[k]}</td><td>${PH[k][0]}% / ${(R[k].recall*100).toFixed(2)}%</td><td>${PH[k][1]}% / ${pct(R[k].share_1990s,0)}</td><td>${fmt(PH[k][2])} / ${fmt(R[k].shelf_used)}</td></tr>`).join("")+"</table>";
+}
+function sync(){
+  $("#k").value=KS.indexOf(st.k); $("#a").value=AS.indexOf(st.a);
+  $("#kval").textContent = st.quota? "—" : (st.k===10?"off":`${st.k} of 10`); $("#aval").textContent = st.quota? "—" : st.a;
+  const p=preset(); $("#presets").querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed", !!p && b.dataset.p===p.id));
+  renderLabel(); renderPhone(); renderChart(); renderCanada();
+}
+sync(); renderBB(); renderStatic();
+</script>
+</body>
+</html>

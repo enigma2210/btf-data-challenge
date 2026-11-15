@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Feed Balance Label · Label Lab · EpicDevs</title>
+<meta name="color-scheme" content="light">
+<style>
+@font-face{font-family:"Pagella";src:url("fonts/texgyrepagella-regular.otf");font-weight:400}
+@font-face{font-family:"Pagella";src:url("fonts/texgyrepagella-bold.otf");font-weight:700}
+@font-face{font-family:"Heros";src:url("fonts/texgyreheros-regular.otf");font-weight:400}
+@font-face{font-family:"Heros";src:url("fonts/texgyreheros-bold.otf");font-weight:700}
+@font-face{font-family:"HerosCn";src:url("fonts/texgyreheroscn-bold.otf");font-weight:700}
+:root{--bg:#f3f5f8;--panel:#e9eef4;--panel2:#f8fafc;--ink:#0f2240;--ink2:#44546a;--muted:#7b8798;--brand:#0f2240;--rust:#2f62d8;--teal:#1aa37a;--sand:#b9c3d1;--grid:#d3dae4;
+--serif:"Pagella","Palatino Linotype",Palatino,Georgia,serif;--sans:"Heros","Helvetica Neue",Helvetica,Arial,sans-serif;--cond:"HerosCn","Arial Narrow","Helvetica Neue",Arial,sans-serif}
+*{box-sizing:border-box}[hidden]{display:none!important}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:14px;line-height:1.45}
+.wrap{max-width:1200px;margin:0 auto;padding:22px 28px 60px}
+.topline{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink2);border-bottom:1px solid var(--ink);padding-bottom:10px;margin-bottom:16px}
+.topline img{height:22px}
+.kicker{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--rust);font-weight:700}
+h1{font-family:var(--serif);font-size:40px;line-height:1.08;margin:6px 0 8px}
+h2{font-family:var(--serif);font-size:21px;margin:0 0 4px}
+.lede{font-family:var(--serif);font-size:17px;color:var(--ink2);max-width:900px;margin:0}
+.section{margin-top:22px}
+.small{font-size:12px;color:var(--ink2)}
+.panel{background:var(--panel);padding:14px 16px}
+.bt{border-top:6px solid var(--brand)}.br{border-top:6px solid var(--rust)}.bk{border-top:6px solid var(--ink)}
+
+.loop{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.step{background:var(--panel);border-top:6px solid var(--ink);padding:10px 12px;position:relative}
+.step .n{color:var(--rust);font-size:12px;font-weight:700}.step b{display:block;font-family:var(--serif);font-size:18px}
+.step:not(:last-child)::after{content:"→";position:absolute;right:-10px;top:40%;font-size:16px;color:var(--rust);font-weight:700}
+
+.controls{display:grid;grid-template-columns:auto 1fr 1fr;gap:18px;align-items:center;background:var(--panel);padding:12px 16px}
+.presets{display:flex;gap:6px;flex-wrap:wrap}
+.chip{font:inherit;font-size:12px;border:1px solid var(--ink2);background:transparent;border-radius:14px;padding:5px 11px;cursor:pointer;color:var(--ink)}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.chip:focus-visible,input[type=range]:focus-visible{outline:2px solid var(--teal);outline-offset:2px}
+.sl label{display:flex;justify-content:space-between;font-size:12px;color:var(--ink2)}.sl label b{color:var(--ink);white-space:nowrap;padding-left:8px}
+input[type=range]{width:100%;accent-color:var(--ink)}
+.ticks{display:flex;justify-content:space-between;font-size:10px;color:var(--muted)}
+
+.main{display:grid;grid-template-columns:330px 300px 1fr;gap:16px;align-items:start}
+@media(max-width:1100px){.main{grid-template-columns:1fr 1fr}.main .chartbox{grid-column:1/-1}}
+@media(max-width:700px){.main,.loop,.g2,.crop3{grid-template-columns:1fr}}
+
+.nl{background:#ffffff;border:3px solid var(--ink);padding:10px 12px 8px;font-family:var(--cond)}
+.nl .t1{font-size:34px;font-weight:700;line-height:.95;letter-spacing:-.01em}
+.nl .t2{color:var(--rust);font-weight:700;font-size:15px;letter-spacing:.02em;border-bottom:9px solid var(--ink);padding-bottom:4px;margin-bottom:2px}
+.nl .ln{border-bottom:1px solid var(--ink);padding:5px 0 4px}
+.nl .ln .h{display:flex;justify-content:space-between;align-items:baseline;font-weight:700;font-size:17px;text-transform:uppercase}
+.nl .ln .h span:last-child{font-size:17px}
+.nl .ln .meter{height:7px;background:#e3e8ef;margin:4px 0 3px;position:relative}
+.nl .ln .meter i{position:absolute;left:0;top:0;bottom:0;border-radius:0 3px 3px 0}
+.nl .ln .s{font-size:11.5px;color:var(--ink2)}
+.nl .ln .h{gap:10px}.nl .tagp{white-space:nowrap;display:inline-block;font-size:9px;font-weight:700;color:#fff;background:var(--brand);border-radius:2px;padding:0 4px;margin-left:6px;vertical-align:2px;text-transform:none;letter-spacing:0}
+.nl .ft{border-top:9px solid var(--ink);margin-top:4px;padding-top:4px;font-size:11px;color:var(--ink2)}
+.up{color:var(--teal);font-weight:700}.down{color:var(--rust);font-weight:700}
+
+.phone{background:#0f2240;border-radius:34px;padding:12px 10px 16px;box-shadow:0 1px 0 #000}
+.phone .scr{background:#ffffff;border-radius:24px;padding:10px 10px 8px;min-height:520px}
+.phone .bar{display:flex;justify-content:space-between;font-size:10px;color:var(--ink2);padding:0 6px 6px}
+.phone .tabs{display:flex;gap:14px;justify-content:center;font-size:12px;border-bottom:1px solid var(--grid);margin-bottom:6px}
+.phone .tabs span{padding:4px 2px}.phone .tabs .on{border-bottom:2px solid var(--rust);font-weight:700}
+.phone ol{list-style:none;margin:0;padding:0;counter-reset:r}
+.phone li{counter-increment:r;display:grid;grid-template-columns:18px 1fr;gap:4px;padding:5px 2px;border-bottom:1px solid #e3e8ef;font-size:12px;line-height:1.25}
+.phone li::before{content:counter(r);color:var(--muted);font-size:11px}
+.phone .meta{font-size:10px;color:var(--muted)}
+.bd{display:inline-block;font-size:9px;font-weight:700;border-radius:3px;padding:0 4px;margin-left:3px;vertical-align:1px}
+.hd{background:var(--sand)}.ca{background:var(--rust);color:#fff}.hit{border:1px solid var(--ink)}
+.under{margin-top:8px}.under .chip{font-size:11px;padding:3px 8px;margin:2px 2px 0 0}
+
+.chartbox{background:var(--panel);padding:12px 14px;position:relative;border-top:6px solid var(--rust)}
+.legend{display:flex;gap:14px;font-size:12px;color:var(--ink2);flex-wrap:wrap;margin:4px 0}
+.legend i{display:inline-block;width:14px;height:2px;vertical-align:middle;margin-right:5px}.legend i.d{width:8px;height:8px;border-radius:50%}
+svg text{font-family:var(--sans);fill:var(--ink2);font-size:11px}
+.tip{position:absolute;pointer-events:none;background:var(--ink);color:var(--bg);font-size:12px;padding:7px 9px;border-radius:4px;max-width:250px;opacity:0;z-index:5}
+.ledger{width:100%;border-collapse:collapse;font-size:12px;margin-top:6px;font-variant-numeric:tabular-nums}
+.ledger td,.ledger th{padding:4px 6px;border-bottom:1px solid var(--grid);text-align:right}.ledger th:first-child,.ledger td:first-child{text-align:left}
+.ledger th{font-size:10.5px;text-transform:uppercase;letter-spacing:.04em;color:var(--ink2)}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.hbar{display:grid;grid-template-columns:200px 1fr 64px;gap:10px;align-items:center;margin:7px 0}
+.hbar .track{height:14px;background:var(--panel2);position:relative}.hbar .fill{position:absolute;left:0;top:0;bottom:0;border-radius:0 4px 4px 0}
+.hbar .val{font-variant-numeric:tabular-nums;font-weight:700;text-align:right}
+.crop3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.crop{background:var(--panel);padding:12px 14px;border-top:6px solid var(--brand)}
+.crop .k{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--brand);font-weight:700}.crop .big{font-size:26px;font-weight:700;margin:4px 0}
+table.t{border-collapse:collapse;width:100%;font-size:12px;font-variant-numeric:tabular-nums}
+table.t th,table.t td{text-align:right;padding:4px 6px;border-bottom:1px solid var(--grid)}table.t th:first-child,table.t td:first-child{text-align:left}
+details summary{cursor:pointer;font-size:12px;color:var(--ink2);margin-top:6px}
+.foot{font-size:12px;color:var(--ink2);border-top:1px solid var(--grid);margin-top:28px;padding-top:12px}
+a{color:var(--brand)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="topline"><span>Phase 2 · Feed Balance Label · Label Lab</span><img src="epicdevs_logo.png" alt="EpicDevs"></div>
+  <div class="kicker">Behind the Feed Data Challenge · live prototype · real data</div>
+  <h1>Print the numbers. Cap the head. Keep the ledger.</h1>
+  <p class="lede">Move the Head Cap and the popularity penalty. The label, the phone screen and the accuracy ledger all update from real top-10 lists for <span id="nusers"></span> MovieLens&nbsp;32M viewers, using the same data split as Phase&nbsp;1.</p>
+
+  <div class="section loop">
+    <div class="step"><span class="n">01</span><b>Measure</b><span class="small">Share of the screen vs. a baseline in the data</span></div>
+    <div class="step"><span class="n">02</span><b>Publish</b><span class="small">Print the Feed Balance Label beside the list</span></div>
+    <div class="step"><span class="n">03</span><b>Cap</b><span class="small">Limit top-1% films to K of 10 slots, plus a mild penalty</span></div>
+    <div class="step"><span class="n">04</span><b>Ledger</b><span class="small">Record what the fix costs in accuracy, with an interval</span></div>
+  </div>
+
+  <div class="section controls">
+    <div><div class="small" style="margin-bottom:4px">Settings</div><div class="presets" id="presets"></div></div>
+    <div class="sl"><label for="k">Head Cap (top-1% films per 10 slots) <b id="kval"></b></label><input type="range" id="k" min="0" max="6" step="1"><div class="ticks" id="kt"></div></div>
+    <div class="sl"><label for="a">Popularity penalty α <b id="aval"></b></label><input type="range" id="a" min="0" max="5" step="1"><div class="ticks" id="at"></div></div>
+  </div>
+
+  <div class="section main">
+    <div>
+      <div class="nl" aria-live="polite">
+        <div class="t1">FEED BALANCE</div>
+        <div class="t2">LABEL · THIS SCREEN</div>
+        <div id="nlrows"></div>
+        <div class="ft">Baselines: population · catalog · site menu · viewers' next likes</div>
+      </div>
+      <div class="small" style="margin-top:6px">Live lines recompute for the setting above. Lines tagged "news · Phase 1" come from our Phase 1 analysis of GDELT and Microsoft MIND.</div>
+    </div>
+    <div>
+      <div class="phone"><div class="scr">
+        <div class="bar"><span>Top 10 for you</span><span id="phonelabel"></span></div>
+        <div class="tabs"><span id="tabT">Today</span><span id="tabF">With fix</span></div>
+        <ol id="phonelist"></ol>
+      </div></div>
+      <div class="under"><div class="small">Real test viewer (titles from MovieLens):</div><div id="viewers"></div><div id="which"></div></div>
+    </div>
+    <div class="chartbox">
+      <h2>The ledger: what balance costs</h2>
+      <div class="small">Each dot is one setting on the same test viewers. Higher = more accurate. Further left = less screen for the top 1%.</div>
+      <div class="legend"><span><i style="background:var(--rust)"></i>Head Cap only</span><span><i style="background:var(--teal)"></i>Penalty only</span><span><i class="d" style="background:#8a96a8"></i>Cap + penalty</span><span><i class="d" style="background:var(--ink)"></i>Canadian quota</span></div>
+      <svg id="fr" viewBox="0 0 520 300" width="100%" role="img" aria-label="Recall versus top-1% share for all settings"></svg>
+      <div class="tip" id="tip"></div>
+      <table class="ledger" id="ledger"></table>
+      <details><summary>Table view: all settings</summary><div id="alltable"></div></details>
+    </div>
+  </div>
+
+  <div class="section g2">
+    <div class="panel br">
+      <h2>Canadian films: shelf, demand, screen</h2>
+      <div class="small">Canadian = Canada is one of the film's countries of origin (Wikidata). Demand = share of the films viewers actually liked next.</div>
+      <div id="cabars" style="margin-top:6px"></div>
+      <div class="small" id="canote"></div>
+    </div>
+    <div class="panel bk">
+      <h2>Why genre spread is the wrong dial</h2>
+      <div class="small">The Blockbuster Test: a diversity score is trusted only if it marks an all-blockbuster list as narrow.</div>
+      <div id="bb" style="margin-top:6px"></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Same pattern as Phase 1</h2>
+    <div class="crop3" style="margin-top:8px" id="phase1"></div>
+  </div>
+
+  <div class="section panel">
+    <h2>Reproduction check against Phase 1</h2>
+    <div class="small">Same split rules give the same population: <span id="splitline"></span>. Shelf counts differ slightly because the 12,000 test viewers are a fresh random draw.</div>
+    <div id="rep" style="margin-top:6px"></div>
+  </div>
+
+  <div class="foot">
+    <b>Data.</b> GroupLens MovieLens 32M (positive = rating ≥ 4). Canadian tags: Wikidata country of origin (P495), joined on IMDb ID. Phase 1 lines: GDELT GKG 2.0, World Bank, Microsoft MIND.<br>
+    <b>Method.</b> Item–item cosine with 40 neighbours; viewers with ≥ 15 liked films; last 5 held out; 10,952 eligible films. Settings re-rank the same scores. The team setting was picked on a separate 12,000 validation viewers with a rule fixed in advance: as little top-1% share as possible without losing accuracy.<br>
+    <b>Limits.</b> Top-10 lists are simulated from rating logs, not shown to people. MovieLens viewers are not a Canadian audience. Wikidata tags are a proxy, not CAVCO certification. No age, gender, race or politics is in these data or inferred.<br>
+    <b>Code.</b> <a id="repolink" href="#">github.com/enigma2210/btf-data-challenge</a> · every number on this page is generated by the scripts in <code>code/</code>.
+  </div>
+</div>
+<script>
+const DATA = __DATA__;
+const REPO = __REPO__;
+const $ = s => document.querySelector(s);
+const pct = (x,d=1) => (x*100).toFixed(d)+"%";
+const pp = x => (x>=0?"+":"−")+Math.abs(x*100).toFixed(2)+" pts";
+const fmt = x => x.toLocaleString("en-CA");
+$("#repolink").href = REPO; $("#nusers").textContent = fmt(DATA.meta.users_test);
+const KS=[10,8,7,6,5,4,3], AS=["0.0","0.1","0.2","0.3","0.4","0.5"];
+const G = DATA.grid, C = DATA.configs, P1 = DATA.phase1;
+const team = DATA.combo_choice; 
+const PRESETS = [
+  {id:"today", name:"Today", k:10, a:"0.0", list:"cap10"},
+  {id:"team", name:`Team setting · Cap ${team.K} + α ${team.alpha}`, k:team.K, a:team.alpha.toFixed(1), list:"combo"},
+  {id:"acc", name:"Accuracy-first · α 0.4", k:10, a:"0.4", list:"pen0.4"},
+  {id:"cap5", name:"Head Cap 5 only", k:5, a:"0.0", list:"cap5"},
+  {id:"quota", name:"Canadian quota", quota:true, list:"ca_slot"},
+];
+let st = {k:team.K, a:team.alpha.toFixed(1), quota:false, viewer:1};
+function cur(){ return st.quota ? C["ca_slot"] : G[`a${st.a}_K${st.k}`]; }
+function preset(){ return PRESETS.find(p => p.quota ? st.quota : (!st.quota && p.k===st.k && p.a===st.a)); }
+function base(){ return G["a0.0_K10"]; }
+
+$("#kt").innerHTML = KS.map(k=>`<span>${k===10?"off":k}</span>`).join("");
+$("#at").innerHTML = AS.map(a=>`<span>${a}</span>`).join("");
+$("#presets").innerHTML = PRESETS.map(p=>`<button class="chip" data-p="${p.id}">${p.name}</button>`).join("");
+$("#presets").querySelectorAll("button").forEach(b=>b.onclick=()=>{ const p=PRESETS.find(x=>x.id===b.dataset.p);
+  if(p.quota){st.quota=true;} else {st.quota=false; st.k=p.k; st.a=p.a;} sync(); });
+$("#k").oninput = e => { st.quota=false; st.k = KS[+e.target.value]; sync(); };
+$("#a").oninput = e => { st.quota=false; st.a = AS[+e.target.value]; sync(); };
+
+function nlLine(name, val, fill, color, sub, isStatic){
+  return `<div class="ln${isStatic?" static":""}"><div class="h"><span>${name}</span><span>${val}</span></div>`+
+    (fill==null?"":`<div class="meter"><i style="width:${Math.max(0,Math.min(1,fill))*100}%;background:${color}"></i></div>`)+
+    `<div class="s">${sub}${isStatic?'<span class="tagp">news · Phase 1</span>':''}</div></div>`;
+}
+function arrow(v,b,goodUp){ if(Math.abs(v-b)<1e-9) return ""; const up=v>b; return ` <span class="${(up===goodUp)?"up":"down"}">${up?"▲":"▼"}</span>`; }
+function renderLabel(){
+  const c=cur(), b=base();
+  const rec=c["recall@10_eligible_holdout"], brec=b["recall@10_eligible_holdout"];
+  const ca=c.CA_slot_share/c.CA_heldout_share, bca=b.CA_slot_share/b.CA_heldout_share;
+  let h="";
+  h+=nlLine("Places", `Africa ${P1.gdelt.africa_ratio}×`, P1.gdelt.africa_ratio, "var(--rust)", `U.S. ${P1.gdelt.us_ratio}× · top 6 countries = ${pct(P1.gdelt.top6_share)} of mentions`, true);
+  h+=nlLine("Most-shown", `${pct(c.head1_share)} of slots`, c.head1_share, "var(--rust)", `go to the top 1% of films${arrow(c.head1_share,b.head1_share,false)} · today ${pct(b.head1_share)} · ${fmt(c.shelf_used)} films shown (today ${fmt(b.shelf_used)})`);
+  h+=nlLine("Canadian", `${ca.toFixed(2)}× demand`, Math.min(ca,1), "var(--teal)", `${pct(c.CA_slot_share,2)} of slots${arrow(c.CA_slot_share,b.CA_slot_share,true)} vs ${pct(c.CA_heldout_share,1)} of next likes · ${pct(c.CA_screens_with_any,1)} of screens show one`);
+  h+=nlLine("Taste", `+${P1.mind.taste_pp_max} pp`, null, "", `above the site menu (51+ clicks) · novelty ${P1.mind.novelty_heavy}×`, true);
+  h+=nlLine("Head Cap", st.quota? "quota" : (st.k===10?"off":`${st.k} of 10`), st.quota?null:(st.k/10), "var(--brand)", st.quota? "one Canadian title forced onto every screen" : `penalty α = ${st.a}`);
+  h+=nlLine("Ledger", `${pct(rec,2)} recall`, null, "", st.quota||st.k!==10||st.a!=="0.0" ? `${pp(c.recall_delta_vs_personalized)} vs today (95% CI ${pp(c.recall_delta_ci95[0])} to ${pp(c.recall_delta_ci95[1])})${arrow(rec,brec,true)}` : `today's accuracy (95% CI ${pct(c.recall_ci95[0],2)}–${pct(c.recall_ci95[1],2)})`);
+  $("#nlrows").innerHTML=h;
+}
+function renderPhone(){
+  const p = preset(); const d = DATA.demos[st.viewer];
+  const key = p ? p.list : null;
+  const showKey = key || "cap10";
+  $("#tabT").className = showKey==="cap10" ? "on":""; $("#tabF").className = showKey!=="cap10" ? "on":"";
+  $("#phonelabel").textContent = p ? p.name.split(" · ")[0] : "Today";
+  $("#phonelist").innerHTML = d.screens[showKey].map(it=>`<li><div>${it.t}<div class="meta">popularity p${it.pct.toFixed(0)}${it.head?'<span class="bd hd">TOP 1%</span>':''}${it.ca?'<span class="bd ca">CA</span>':''}${it.hit?'<span class="bd hit">LIKED LATER</span>':''}</div></div></li>`).join("");
+  $("#viewers").innerHTML = DATA.demos.map((x,i)=>`<button class="chip" aria-pressed="${i===st.viewer}" data-i="${i}">${x.label} · ${x.n_history} liked</button>`).join("");
+  $("#viewers").querySelectorAll("button").forEach(b=>b.onclick=()=>{st.viewer=+b.dataset.i; renderPhone();});
+  $("#which").innerHTML = `<div class="small" style="margin-top:4px">${p? "" : "Phone screens exist for the named settings; showing today's screen."} Liked before: ${d.history_sample.slice(0,3).join(" · ")}</div>`;
+}
+
+const W=520,H=300,M={l:46,r:12,t:12,b:38};
+const X=v=>M.l+v*(W-M.l-M.r), y0=0.055,y1=0.082, Y=v=>M.t+(1-(v-y0)/(y1-y0))*(H-M.t-M.b);
+function renderChart(){
+  const pts=[];
+  for(const a of AS) for(const k of KS){ const g=G[`a${a}_K${k}`]; pts.push({k,a,quota:false,g,lab:(k===10?"no cap":`Cap ${k}`)+` · α ${a}`}); }
+  pts.push({quota:true,g:C["ca_slot"],lab:"Canadian quota"});
+  let s="";
+  for(let g=0;g<=1.0001;g+=0.2) s+=`<line x1="${X(g)}" x2="${X(g)}" y1="${M.t}" y2="${H-M.b}" stroke="var(--grid)"/><text x="${X(g)}" y="${H-M.b+15}" text-anchor="middle">${Math.round(g*100)}%</text>`;
+  for(let g=0.055;g<=0.0821;g+=0.005) s+=`<line x1="${M.l}" x2="${W-M.r}" y1="${Y(g)}" y2="${Y(g)}" stroke="var(--grid)"/><text x="${M.l-6}" y="${Y(g)+4}" text-anchor="end">${(g*100).toFixed(1)}%</text>`;
+  s+=`<text x="${(M.l+W-M.r)/2}" y="${H-5}" text-anchor="middle">share of slots taken by the top 1% of films</text><text transform="translate(11,${(M.t+H-M.b)/2}) rotate(-90)" text-anchor="middle">recall@10 (accuracy)</text>`;
+  const br=base()["recall@10_eligible_holdout"];
+  s+=`<line x1="${M.l}" x2="${W-M.r}" y1="${Y(br)}" y2="${Y(br)}" stroke="var(--ink2)"/><text x="${M.l+4}" y="${Y(br)+13}">today's accuracy ${pct(br,2)}</text>`;
+  const line=(arr,col)=>`<path d="${arr.map((p,i)=>(i?"L":"M")+X(p.head1_share)+","+Y(p["recall@10_eligible_holdout"])).join(" ")}" fill="none" stroke="${col}" stroke-width="2"/>`;
+  s+=line(KS.map(k=>G[`a0.0_K${k}`]),"var(--rust)")+line(AS.map(a=>G[`a${a}_K10`]),"var(--teal)");
+  pts.forEach((p,i)=>{ const col=p.quota?"var(--ink)":(p.a==="0.0"?"var(--rust)":(p.k===10?"var(--teal)":"#8a96a8"));
+    const sel = p.quota? st.quota : (!st.quota && p.k===st.k && p.a===st.a);
+    const cx=X(p.g.head1_share), cy=Y(p.g["recall@10_eligible_holdout"]);
+    s+=`<circle cx="${cx}" cy="${cy}" r="${sel?6:4}" fill="${col}" stroke="var(--panel)" stroke-width="2"/>`+(sel?`<circle cx="${cx}" cy="${cy}" r="10" fill="none" stroke="var(--ink)" stroke-width="1.5"/>`:"");
+    s+=`<circle class="hit" data-i="${i}" cx="${cx}" cy="${cy}" r="9" fill="transparent" tabindex="0"/>`; });
+  const t=G[`a${team.alpha.toFixed(1)}_K${team.K}`]; {const tx=X(t.head1_share), ty=Y(t["recall@10_eligible_holdout"]); s+=`<line x1="${tx-6}" y1="${ty+6}" x2="${tx-34}" y2="${ty+48}" stroke="var(--ink)" stroke-width="1"/><text x="${tx-36}" y="${ty+60}" text-anchor="middle" style="fill:var(--ink);font-weight:700">team setting</text>`;}
+  const a4=G["a0.4_K10"]; s+=`<text x="${X(a4.head1_share)+8}" y="${Y(a4["recall@10_eligible_holdout"])-8}" style="fill:var(--ink);font-weight:700">α 0.4</text>`;
+  $("#fr").innerHTML=s;
+  const tip=$("#tip"), box=$("#fr").parentElement;
+  $("#fr").querySelectorAll(".hit").forEach(el=>{ const p=pts[+el.dataset.i];
+    const show=()=>{ tip.innerHTML=`<b>${p.lab}</b><br>accuracy ${pct(p.g["recall@10_eligible_holdout"],2)} (${pp(p.g.recall_delta_vs_personalized)})<br>top 1% take ${pct(p.g.head1_share)} · ${fmt(p.g.shelf_used)} films shown`;
+      const r=box.getBoundingClientRect(), q=el.getBoundingClientRect(); tip.style.left=Math.min(q.left-r.left+14,r.width-255)+"px"; tip.style.top=(q.top-r.top-8)+"px"; tip.style.opacity=1; };
+    el.addEventListener("mouseenter",show); el.addEventListener("focus",show);
+    el.addEventListener("mouseleave",()=>tip.style.opacity=0); el.addEventListener("blur",()=>tip.style.opacity=0);
+    el.addEventListener("click",()=>{ if(p.quota){st.quota=true;} else {st.quota=false; st.k=p.k; st.a=p.a;} sync(); }); });
+ 
+  const rows=[["Today",base()],["This setting",cur()]];
+  $("#ledger").innerHTML=`<tr><th></th><th>Accuracy</th><th>Change (95% CI)</th><th>Top-1% share</th><th>Films shown</th></tr>`+
+    rows.map(([n,g],i)=>`<tr><td>${n}</td><td>${pct(g["recall@10_eligible_holdout"],2)}</td><td>${i?pp(g.recall_delta_vs_personalized)+` <span class="small">(${pp(g.recall_delta_ci95[0])} to ${pp(g.recall_delta_ci95[1])})</span>`:"—"}</td><td>${pct(g.head1_share)}</td><td>${fmt(g.shelf_used)}</td></tr>`).join("");
+  $("#alltable").innerHTML=`<table class="t"><tr><th>Setting</th><th>Accuracy</th><th>Change</th><th>Top-1% share</th><th>Films</th><th>Canadian ÷ demand</th></tr>`+
+    pts.map(p=>`<tr><td>${p.lab}</td><td>${pct(p.g["recall@10_eligible_holdout"],2)}</td><td>${pp(p.g.recall_delta_vs_personalized)}</td><td>${pct(p.g.head1_share)}</td><td>${fmt(p.g.shelf_used)}</td><td>${(p.g.CA_slot_share/p.g.CA_heldout_share).toFixed(2)}×</td></tr>`).join("")+"</table>";
+}
+function renderCanada(){
+  const b=base(), t=G[`a${team.alpha.toFixed(1)}_K${team.K}`], a4=G["a0.4_K10"], q=C["ca_slot"], c=cur();
+  const rows=[["Share of the eligible shelf",b.CA_catalog_share,"var(--sand)"],["Share of viewers' next likes",b.CA_heldout_share,"var(--sand)"],
+    ["Slots · today",b.CA_slot_share,"var(--rust)"],["Slots · team setting",t.CA_slot_share,"var(--teal)"],["Slots · accuracy-first α 0.4",a4.CA_slot_share,"var(--teal)"],["Slots · this setting",c.CA_slot_share,"var(--ink)"]];
+  const mx=Math.max(...rows.map(r=>r[1]));
+  $("#cabars").innerHTML=rows.map(r=>`<div class="hbar"><div class="small">${r[0]}</div><div class="track"><div class="fill" style="width:${Math.max(r[1]/mx*100,0.5)}%;background:${r[2]}"></div></div><div class="val">${pct(r[1],2)}</div></div>`).join("");
+  const sc=DATA.strict_counts;
+  $("#canote").innerHTML=`Screens showing any Canadian title: today ${pct(b.CA_screens_with_any,2)} · team setting ${pct(t.CA_screens_with_any,1)} · α 0.4 ${pct(a4.CA_screens_with_any,1)} · quota ${pct(q.CA_screens_with_any,0)} (but the quota overshoots demand ${(q.CA_slot_share/q.CA_heldout_share).toFixed(1)}× and costs ${pp(q.recall_delta_vs_personalized)}).`+
+    (sc?` Strict check (Canada the only country of origin, ${sc.CA} films): same direction, larger gap.`:"");
+}
+function renderBB(){
+  const R=DATA.reproduction; const L=[["All blockbusters (most-rated)",R.most_rated],["Today",base()],["Team setting",G[`a${team.alpha.toFixed(1)}_K${team.K}`]],["Random shelf",R.random]];
+  const bar=(v,mx,col)=>`<div class="track" style="height:10px;background:var(--panel2);position:relative"><div class="fill" style="position:absolute;left:0;top:0;bottom:0;width:${v/mx*100}%;background:${col};border-radius:0 3px 3px 0"></div></div>`;
+  $("#bb").innerHTML=`<table class="t"><tr><th>List</th><th style="text-align:left">Genre spread <span class="small">(says "diverse")</span></th><th></th><th style="text-align:left">Top-1% share <span class="small">(what it really is)</span></th><th></th></tr>`+
+    L.map(([n,m])=>`<tr><td>${n}</td><td style="width:22%">${bar(m.genre_spread,0.85,"#8a96a8")}</td><td>${m.genre_spread.toFixed(2)}</td><td style="width:22%">${bar(m.head1_share,1,"var(--rust)")}</td><td>${pct(m.head1_share,0)}</td></tr>`).join("")+
+    `</table><div class="small" style="margin-top:6px">Genre spread scores the all-blockbuster list (${R.most_rated.genre_spread.toFixed(2)}) as more diverse than the team setting. It fails the test, so the label reports head-share instead.</div>`;
+}
+function renderStatic(){
+  const g=P1.gdelt,m=P1.mind;
+  $("#phase1").innerHTML=`<div class="crop"><div class="k">Crop 1 · Places (news)</div><div class="big">${pct(g.top6_share)}</div><div class="small">of ${fmt(g.articles)} articles' place-mentions sit in 6 countries; Africa ${g.africa_ratio}× its population share.</div></div>
+  <div class="crop"><div class="k">Crop 2 · Most-shown</div><div class="big">${pct(m.top293_slot_share)} → ${pct(base().head1_share)}</div><div class="small">News: ${pct(m.top293_catalog_share,2)} of articles took ${pct(m.top293_slot_share)} of slots. Films: the top 1% take ${pct(base().head1_share)} of personalized slots.</div></div>
+  <div class="crop"><div class="k">Crop 3 · Taste (news)</div><div class="big">+${m.taste_pp_min}–${m.taste_pp_max} pts</div><div class="small">Personalization adds only this much above the site menu; novelty falls from ${m.novelty_short}× to ${m.novelty_heavy}×.</div></div>`;
+  const s=DATA.meta.split; $("#splitline").textContent=`${fmt(s.positives)} liked ratings · ${fmt(s.users_ge15)} viewers · ${fmt(s.eligible_items)} films (Phase 1: 15,938,231 · 176,028 · 10,952)`;
+  const R=DATA.reproduction, PH={most_rated:[4.6,61,124],personalized:[7.6,41,1062],genre_cap3:[7.2,40,963],random:[0.08,20,10952]};
+  const N={most_rated:"Most-rated",personalized:"Personalized",genre_cap3:"Genre cap 3 of 10",random:"Random shelf"};
+  $("#rep").innerHTML=`<table class="t"><tr><th>Ranker</th><th>Accuracy · Phase 1 / now</th><th>1990s share · Phase 1 / now</th><th>Films shown · Phase 1 / now</th></tr>`+
+    Object.keys(PH).map(k=>`<tr><td>${N[k]}</td><td>${PH[k][0]}% / ${(R[k].recall*100).toFixed(2)}%</td><td>${PH[k][1]}% / ${pct(R[k].share_1990s,0)}</td><td>${fmt(PH[k][2])} / ${fmt(R[k].shelf_used)}</td></tr>`).join("")+"</table>";
+}
+function sync(){
+  $("#k").value=KS.indexOf(st.k); $("#a").value=AS.indexOf(st.a);
+  $("#kval").textContent = st.quota? "—" : (st.k===10?"off":`${st.k} of 10`); $("#aval").textContent = st.quota? "—" : st.a;
+  const p=preset(); $("#presets").querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed", !!p && b.dataset.p===p.id));
+  renderLabel(); renderPhone(); renderChart(); renderCanada();
+}
+sync(); renderBB(); renderStatic();
+</script>
+</body>
+</html>

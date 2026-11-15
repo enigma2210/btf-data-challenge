@@ -1,0 +1,1523 @@
+{
+  "rule": "lowest head-share with validation recall >= today's",
+  "chosen": {
+    "alpha": 0.2,
+    "K": 5
+  },
+  "validation": {
+    "a0.0_K10": {
+      "recall": 0.07516428083181381,
+      "head1_share": 0.8698083333333333
+    },
+    "a0.0_K8": {
+      "recall": 0.07572318613529205,
+      "head1_share": 0.7425333333333334
+    },
+    "a0.0_K7": {
+      "recall": 0.0753844603896141,
+      "head1_share": 0.662625
+    },
+    "a0.0_K6": {
+      "recall": 0.0756046324968338,
+      "head1_share": 0.575875
+    },
+    "a0.0_K5": {
+      "recall": 0.07458844035863876,
+      "head1_share": 0.48465
+    },
+    "a0.0_K4": {
+      "recall": 0.07348756492137909,
+      "head1_share": 0.39061666666666667
+    },
+    "a0.0_K3": {
+      "recall": 0.07148905843496323,
+      "head1_share": 0.294675
+    },
+    "a0.1_K10": {
+      "recall": 0.07695955783128738,
+      "head1_share": 0.823625
+    },
+    "a0.1_K8": {
+      "recall": 0.07701036334037781,
+      "head1_share": 0.7120333333333333
+    },
+    "a0.1_K7": {
+      "recall": 0.07665469497442245,
+      "head1_share": 0.6398083333333333
+    },
+    "a0.1_K6": {
+      "recall": 0.0762990340590477,
+      "head1_share": 0.5597583333333334
+    },
+    "a0.1_K5": {
+      "recall": 0.07535058259963989,
+      "head1_share": 0.47374166666666667
+    },
+    "a0.1_K4": {
+      "recall": 0.07323352247476578,
+      "head1_share": 0.383475
+    },
+    "a0.1_K3": {
+      "recall": 0.07123500853776932,
+      "head1_share": 0.2904
+    },
+    "a0.2_K10": {
+      "recall": 0.07777250558137894,
+      "head1_share": 0.7654083333333334
+    },
+    "a0.2_K8": {
+      "recall": 0.07741684466600418,
+      "head1_share": 0.6693333333333333
+    },
+    "a0.2_K7": {
+      "recall": 0.07672244310379028,
+      "head1_share": 0.60555
+    },
+    "a0.2_K6": {
+      "recall": 0.07589255273342133,
+      "head1_share": 0.5339
+    },
+    "a0.2_K5": {
+      "recall": 0.07521509379148483,
+      "head1_share": 0.455425
+    },
+    "a0.2_K4": {
+      "recall": 0.07358919084072113,
+      "head1_share": 0.3711833333333333
+    },
+    "a0.2_K3": {
+      "recall": 0.07169229537248611,
+      "head1_share": 0.28281666666666666
+    },
+    "a0.3_K10": {
+      "recall": 0.07777250558137894,
+      "head1_share": 0.6891083333333333
+    },
+    "a0.3_K8": {
+      "recall": 0.07738296687602997,
+      "head1_share": 0.610075
+    },
+    "a0.3_K7": {
+      "recall": 0.07623128592967987,
+      "head1_share": 0.556175
+    },
+    "a0.3_K6": {
+      "recall": 0.07572318613529205,
+      "head1_share": 0.49438333333333334
+    },
+    "a0.3_K5": {
+      "recall": 0.0744360163807869,
+      "head1_share": 0.4252916666666667
+    },
+    "a0.3_K4": {
+      "recall": 0.07318270951509476,
+      "head1_share": 0.3498
+    },
+    "a0.3_K3": {
+      "recall": 0.07106564939022064,
+      "head1_share": 0.2688583333333333
+    },
+    "a0.4_K10": {
+      "recall": 0.07618047297000885,
+      "head1_share": 0.5931666666666666
+    },
+    "a0.4_K8": {
+      "recall": 0.07562156766653061,
+      "head1_share": 0.533475
+    },
+    "a0.4_K7": {
+      "recall": 0.07477474212646484,
+      "head1_share": 0.49046666666666666
+    },
+    "a0.4_K6": {
+      "recall": 0.07389404624700546,
+      "head1_share": 0.4403166666666667
+    },
+    "a0.4_K5": {
+      "recall": 0.07267461717128754,
+      "head1_share": 0.3828416666666667
+    },
+    "a0.4_K4": {
+      "recall": 0.07089628279209137,
+      "head1_share": 0.31855
+    },
+    "a0.4_K3": {
+      "recall": 0.06891470402479172,
+      "head1_share": 0.24750833333333333
+    },
+    "a0.5_K10": {
+      "recall": 0.07209877669811249,
+      "head1_share": 0.47258333333333336
+    },
+    "a0.5_K8": {
+      "recall": 0.07137050479650497,
+      "head1_share": 0.4318
+    },
+    "a0.5_K7": {
+      "recall": 0.07047286629676819,
+      "head1_share": 0.4010666666666667
+    },
+    "a0.5_K6": {
+      "recall": 0.06950748711824417,
+      "head1_share": 0.36393333333333333
+    },
+    "a0.5_K5": {
+      "recall": 0.06830499321222305,
+      "head1_share": 0.320425
+    },
+    "a0.5_K4": {
+      "recall": 0.06613712012767792,
+      "head1_share": 0.2700916666666667
+    },
+    "a0.5_K3": {
+      "recall": 0.06369826197624207,
+      "head1_share": 0.213175
+    }
+  },
+  "test": {
+    "a0.0_K10": {
+      "recall@10": 0.07501666992902756,
+      "recall@10_eligible_holdout": 0.076284259557724,
+      "pop_pct_mean": 99.22292861273436,
+      "head1_share": 0.8695833333333334,
+      "shelf_used": 1114,
+      "shelf_used_share": 0.10171658144631118,
+      "slot_gini": 0.991589134404675,
+      "share_1990s": 0.40763333333333335,
+      "genre_spread": 0.7785171270370483,
+      "CA_catalog_share": 0.03798392987582177,
+      "CA_slot_share": 0.0007416666666666666,
+      "CA_exposure_ratio": 0.01952580128205128,
+      "CA_screens_with_any": 0.005583333333333333,
+      "FR_catalog_share": 0.059075967859751645,
+      "FR_slot_share": 0.029966666666666666,
+      "FR_exposure_ratio": 0.5072564657393096,
+      "FR_screens_with_any": 0.2674166666666667,
+      "recall_delta_vs_personalized": 0.0,
+      "recall_delta_ci95": [
+        0.0,
+        0.0
+      ],
+      "recall_ci95": [
+        0.07355274260044098,
+        0.0789608359336853
+      ],
+      "CA_heldout_share": 0.020558276697795027,
+      "CA_demand_ratio": 0.03607630530365485,
+      "FR_heldout_share": 0.041218243140179314,
+      "FR_demand_ratio": 0.7270243558114035
+    },
+    "a0.0_K8": {
+      "recall@10": 0.07651666551828384,
+      "recall@10_eligible_holdout": 0.07780960202217102,
+      "pop_pct_mean": 99.04133483990748,
+      "head1_share": 0.7418833333333333,
+      "shelf_used": 1181,
+      "shelf_used_share": 0.10783418553688824,
+      "slot_gini": 0.9894245495495495,
+      "share_1990s": 0.3764166666666667,
+      "genre_spread": 0.775725245475769,
+      "CA_catalog_share": 0.03798392987582177,
+      "CA_slot_share": 0.0009166666666666666,
+      "CA_exposure_ratio": 0.02413301282051282,
+      "CA_screens_with_any": 0.007333333333333333,
+      "FR_catalog_share": 0.059075967859751645,
+      "FR_slot_share": 0.029,
+      "FR_exposure_ratio": 0.4908933539412674,
+      "FR_screens_with_any": 0.2574166666666667,
+      "recall_delta_vs_personalized": 0.00152534618973732,
+      "recall_delta_ci95": [
+        0.000492118124384433,
+        0.002557493979111314
+      ],
+      "recall_ci95": [
+        0.07523440569639206,
+        0.08043736219406128
+      ],
+      "CA_heldout_share": 0.020558276697795027,
+      "CA_demand_ratio": 0.04458869194833746,
+      "FR_heldout_share": 0.041218243140179314,
+      "FR_demand_ratio": 0.7035719572368421
+    },
+    "a0.0_K7": {
+      "recall@10": 0.07628333568572998,
+      "recall@10_eligible_holdout": 0.07757232338190079,
+      "pop_pct_mean": 98.9070213963964,
+      "head1_share": 0.6619666666666667,
+      "shelf_used": 1222,
+      "shelf_used_share": 0.11157779401022644,
+      "slot_gini": 0.9881027681397614,
+      "share_1990s": 0.35836666666666667,
+      "genre_spread": 0.7732576131820679,
+      "CA_catalog_share": 0.03798392987582177,
+      "CA_slot_share": 0.0011083333333333333,
+      "CA_exposure_ratio": 0.02917900641025641,
+      "CA_screens_with_any": 0.009083333333333334,
+      "FR_catalog_share": 0.059075967859751645,
+      "FR_slot_share": 0.028566666666666667,
+      "FR_exposure_ratio": 0.48355816589386913,
+      "FR_screens_with_any": 0.25533333333333336,
+      "recall_delta_vs_personalized": 0.001288070110604167,
+      "recall_delta_ci95": [
+        -8.458161755697802e-05,
+        0.0025778315030038357
+      ],
+      "recall_ci95": [
+        0.07512826472520828,
+        0.08016093820333481
+      ],
+      "CA_heldout_share": 0.020558276697795027,
+      "CA_demand_ratio": 0.053911782082989836,
+      "FR_heldout_share": 0.041218243140179314,
+      "FR_demand_ratio": 0.6930588130482456
+    },
+    "a0.0_K6": {
+      "recall@10": 0.0761166661977768,
+      "recall@10_eligible_holdout": 0.07740284502506256,
+      "pop_pct_mean": 98.74372960798637,
+      "head1_share": 0.57525,
+      "shelf_used": 1284,
+      "shelf_used_share": 0.11723886048210373,
+      "slot_gini": 0.9866839679206233,
+      "share_1990s": 0.3394083333333333,
+      "genre_spread": 0.7707945704460144,
+      "CA_catalog_share": 0.03798392987582177,
+      "CA_slot_share": 0.0013416666666666666,
+      "CA_exposure_ratio": 0.03532195512820512,
+      "CA_screens_with_any": 0.01125,
+      "FR_catalog_share": 0.059075967859751645,
+      "FR_slot_share": 0.028208333333333332,
+      "FR_exposure_ratio": 0.47749252962390515,
+      "FR_screens_with_any": 0.25225,
+      "recall_delta_vs_personalized": 0.0011185872135683894,
+      "recall_delta_ci95": [
+        -0.0004415324074216187,
+        0.002746059326454997
+      ],
+      "recall_ci95": [
+        0.07497447729110718,
+        0.07987701147794724
+      ],
+      "CA_heldout_share": 0.020558276697795027,
+      "CA_demand_ratio": 0.06526163094256664,
+      "FR_heldout_share": 0.041218243140179314,
+      "FR_demand_ratio": 0.6843652515076754
+    },
+    "a0.0_K5": {
+      "recall@10": 0.07508333027362823,
+      "recall@10_eligible_holdout": 0.07635205239057541,
+      "pop_pct_mean": 98.55469921779887,
+      "head1_share": 0.48404166666666665,
+      "shelf_used": 1336,
+      "shelf_used_share": 0.12198685171658144,
+      "slot_gini": 0.9852354425371317,
+      "share_1990s": 0.319975,
+      "genre_spread": 0.7678953409194946,
+      "CA_catalog_share": 0.03798392987582177,
+      "CA_slot_share": 0.00165,
+      "CA_exposure_ratio": 0.04343942307692308,
+      "CA_screens_with_any": 0.01425,
+      "FR_catalog_share": 0.059075967859751645,
+      "FR_slot_share": 0.027733333333333332,
+      "FR_exposure_ratio": 0.46945203503348787,
+      "FR_screens_with_any": 0.24908333333333332,
+      "recall_delta_vs_personalized": 6.779316026950255e-05,
+      "recall_delta_ci95": [
+        -0.0017460633534938097,
+        0.0020355461165308952
+      ],
+      "recall_ci95": [
+        0.07393400371074677,
+        0.07886397838592529
+      ],
+      "CA_heldout_share": 0.020558276697795027,
+      "CA_demand_ratio": 0.08025964550700743,
+      "FR_heldout_share": 0.041218243140179314,
+      "FR_demand_ratio": 0.6728412280701754
+    },
+    "a0.0_K4": {
+      "recall@10": 0.07288333028554916,
+      "recall@10_eligible_holdout": 0.07411487400531769,
+      "pop_pct_mean": 98.34754063184808,
+      "head1_share": 0.3899916666666667,
+      "shelf_used": 1389,
+      "shelf_used_share": 0.12682615047479912,
+      "slot_gini": 0.9838668097151205,
+      "share_1990s": 0.301075,
+      "genre_spread": 0.7642114758491516,
+      "CA_catalog_share": 0.03798392987582177,
+      "CA_slot_share": 0.0020583333333333335,
+      "CA_exposure_ratio": 0.05418958333333333,
+      "CA_screens_with_any": 0.018,
+      "FR_catalog_share": 0.059075967859751645,
+      "FR_slot_share": 0.026966666666666667,
+      "FR_exposure_ratio": 0.4564743946419371,
+      "FR_screens_with_any": 0.24283333333333335,
+      "recall_delta_vs_personalized": -0.0021693811286240816,
+      "recall_delta_ci95": [
+        -0.004220129456371069,
+        -6.780563126085326e-05
+      ],
+      "recall_ci95": [
+        0.07173501700162888,
+        0.07664646208286285
+      ],
+      "CA_heldout_share": 0.020558276697795027,
+      "CA_demand_ratio": 0.10012188101126684,
+      "FR_heldout_share": 0.041218243140179314,
+      "FR_demand_ratio": 0.6542410498903508
+    },
+    "a0.0_K3": {
+      "recall@10": 0.07118333131074905,
+      "recall@10_eligible_holdout": 0.07238615304231644,
+      "pop_pct_mean": 98.12276159605551,
+      "head1_share": 0.29415833333333335,
+      "shelf_used": 1451,
+      "shelf_used_share": 0.1324872169466764,
+      "slot_gini": 0.982636964329194,
+      "share_1990s": 0.28205833333333336,
+      "genre_spread": 0.7609282732009888,
+      "CA_catalog_share": 0.03798392987582177,
+      "CA_slot_share": 0.002608333333333333,
+      "CA_exposure_ratio": 0.06866939102564101,
+      "CA_screens_with_any": 0.023333333333333334,
+      "FR_catalog_share": 0.059075967859751645,
+      "FR_slot_share": 0.026158333333333332,
+      "FR_exposure_ratio": 0.4427914477073673,
+      "FR_screens_with_any": 0.23733333333333334,
+      "recall_delta_vs_personalized": -0.0038981069810688496,
+      "recall_delta_ci95": [
+        -0.0062319617718458176,
+        -0.0016081513604149222
+      ],
+      "recall_ci95": [
+        0.07007922232151031,
+        0.07471756637096405
+      ],
+      "CA_heldout_share": 0.020558276697795027,
+      "CA_demand_ratio": 0.1268750961802693,
+      "FR_heldout_share": 0.041218243140179314,
+      "FR_demand_ratio": 0.6346299924616228
+    },
+    "a0.1_K10": {
+      "recall@10": 0.07620000094175339,
+      "recall@10_eligible_holdout": 0.07748758792877197,
+      "pop_pct_mean": 98.82974045836376,
+      "head1_share": 0.8235333333333333,
+      "shelf_used": 1442,
+      "shelf_used_share": 0.1316654492330168,
+      "slot_gini": 0.9891426360482104,
+      "share_1990s": 0.38635,
+      "genre_spread": 0.7740755677223206,
+      "CA_catalog_share": 0.03798392987582177,
+      "CA_slot_share": 0.0012583333333333333,
+      "CA_exposure_ratio": 0.03312804487179487,
+      "CA_screens_with_any": 0.00975,
+      "FR_catalog_share": 0.059075967859751645,
+      "FR_slot_share": 0.03174166666666667,
+      "FR_exposure_ratio": 0.5373025244719217,
+      "FR_screens_with_any": 0.27975,
+      "recall_delta_vs_personalized": 0.0012033286038786173,
+      "recall_delta_ci95": [
+        0.00033900976995937526,
+        0.0020000177901238203
+      ],
+      "recall_ci95": [
+        0.07483520358800888,
+        0.07997793704271317
+      ],
+      "CA_heldout_share": 0.020558276697795027,
+      "CA_demand_ratio": 0.06120811349271778,
+      "FR_heldout_share": 0.041218243140179314,
+      "FR_demand_ratio": 0.770087811814693
+    },
+    "a0.1_K8": {
+      "recall@10": 0.07753333449363708,
+      "recall@10_eligible_holdout": 0.07884345203638077,
+      "pop_pct_mean": 98.64051999634769,
+      "head1_share": 0.7112,
+      "shelf_used": 1519,
+      "shelf_used_share": 0.13869612856099342,
+      "slot_gini": 0.9868960646457268,
+      "share_1990s": 0.3588166666666667,
+      "genre_spread": 0.7716178297996521,
+      "CA_catalog_share": 0.03798392987582177,
+      "CA_slot_share": 0.001475,
+      "CA_exposure_ratio": 0.03883221153846154,
+      "CA_screens_with_any": 0.011583333333333333,
+      "FR_catalog_share": 0.059075967859751645,
+      "FR_slot_share": 0.031025,
+      "FR_exposure_ratio": 0.5251712519319938,
+      "FR_screens_with_any": 0.27275,
+      "recall_delta_vs_personalized": 0.0025591920129954815,
+      "recall_delta_ci95": [
+        0.0013904845109209418,
+        0.0038495687767863274
+      ],
+      "recall_ci95": [
+        0.07637856155633926,
+        0.08130452781915665
+      ],
+      "CA_heldout_share": 0.020558276697795027,
+      "CA_demand_ratio": 0.07174725886232482,
+      "FR_heldout_share": 0.041218243140179314,
+      "FR_demand_ratio": 0.7527006887335527
+    },
+    "a0.1_K7": {
+      "recall@10": 0.07741666585206985,
+      "recall@10_eligible_holdout": 0.07872480899095535,
+      "pop_pct_mean": 98.49508453554905,
+      "head1_share": 0.63915,
+      "shelf_used": 1577,
+      "shelf_used_share": 0.1439919649379109,
+      "slot_gini": 0.9854358701607012,
+      "share_1990s": 0.3426166666666667,
+      "genre_spread": 0.7695611715316772,
+      "CA_catalog_share": 0.03798392987582177,
+      "CA_slot_share": 0.00175,
+      "CA_exposure_ratio": 0.046072115384615385,
+      "CA_screens_with_any": 0.014333333333333333,
+      "FR_catalog_share": 0.059075967859751645,
+      "FR_slot_share": 0.030633333333333332,
+      "FR_exposure_ratio": 0.5185413704276146,
+      "FR_screens_with_any": 0.2694166666666667,
+      "recall_delta_vs_personalized": 0.002440553857013583,
+      "recall_delta_ci95": [
+        0.0010349811054766178,
+        0.0039002341218292713
+      ],
+      "recall_ci95": [
+        0.07613635808229446,
+        0.08143094927072525
+      ],
+      "CA_heldout_share": 0.020558276697795027,
+      "CA_demand_ratio": 0.08512386644682605,
+      "FR_heldout_share": 0.041218243140179314,
+      "FR_demand_ratio": 0.7431984237938596
+    },
+    "a0.1_K6": {
+      "recall@10": 0.07660000026226044,
+      "recall@10_eligible_holdout": 0.07789434492588043,
+      "pop_pct_mean": 98.32013368943268,
+      "head1_share": 0.5595833333333333,
+      "shelf_used": 1635,
+      "shelf_used_share": 0.14928780131482836,
+      "slot_gini": 0.9838809045532019,
+      "share_1990s": 0.3258916666666667,
+      "genre_spread": 0.7668393850326538,
+      "CA_catalog_share": 0.03798392987582177,
+      "CA_slot_share": 0.0020083333333333333,
+      "CA_exposure_ratio": 0.05287323717948718,
+      "CA_screens_with_any": 0.0165,
+      "FR_catalog_share": 0.059075967859751645,
+      "FR_slot_share": 0.030116666666666667,
+      "FR_exposure_ratio": 0.5097955692941782,
+      "FR_screens_with_any": 0.26608333333333334,
+      "recall_delta_vs_personalized": 0.0016100875800475478,
+      "recall_delta_ci95": [
+        0.0,
+        0.003355516353622079
+      ],
+      "recall_ci95": [
+        0.07548045367002487,
+        0.08056537061929703
+      ],
+      "CA_heldout_share": 0.020558276697795027,
+      "CA_demand_ratio": 0.09768977054135752,
+      "FR_heldout_share": 0.041218243140179314,
+      "FR_demand_ratio": 0.7306635211074561
+    },
+    "a0.1_K5": {
+      "recall@10": 0.07553333044052124,
+      "recall@10_eligible_holdout": 0.07680965214967728,
+      "pop_pct_mean": 98.11434380326273,
+      "head1_share": 0.47351666666666664,
+      "shelf_used": 1703,
+      "shelf_used_share": 0.15549671292914535,
+      "slot_gini": 0.9822469138056976,
+      "share_1990s": 0.30893333333333334,
+      "genre_spread": 0.763649046421051,
+      "CA_catalog_share": 0.03798392987582177,
+      "CA_slot_share": 0.002425,
+      "CA_exposure_ratio": 0.06384278846153846,
+      "CA_screens_with_any": 0.02025,
+      "FR_catalog_share": 0.059075967859751645,
+      "FR_slot_share": 0.029441666666666668,
+      "FR_exposure_ratio": 0.4983696032972695,
+      "FR_screens_with_any": 0.26016666666666666,
+      "recall_delta_vs_personalized": 0.000525397015735507,
+      "recall_delta_ci95": [
+        -0.0012890268117189407,
+        0.0025431783869862556
+      ],
+      "recall_ci95": [
+        0.0742904543876648,
+        0.07936486601829529
+      ],
+      "CA_heldout_share": 0.020558276697795027,
+      "CA_demand_ratio": 0.11795735779060182,
+      "FR_heldout_share": 0.041218243140179314,
+      "FR_demand_ratio": 0.7142872772752193
+    },
+    "a0.1_K4": {
+      "recall@10": 0.07393333315849304,
+      "recall@10_eligible_holdout": 0.07518261671066284,
+      "pop_pct_mean": 97.88126316350133,
+      "head1_share": 0.3832833333333333,
+      "shelf_used": 1772,
+      "shelf_used_share": 0.16179693206720233,
+      "slot_gini": 0.9805884435110787,
+      "share_1990s": 0.29156666666666664,
+      "genre_spread": 0.7598597407341003,
+      "CA_catalog_share": 0.03798392987582177,
+      "CA_slot_share": 0.0029083333333333335,
+      "CA_exposure_ratio": 0.07656746794871795,
+      "CA_screens_with_any": 0.024666666666666667,
+      "FR_catalog_share": 0.059075967859751645,
+      "FR_slot_share": 0.028991666666666666,
+      "FR_exposure_ratio": 0.49075229263266357,
+      "FR_screens_with_any": 0.25683333333333336,
+      "recall_delta_vs_personalized": -0.0011016388889402151,
+      "recall_delta_ci95": [
+        -0.0031826463527977467,
+        0.0010679527185857296
+      ],
+      "recall_ci95": [
+        0.07262953370809555,
+        0.07768768817186356
+      ],
+      "CA_heldout_share": 0.020558276697795027,
+      "CA_demand_ratio": 0.14146775899972522,
+      "FR_heldout_share": 0.041218243140179314,
+      "FR_demand_ratio": 0.7033697813870614
+    },
+    "a0.1_K3": {
+      "recall@10": 0.07198332995176315,
+      "recall@10_eligible_holdout": 0.07319966703653336,
+      "pop_pct_mean": 97.62328615777939,
+      "head1_share": 0.2901916666666667,
+      "shelf_used": 1842,
+      "shelf_used_share": 0.16818845872899926,
+      "slot_gini": 0.9790284788166544,
+      "share_1990s": 0.274275,
+      "genre_spread": 0.755920946598053,
+      "CA_catalog_share": 0.03798392987582177,
+      "CA_slot_share": 0.0034583333333333332,
+      "CA_exposure_ratio": 0.09104727564102563,
+      "CA_screens_with_any": 0.029916666666666668,
+      "FR_catalog_share": 0.059075967859751645,
+      "FR_slot_share": 0.028158333333333334,
+      "FR_exposure_ratio": 0.4766461617722823,
+      "FR_screens_with_any": 0.2509166666666667,
+      "recall_delta_vs_personalized": -0.0030845890287309885,
+      "recall_delta_ci95": [
+        -0.005460347980260849,
+        -0.0007289124187082052
+      ],
+      "recall_ci95": [
+        0.07078548520803452,
+        0.07576705515384674
+      ],
+      "CA_heldout_share": 0.020558276697795027,
+      "CA_demand_ratio": 0.16822097416872767,
+      "FR_heldout_share": 0.041218243140179314,
+      "FR_demand_ratio": 0.6831521964089912
+    },
+    "a0.2_K10": {
+      "recall@10": 0.0775500014424324,
+      "recall@10_eligible_holdout": 0.07886039465665817,
+      "pop_pct_mean": 98.07424846299001,
+      "head1_share": 0.764725,
+      "shelf_used": 1968,
+      "shelf_used_share": 0.17969320672023376,
+      "slot_gini": 0.9849534849038227,
+      "share_1990s": 0.364175,
+      "genre_spread": 0.767655074596405,
+      "CA_catalog_share": 0.03798392987582177,
+      "CA_slot_share": 0.002125,
+      "CA_exposure_ratio": 0.05594471153846154,
+      "CA_screens_with_any": 0.01633333333333333,
+      "FR_catalog_share": 0.059075967859751645,
+      "FR_slot_share": 0.033875,
+      "FR_exposure_ratio": 0.5734142194744977,
+      "FR_screens_with_any": 0.29225,
+      "recall_delta_vs_personalized": 0.002576140221208334,
+      "recall_delta_ci95": [
+        0.0013563367538154125,
+        0.003782000858336687
+      ],
+      "recall_ci95": [
+        0.07617389410734177,
+        0.08141416311264038
+      ],
+      "CA_heldout_share": 0.020558276697795027,
+      "CA_demand_ratio": 0.10336469497114593,
+      "FR_heldout_share": 0.041218243140179314,
+      "FR_demand_ratio": 0.8218448293585526
+    },
+    "a0.2_K8": {
+      "recall@10": 0.078083336353302,
+      "recall@10_eligible_holdout": 0.07940274477005005,
+      "pop_pct_mean": 97.8729391891892,
+      "head1_share": 0.6685333333333333,
+      "shelf_used": 2061,
+      "shelf_used_share": 0.18818480642804966,
+      "slot_gini": 0.9825230688458729,
+      "share_1990s": 0.3417,
+      "genre_spread": 0.7655365467071533,
+      "CA_catalog_share": 0.03798392987582177,
+      "CA_slot_share": 0.0023666666666666667,
+      "CA_exposure_ratio": 0.06230705128205128,
+      "CA_screens_with_any": 0.018666666666666668,
+      "FR_catalog_share": 0.059075967859751645,
+      "FR_slot_share": 0.03295,
+      "FR_exposure_ratio": 0.5577564142194745,
+      "FR_screens_with_any": 0.28291666666666665,
+      "recall_delta_vs_personalized": 0.0031184854451566935,
+      "recall_delta_ci95": [
+        0.0016928090481087565,
+        0.004521557595580816
+      ],
+      "recall_ci95": [
+        0.07690144330263138,
+        0.08196349442005157
+      ],
+      "CA_heldout_share": 0.020558276697795027,
+      "CA_demand_ratio": 0.11511989557570762,
+      "FR_heldout_share": 0.041218243140179314,
+      "FR_demand_ratio": 0.7994033100328947
+    },
+    "a0.2_K7": {
+      "recall@10": 0.07766667008399963,
+      "recall@10_eligible_holdout": 0.07897903770208359,
+      "pop_pct_mean": 97.711841064037,
+      "head1_share": 0.6049666666666667,
+      "shelf_used": 2125,
+      "shelf_used_share": 0.19402848794740687,
+      "slot_gini": 0.9808954650596543,
+      "share_1990s": 0.32710833333333333,
+      "genre_spread": 0.7638959288597107,
+      "CA_catalog_share": 0.03798392987582177,
+      "CA_slot_share": 0.00265,
+      "CA_exposure_ratio": 0.06976634615384615,
+      "CA_screens_with_any": 0.021333333333333333,
+      "FR_catalog_share": 0.059075967859751645,
+      "FR_slot_share": 0.03249166666666667,
+      "FR_exposure_ratio": 0.5499980422462648,
+      "FR_screens_with_any": 0.28025,
+      "recall_delta_vs_personalized": 0.0026947781443595886,
+      "recall_delta_ci95": [
+        0.0010513245360925794,
+        0.004325226414948702
+      ],
+      "recall_ci95": [
+        0.07637768983840942,
+        0.08157974481582642
+      ],
+      "CA_heldout_share": 0.020558276697795027,
+      "CA_demand_ratio": 0.12890185490519374,
+      "FR_heldout_share": 0.041218243140179314,
+      "FR_demand_ratio": 0.7882836382949562
+    },
+    "a0.2_K6": {
+      "recall@10": 0.07746666669845581,
+      "recall@10_eligible_holdout": 0.07877565175294876,
+      "pop_pct_mean": 97.5192898557341,
+      "head1_share": 0.5333416666666667,
+      "shelf_used": 2197,
+      "shelf_used_share": 0.2006026296566837,
+      "slot_gini": 0.9791165647065985,
+      "share_1990s": 0.31209166666666666,
+      "genre_spread": 0.7614403963088989,
+      "CA_catalog_share": 0.03798392987582177,
+      "CA_slot_share": 0.0030833333333333333,
+      "CA_exposure_ratio": 0.08117467948717949,
+      "CA_screens_with_any": 0.025166666666666667,
+      "FR_catalog_share": 0.059075967859751645,
+      "FR_slot_share": 0.03194166666666667,
+      "FR_exposure_ratio": 0.5406879958784132,
+      "FR_screens_with_any": 0.27625,
+      "recall_delta_vs_personalized": 0.0024913987144827843,
+      "recall_delta_ci95": [
+        0.0006610365817323327,
+        0.004373759031295776
+      ],
+      "recall_ci95": [
+        0.07620979845523834,
+        0.08146758377552032
+      ],
+      "CA_heldout_share": 0.020558276697795027,
+      "CA_demand_ratio": 0.14998014564440781,
+      "FR_heldout_share": 0.041218243140179314,
+      "FR_demand_ratio": 0.7749400322094298
+    },
+    "a0.2_K5": {
+      "recall@10": 0.07563333213329315,
+      "recall@10_eligible_holdout": 0.07691134512424469,
+      "pop_pct_mean": 97.29256186084731,
+      "head1_share": 0.455,
+      "shelf_used": 2283,
+      "shelf_used_share": 0.20845507669831995,
+      "slot_gini": 0.9771841490138787,
+      "share_1990s": 0.297525,
+      "genre_spread": 0.7576282620429993,
+      "CA_catalog_share": 0.03798392987582177,
+      "CA_slot_share": 0.0035583333333333335,
+      "CA_exposure_ratio": 0.09367996794871795,
+      "CA_screens_with_any": 0.02975,
+      "FR_catalog_share": 0.059075967859751645,
+      "FR_slot_share": 0.031241666666666668,
+      "FR_exposure_ratio": 0.528838845955693,
+      "FR_screens_with_any": 0.27116666666666667,
+      "recall_delta_vs_personalized": 0.0006270867306739092,
+      "recall_delta_ci95": [
+        -0.001338611589744687,
+        0.00271446886472404
+      ],
+      "recall_ci95": [
+        0.07450218498706818,
+        0.07950863987207413
+      ],
+      "CA_heldout_share": 0.020558276697795027,
+      "CA_demand_ratio": 0.1730851951085463,
+      "FR_heldout_share": 0.041218243140179314,
+      "FR_demand_ratio": 0.7579572608278509
+    },
+    "a0.2_K4": {
+      "recall@10": 0.07386666536331177,
+      "recall@10_eligible_holdout": 0.07511482387781143,
+      "pop_pct_mean": 97.0221414657901,
+      "head1_share": 0.37094166666666667,
+      "shelf_used": 2371,
+      "shelf_used_share": 0.2164901387874361,
+      "slot_gini": 0.9751179160579498,
+      "share_1990s": 0.2830083333333333,
+      "genre_spread": 0.7538225650787354,
+      "CA_catalog_share": 0.03798392987582177,
+      "CA_slot_share": 0.0040416666666666665,
+      "CA_exposure_ratio": 0.10640464743589743,
+      "CA_screens_with_any": 0.034,
+      "FR_catalog_share": 0.059075967859751645,
+      "FR_slot_share": 0.030958333333333334,
+      "FR_exposure_ratio": 0.5240427614631633,
+      "FR_screens_with_any": 0.26858333333333334,
+      "recall_delta_vs_personalized": -0.0011694320710375905,
+      "recall_delta_ci95": [
+        -0.0033233175054192543,
+        0.0010852338746190071
+      ],
+      "recall_ci95": [
+        0.0726194679737091,
+        0.07757512480020523
+      ],
+      "CA_heldout_share": 0.020558276697795027,
+      "CA_demand_ratio": 0.19659559631766968,
+      "FR_heldout_share": 0.041218243140179314,
+      "FR_demand_ratio": 0.751083281935307
+    },
+    "a0.2_K3": {
+      "recall@10": 0.07243333011865616,
+      "recall@10_eligible_holdout": 0.07365727424621582,
+      "pop_pct_mean": 96.71607529827125,
+      "head1_share": 0.2823833333333333,
+      "shelf_used": 2449,
+      "shelf_used_share": 0.22361212563915267,
+      "slot_gini": 0.9731272583394205,
+      "share_1990s": 0.267625,
+      "genre_spread": 0.749434769153595,
+      "CA_catalog_share": 0.03798392987582177,
+      "CA_slot_share": 0.004691666666666667,
+      "CA_exposure_ratio": 0.12351714743589744,
+      "CA_screens_with_any": 0.03958333333333333,
+      "FR_catalog_share": 0.059075967859751645,
+      "FR_slot_share": 0.030133333333333335,
+      "FR_exposure_ratio": 0.5100776919113859,
+      "FR_screens_with_any": 0.26166666666666666,
+      "recall_delta_vs_personalized": -0.002626985078677535,
+      "recall_delta_ci95": [
+        -0.004895486403256655,
+        -0.0001694408420007676
+      ],
+      "recall_ci95": [
+        0.0712849497795105,
+        0.07616359740495682
+      ],
+      "CA_heldout_share": 0.020558276697795027,
+      "CA_demand_ratio": 0.2282130324264908,
+      "FR_heldout_share": 0.041218243140179314,
+      "FR_demand_ratio": 0.7310678728070176
+    },
+    "a0.3_K10": {
+      "recall@10": 0.07831666618585587,
+      "recall@10_eligible_holdout": 0.07964001595973969,
+      "pop_pct_mean": 96.5927198228634,
+      "head1_share": 0.6895083333333333,
+      "shelf_used": 2744,
+      "shelf_used_share": 0.2505478451424397,
+      "slot_gini": 0.9771708028974921,
+      "share_1990s": 0.34105833333333335,
+      "genre_spread": 0.7583853006362915,
+      "CA_catalog_share": 0.03798392987582177,
+      "CA_slot_share": 0.0037166666666666667,
+      "CA_exposure_ratio": 0.09784839743589743,
+      "CA_screens_with_any": 0.028416666666666666,
+      "FR_catalog_share": 0.059075967859751645,
+      "FR_slot_share": 0.03610833333333333,
+      "FR_exposure_ratio": 0.6112186501803194,
+      "FR_screens_with_any": 0.302,
+      "recall_delta_vs_personalized": 0.0033557615242898464,
+      "recall_delta_ci95": [
+        0.0017291278345510364,
+        0.004948805086314678
+      ],
+      "recall_ci95": [
+        0.07702172547578812,
+        0.08221111446619034
+      ],
+      "CA_heldout_share": 0.020558276697795027,
+      "CA_demand_ratio": 0.18078687826325915,
+      "FR_heldout_share": 0.041218243140179314,
+      "FR_demand_ratio": 0.8760279570997807
+    },
+    "a0.3_K8": {
+      "recall@10": 0.07866666465997696,
+      "recall@10_eligible_holdout": 0.07999593019485474,
+      "pop_pct_mean": 96.34520521365961,
+      "head1_share": 0.6106333333333334,
+      "shelf_used": 2869,
+      "shelf_used_share": 0.26196128560993426,
+      "slot_gini": 0.9743143474555637,
+      "share_1990s": 0.32255,
+      "genre_spread": 0.7569155097007751,
+      "CA_catalog_share": 0.03798392987582177,
+      "CA_slot_share": 0.0041,
+      "CA_exposure_ratio": 0.10794038461538462,
+      "CA_screens_with_any": 0.03183333333333333,
+      "FR_catalog_share": 0.059075967859751645,
+      "FR_slot_share": 0.035475,
+      "FR_exposure_ratio": 0.6004979907264296,
+      "FR_screens_with_any": 0.2951666666666667,
+      "recall_delta_vs_personalized": 0.0037116757594048977,
+      "recall_delta_ci95": [
+        0.0019489155383780599,
+        0.005421606358140707
+      ],
+      "recall_ci95": [
+        0.0774310752749443,
+        0.08260513097047806
+      ],
+      "CA_heldout_share": 0.020558276697795027,
+      "CA_demand_ratio": 0.1994330585325639,
+      "FR_heldout_share": 0.041218243140179314,
+      "FR_demand_ratio": 0.8606625925164473
+    },
+    "a0.3_K7": {
+      "recall@10": 0.07765000313520432,
+      "recall@10_eligible_holdout": 0.07896208763122559,
+      "pop_pct_mean": 96.14613974616509,
+      "head1_share": 0.5568166666666666,
+      "shelf_used": 2959,
+      "shelf_used_share": 0.2701789627465303,
+      "slot_gini": 0.9723252069637205,
+      "share_1990s": 0.310825,
+      "genre_spread": 0.7553139925003052,
+      "CA_catalog_share": 0.03798392987582177,
+      "CA_slot_share": 0.004491666666666666,
+      "CA_exposure_ratio": 0.1182517628205128,
+      "CA_screens_with_any": 0.035333333333333335,
+      "FR_catalog_share": 0.059075967859751645,
+      "FR_slot_share": 0.03496666666666667,
+      "FR_exposure_ratio": 0.5918932509015971,
+      "FR_screens_with_any": 0.29158333333333336,
+      "recall_delta_vs_personalized": 0.002677829936146736,
+      "recall_delta_ci95": [
+        0.0008647820213809609,
+        0.004530853591859341
+      ],
+      "recall_ci95": [
+        0.076346255838871,
+        0.08160483092069626
+      ],
+      "CA_heldout_share": 0.020558276697795027,
+      "CA_demand_ratio": 0.2184845905468535,
+      "FR_heldout_share": 0.041218243140179314,
+      "FR_demand_ratio": 0.8483298656798245
+    },
+    "a0.3_K6": {
+      "recall@10": 0.07716666907072067,
+      "recall@10_eligible_holdout": 0.07847058773040771,
+      "pop_pct_mean": 95.90410670805942,
+      "head1_share": 0.49514166666666665,
+      "shelf_used": 3056,
+      "shelf_used_share": 0.27903579254930605,
+      "slot_gini": 0.9700724159970782,
+      "share_1990s": 0.2993,
+      "genre_spread": 0.7530736923217773,
+      "CA_catalog_share": 0.03798392987582177,
+      "CA_slot_share": 0.00495,
+      "CA_exposure_ratio": 0.13031826923076922,
+      "CA_screens_with_any": 0.03925,
+      "FR_catalog_share": 0.059075967859751645,
+      "FR_slot_share": 0.0345,
+      "FR_exposure_ratio": 0.5839938176197836,
+      "FR_screens_with_any": 0.2885,
+      "recall_delta_vs_personalized": 0.0021863295696675777,
+      "recall_delta_ci95": [
+        0.00030438927933573723,
+        0.004254159517586231
+      ],
+      "recall_ci95": [
+        0.07587087154388428,
+        0.0811488926410675
+      ],
+      "CA_heldout_share": 0.020558276697795027,
+      "CA_demand_ratio": 0.24077893652102228,
+      "FR_heldout_share": 0.041218243140179314,
+      "FR_demand_ratio": 0.8370080180921053
+    },
+    "a0.3_K5": {
+      "recall@10": 0.07540000230073929,
+      "recall@10_eligible_holdout": 0.07667406648397446,
+      "pop_pct_mean": 95.62134328585341,
+      "head1_share": 0.4260333333333333,
+      "shelf_used": 3136,
+      "shelf_used_share": 0.28634039444850257,
+      "slot_gini": 0.9676604455807158,
+      "share_1990s": 0.28655,
+      "genre_spread": 0.7497096061706543,
+      "CA_catalog_share": 0.03798392987582177,
+      "CA_slot_share": 0.005508333333333333,
+      "CA_exposure_ratio": 0.14501746794871792,
+      "CA_screens_with_any": 0.04416666666666667,
+      "FR_catalog_share": 0.059075967859751645,
+      "FR_slot_share": 0.0341,
+      "FR_exposure_ratio": 0.5772228748068006,
+      "FR_screens_with_any": 0.2845,
+      "recall_delta_vs_personalized": 0.0003898106806445867,
+      "recall_delta_ci95": [
+        -0.001626193872652948,
+        0.002697017975151539
+      ],
+      "recall_ci95": [
+        0.07429027557373047,
+        0.07929070293903351
+      ],
+      "CA_heldout_share": 0.020558276697795027,
+      "CA_demand_ratio": 0.2679375034350096,
+      "FR_heldout_share": 0.041218243140179314,
+      "FR_demand_ratio": 0.8273035773026315
+    },
+    "a0.3_K4": {
+      "recall@10": 0.07366666942834854,
+      "recall@10_eligible_holdout": 0.0749114453792572,
+      "pop_pct_mean": 95.28587503043583,
+      "head1_share": 0.3506416666666667,
+      "shelf_used": 3254,
+      "shelf_used_share": 0.2971146822498174,
+      "slot_gini": 0.9649874710859508,
+      "share_1990s": 0.2746166666666667,
+      "genre_spread": 0.7455542683601379,
+      "CA_catalog_share": 0.03798392987582177,
+      "CA_slot_share": 0.0060416666666666665,
+      "CA_exposure_ratio": 0.15905849358974358,
+      "CA_screens_with_any": 0.049,
+      "FR_catalog_share": 0.059075967859751645,
+      "FR_slot_share": 0.033525,
+      "FR_exposure_ratio": 0.5674896445131375,
+      "FR_screens_with_any": 0.27908333333333335,
+      "recall_delta_vs_personalized": -0.0013728115009143949,
+      "recall_delta_ci95": [
+        -0.0035276850685477257,
+        0.0009847194887697697
+      ],
+      "recall_ci95": [
+        0.07248622179031372,
+        0.07738133519887924
+      ],
+      "CA_heldout_share": 0.020558276697795027,
+      "CA_demand_ratio": 0.2938800151140423,
+      "FR_heldout_share": 0.041218243140179314,
+      "FR_demand_ratio": 0.8133534436677631
+    },
+    "a0.3_K3": {
+      "recall@10": 0.0715833306312561,
+      "recall@10_eligible_holdout": 0.0727929100394249,
+      "pop_pct_mean": 94.91714709642075,
+      "head1_share": 0.2692583333333333,
+      "shelf_used": 3353,
+      "shelf_used_share": 0.30615412710007306,
+      "slot_gini": 0.9623220979425371,
+      "share_1990s": 0.2614416666666667,
+      "genre_spread": 0.740867018699646,
+      "CA_catalog_share": 0.03798392987582177,
+      "CA_slot_share": 0.0068,
+      "CA_exposure_ratio": 0.1790230769230769,
+      "CA_screens_with_any": 0.05516666666666667,
+      "FR_catalog_share": 0.059075967859751645,
+      "FR_slot_share": 0.03278333333333333,
+      "FR_exposure_ratio": 0.5549351880473982,
+      "FR_screens_with_any": 0.27291666666666664,
+      "recall_delta_vs_personalized": -0.003491347888484597,
+      "recall_delta_ci95": [
+        -0.005909105762839317,
+        -0.0010479798074811697
+      ],
+      "recall_ci95": [
+        0.07033029198646545,
+        0.07522270828485489
+      ],
+      "CA_heldout_share": 0.020558276697795027,
+      "CA_demand_ratio": 0.33076702390766693,
+      "FR_heldout_share": 0.041218243140179314,
+      "FR_demand_ratio": 0.7953597930372807
+    },
+    "a0.4_K10": {
+      "recall@10": 0.07733333110809326,
+      "recall@10_eligible_holdout": 0.07864006608724594,
+      "pop_pct_mean": 93.55222630569757,
+      "head1_share": 0.59375,
+      "shelf_used": 3885,
+      "shelf_used_share": 0.3547297297297297,
+      "slot_gini": 0.9613307280253226,
+      "share_1990s": 0.31709166666666666,
+      "genre_spread": 0.745344340801239,
+      "CA_catalog_share": 0.03798392987582177,
+      "CA_slot_share": 0.006441666666666667,
+      "CA_exposure_ratio": 0.16958926282051281,
+      "CA_screens_with_any": 0.047,
+      "FR_catalog_share": 0.059075967859751645,
+      "FR_slot_share": 0.038891666666666665,
+      "FR_exposure_ratio": 0.6583331272539927,
+      "FR_screens_with_any": 0.31,
+      "recall_delta_vs_personalized": 0.0023558123502880335,
+      "recall_delta_ci95": [
+        0.0005417923093773425,
+        0.004332590848207474
+      ],
+      "recall_ci95": [
+        0.076089046895504,
+        0.08108478784561157
+      ],
+      "CA_heldout_share": 0.020558276697795027,
+      "CA_demand_ratio": 0.31333689887331684,
+      "FR_heldout_share": 0.041218243140179314,
+      "FR_demand_ratio": 0.943554690926535
+    },
+    "a0.4_K8": {
+      "recall@10": 0.07716666907072067,
+      "recall@10_eligible_holdout": 0.07847058773040771,
+      "pop_pct_mean": 93.23836475833942,
+      "head1_share": 0.5330416666666666,
+      "shelf_used": 4028,
+      "shelf_used_share": 0.36778670562454346,
+      "slot_gini": 0.9578550812636961,
+      "share_1990s": 0.303475,
+      "genre_spread": 0.7443687319755554,
+      "CA_catalog_share": 0.03798392987582177,
+      "CA_slot_share": 0.006891666666666667,
+      "CA_exposure_ratio": 0.1814363782051282,
+      "CA_screens_with_any": 0.050916666666666666,
+      "FR_catalog_share": 0.059075967859751645,
+      "FR_slot_share": 0.038441666666666666,
+      "FR_exposure_ratio": 0.6507158165893869,
+      "FR_screens_with_any": 0.30575,
+      "recall_delta_vs_personalized": 0.0021863295696675777,
+      "recall_delta_ci95": [
+        0.00018585215730126947,
+        0.004243406001478434
+      ],
+      "recall_ci95": [
+        0.07594054937362671,
+        0.08094870299100876
+      ],
+      "CA_heldout_share": 0.020558276697795027,
+      "CA_demand_ratio": 0.33522589310250067,
+      "FR_heldout_share": 0.041218243140179314,
+      "FR_demand_ratio": 0.9326371950383772
+    },
+    "a0.4_K7": {
+      "recall@10": 0.07633333653211594,
+      "recall@10_eligible_holdout": 0.07762317359447479,
+      "pop_pct_mean": 92.99372527087898,
+      "head1_share": 0.4898,
+      "shelf_used": 4117,
+      "shelf_used_share": 0.3759130752373996,
+      "slot_gini": 0.9553452702702703,
+      "share_1990s": 0.2945833333333333,
+      "genre_spread": 0.743068277835846,
+      "CA_catalog_share": 0.03798392987582177,
+      "CA_slot_share": 0.007275,
+      "CA_exposure_ratio": 0.19152836538461537,
+      "CA_screens_with_any": 0.05408333333333333,
+      "FR_catalog_share": 0.059075967859751645,
+      "FR_slot_share": 0.03791666666666667,
+      "FR_exposure_ratio": 0.6418289541473468,
+      "FR_screens_with_any": 0.30125,
+      "recall_delta_vs_personalized": 0.001338914968073368,
+      "recall_delta_ci95": [
+        -0.000644097977783531,
+        0.0034625595435500145
+      ],
+      "recall_ci95": [
+        0.07523121684789658,
+        0.08017119765281677
+      ],
+      "CA_heldout_share": 0.020558276697795027,
+      "CA_demand_ratio": 0.3538720733718055,
+      "FR_heldout_share": 0.041218243140179314,
+      "FR_demand_ratio": 0.9199001165021929
+    },
+    "a0.4_K6": {
+      "recall@10": 0.07506666332483292,
+      "recall@10_eligible_holdout": 0.07633510231971741,
+      "pop_pct_mean": 92.68739423545166,
+      "head1_share": 0.4396333333333333,
+      "shelf_used": 4217,
+      "shelf_used_share": 0.38504382761139516,
+      "slot_gini": 0.9524557584611638,
+      "share_1990s": 0.284925,
+      "genre_spread": 0.7408294677734375,
+      "CA_catalog_share": 0.03798392987582177,
+      "CA_slot_share": 0.007666666666666666,
+      "CA_exposure_ratio": 0.20183974358974358,
+      "CA_screens_with_any": 0.057416666666666664,
+      "FR_catalog_share": 0.059075967859751645,
+      "FR_slot_share": 0.037408333333333335,
+      "FR_exposure_ratio": 0.6332242143225142,
+      "FR_screens_with_any": 0.29733333333333334,
+      "recall_delta_vs_personalized": 5.0844872021116316e-05,
+      "recall_delta_ci95": [
+        -0.0019829729571938515,
+        0.00220342050306499
+      ],
+      "recall_ci95": [
+        0.07392627000808716,
+        0.0788552463054657
+      ],
+      "CA_heldout_share": 0.020558276697795027,
+      "CA_demand_ratio": 0.3729236053860951,
+      "FR_heldout_share": 0.041218243140179314,
+      "FR_demand_ratio": 0.9075673896655702
+    },
+    "a0.4_K5": {
+      "recall@10": 0.07326667010784149,
+      "recall@10_eligible_holdout": 0.07450468838214874,
+      "pop_pct_mean": 92.32387859142925,
+      "head1_share": 0.38243333333333335,
+      "shelf_used": 4334,
+      "shelf_used_share": 0.3957268078889701,
+      "slot_gini": 0.9491611684319454,
+      "share_1990s": 0.2752833333333333,
+      "genre_spread": 0.7378792762756348,
+      "CA_catalog_share": 0.03798392987582177,
+      "CA_slot_share": 0.00825,
+      "CA_exposure_ratio": 0.2171971153846154,
+      "CA_screens_with_any": 0.06191666666666667,
+      "FR_catalog_share": 0.059075967859751645,
+      "FR_slot_share": 0.037116666666666666,
+      "FR_exposure_ratio": 0.6282870685213807,
+      "FR_screens_with_any": 0.29483333333333334,
+      "recall_delta_vs_personalized": -0.0017795704770833254,
+      "recall_delta_ci95": [
+        -0.003979478031396866,
+        0.0006102488841861486
+      ],
+      "recall_ci95": [
+        0.07211044430732727,
+        0.07695634663105011
+      ],
+      "CA_heldout_share": 0.020558276697795027,
+      "CA_demand_ratio": 0.40129822753503713,
+      "FR_heldout_share": 0.041218243140179314,
+      "FR_demand_ratio": 0.9004912349232456
+    },
+    "a0.4_K4": {
+      "recall@10": 0.07146666944026947,
+      "recall@10_eligible_holdout": 0.07267427444458008,
+      "pop_pct_mean": 91.89769600681763,
+      "head1_share": 0.318275,
+      "shelf_used": 4452,
+      "shelf_used_share": 0.40650109569028486,
+      "slot_gini": 0.9454850681762844,
+      "share_1990s": 0.265875,
+      "genre_spread": 0.7337270975112915,
+      "CA_catalog_share": 0.03798392987582177,
+      "CA_slot_share": 0.008966666666666666,
+      "CA_exposure_ratio": 0.23606474358974358,
+      "CA_screens_with_any": 0.06808333333333333,
+      "FR_catalog_share": 0.059075967859751645,
+      "FR_slot_share": 0.03641666666666667,
+      "FR_exposure_ratio": 0.6164379185986605,
+      "FR_screens_with_any": 0.288,
+      "recall_delta_vs_personalized": -0.0036099860444664955,
+      "recall_delta_ci95": [
+        -0.005999293178319931,
+        -0.0011690838728100061
+      ],
+      "recall_ci95": [
+        0.07018284499645233,
+        0.07517074793577194
+      ],
+      "CA_heldout_share": 0.020558276697795027,
+      "CA_demand_ratio": 0.43615847760373727,
+      "FR_heldout_share": 0.041218243140179314,
+      "FR_demand_ratio": 0.8835084635416667
+    },
+    "a0.4_K3": {
+      "recall@10": 0.06913333386182785,
+      "recall@10_eligible_holdout": 0.07030151039361954,
+      "pop_pct_mean": 91.40188648953006,
+      "head1_share": 0.24754166666666666,
+      "shelf_used": 4586,
+      "shelf_used_share": 0.418736303871439,
+      "slot_gini": 0.9415907094594594,
+      "share_1990s": 0.2559666666666667,
+      "genre_spread": 0.7285425066947937,
+      "CA_catalog_share": 0.03798392987582177,
+      "CA_slot_share": 0.009866666666666666,
+      "CA_exposure_ratio": 0.2597589743589743,
+      "CA_screens_with_any": 0.075,
+      "FR_catalog_share": 0.059075967859751645,
+      "FR_slot_share": 0.035675,
+      "FR_exposure_ratio": 0.6038834621329211,
+      "FR_screens_with_any": 0.28208333333333335,
+      "recall_delta_vs_personalized": -0.005982746835798025,
+      "recall_delta_ci95": [
+        -0.008449080400168896,
+        -0.0034683600533753633
+      ],
+      "recall_ci95": [
+        0.06796916574239731,
+        0.07266296446323395
+      ],
+      "CA_heldout_share": 0.020558276697795027,
+      "CA_demand_ratio": 0.47993646606210494,
+      "FR_heldout_share": 0.041218243140179314,
+      "FR_demand_ratio": 0.8655148129111842
+    },
+    "a0.5_K10": {
+      "recall@10": 0.0729166641831398,
+      "recall@10_eligible_holdout": 0.07414877414703369,
+      "pop_pct_mean": 87.7183764761383,
+      "head1_share": 0.4757166666666667,
+      "shelf_used": 5198,
+      "shelf_used_share": 0.4746165084002922,
+      "slot_gini": 0.9303102097029462,
+      "share_1990s": 0.29270833333333335,
+      "genre_spread": 0.7263997793197632,
+      "CA_catalog_share": 0.03798392987582177,
+      "CA_slot_share": 0.01025,
+      "CA_exposure_ratio": 0.26985096153846155,
+      "CA_screens_with_any": 0.07425,
+      "FR_catalog_share": 0.059075967859751645,
+      "FR_slot_share": 0.04066666666666666,
+      "FR_exposure_ratio": 0.6883791859866047,
+      "FR_screens_with_any": 0.3075833333333333,
+      "recall_delta_vs_personalized": -0.0021354847121983767,
+      "recall_delta_ci95": [
+        -0.00418882118538022,
+        -1.6086469258880243e-05
+      ],
+      "recall_ci95": [
+        0.07158512622117996,
+        0.07678800076246262
+      ],
+      "CA_heldout_share": 0.020558276697795027,
+      "CA_demand_ratio": 0.49858264633140975,
+      "FR_heldout_share": 0.041218243140179314,
+      "FR_demand_ratio": 0.9866181469298244
+    },
+    "a0.5_K8": {
+      "recall@10": 0.07218333333730698,
+      "recall@10_eligible_holdout": 0.07340304553508759,
+      "pop_pct_mean": 87.32917846055516,
+      "head1_share": 0.43351666666666666,
+      "shelf_used": 5296,
+      "shelf_used_share": 0.4835646457268079,
+      "slot_gini": 0.9264167275383491,
+      "share_1990s": 0.2839,
+      "genre_spread": 0.7259743809700012,
+      "CA_catalog_share": 0.03798392987582177,
+      "CA_slot_share": 0.010691666666666667,
+      "CA_exposure_ratio": 0.2814786858974359,
+      "CA_screens_with_any": 0.07816666666666666,
+      "FR_catalog_share": 0.059075967859751645,
+      "FR_slot_share": 0.04044166666666667,
+      "FR_exposure_ratio": 0.684570530654302,
+      "FR_screens_with_any": 0.30516666666666664,
+      "recall_delta_vs_personalized": -0.0028812093660235405,
+      "recall_delta_ci95": [
+        -0.005051605403423309,
+        -0.0006276014028117061
+      ],
+      "recall_ci95": [
+        0.07092013955116272,
+        0.07601889967918396
+      ],
+      "CA_heldout_share": 0.020558276697795027,
+      "CA_demand_ratio": 0.5200662888156087,
+      "FR_heldout_share": 0.041218243140179314,
+      "FR_demand_ratio": 0.9811593989857456
+    },
+    "a0.5_K7": {
+      "recall@10": 0.07156666368246078,
+      "recall@10_eligible_holdout": 0.0727759599685669,
+      "pop_pct_mean": 87.04260584063793,
+      "head1_share": 0.40191666666666664,
+      "shelf_used": 5381,
+      "shelf_used_share": 0.49132578524470416,
+      "slot_gini": 0.9234869338933528,
+      "share_1990s": 0.2777833333333333,
+      "genre_spread": 0.7250890135765076,
+      "CA_catalog_share": 0.03798392987582177,
+      "CA_slot_share": 0.010991666666666667,
+      "CA_exposure_ratio": 0.28937676282051283,
+      "CA_screens_with_any": 0.08041666666666666,
+      "FR_catalog_share": 0.059075967859751645,
+      "FR_slot_share": 0.040125,
+      "FR_exposure_ratio": 0.6792102009273571,
+      "FR_screens_with_any": 0.3015,
+      "recall_delta_vs_personalized": -0.0035082960966974497,
+      "recall_delta_ci95": [
+        -0.005678971763700247,
+        -0.0012027054326608777
+      ],
+      "recall_ci95": [
+        0.07033233344554901,
+        0.07529053092002869
+      ],
+      "CA_heldout_share": 0.020558276697795027,
+      "CA_demand_ratio": 0.5346589516350646,
+      "FR_heldout_share": 0.041218243140179314,
+      "FR_demand_ratio": 0.973476716694079
+    },
+    "a0.5_K6": {
+      "recall@10": 0.07056666910648346,
+      "recall@10_eligible_holdout": 0.07175906002521515,
+      "pop_pct_mean": 86.6665579346238,
+      "head1_share": 0.3642916666666667,
+      "shelf_used": 5486,
+      "shelf_used_share": 0.5009130752373996,
+      "slot_gini": 0.9197758004626247,
+      "share_1990s": 0.27141666666666664,
+      "genre_spread": 0.7236732840538025,
+      "CA_catalog_share": 0.03798392987582177,
+      "CA_slot_share": 0.011425,
+      "CA_exposure_ratio": 0.30078509615384613,
+      "CA_screens_with_any": 0.08441666666666667,
+      "FR_catalog_share": 0.059075967859751645,
+      "FR_slot_share": 0.039933333333333335,
+      "FR_exposure_ratio": 0.6759657908294694,
+      "FR_screens_with_any": 0.29875,
+      "recall_delta_vs_personalized": -0.004525193478912115,
+      "recall_delta_ci95": [
+        -0.006712964735925198,
+        -0.0021019531413912773
+      ],
+      "recall_ci95": [
+        0.06925018876791,
+        0.07426101714372635
+      ],
+      "CA_heldout_share": 0.020558276697795027,
+      "CA_demand_ratio": 0.5557372423742787,
+      "FR_heldout_share": 0.041218243140179314,
+      "FR_demand_ratio": 0.9688266721491228
+    },
+    "a0.5_K5": {
+      "recall@10": 0.06856666505336761,
+      "recall@10_eligible_holdout": 0.06972526758909225,
+      "pop_pct_mean": 86.20855505843681,
+      "head1_share": 0.3206,
+      "shelf_used": 5594,
+      "shelf_used_share": 0.5107742878013148,
+      "slot_gini": 0.915430346055515,
+      "share_1990s": 0.26416666666666666,
+      "genre_spread": 0.7213950157165527,
+      "CA_catalog_share": 0.03798392987582177,
+      "CA_slot_share": 0.011941666666666666,
+      "CA_exposure_ratio": 0.31438733974358973,
+      "CA_screens_with_any": 0.08866666666666667,
+      "FR_catalog_share": 0.059075967859751645,
+      "FR_slot_share": 0.03961666666666667,
+      "FR_exposure_ratio": 0.6706054611025245,
+      "FR_screens_with_any": 0.2970833333333333,
+      "recall_delta_vs_personalized": -0.006558988709002733,
+      "recall_delta_ci95": [
+        -0.008746846579015255,
+        -0.0040992023423314095
+      ],
+      "recall_ci95": [
+        0.06730113178491592,
+        0.07209037244319916
+      ],
+      "CA_heldout_share": 0.020558276697795027,
+      "CA_demand_ratio": 0.5808690505633416,
+      "FR_heldout_share": 0.041218243140179314,
+      "FR_demand_ratio": 0.9611439898574562
+    },
+    "a0.5_K4": {
+      "recall@10": 0.066600002348423,
+      "recall@10_eligible_holdout": 0.06772536784410477,
+      "pop_pct_mean": 85.68858602690528,
+      "head1_share": 0.27043333333333336,
+      "shelf_used": 5716,
+      "shelf_used_share": 0.5219138056975895,
+      "slot_gini": 0.9106129184928171,
+      "share_1990s": 0.257425,
+      "genre_spread": 0.7178314924240112,
+      "CA_catalog_share": 0.03798392987582177,
+      "CA_slot_share": 0.012591666666666666,
+      "CA_exposure_ratio": 0.3314998397435897,
+      "CA_screens_with_any": 0.09408333333333334,
+      "FR_catalog_share": 0.059075967859751645,
+      "FR_slot_share": 0.039358333333333335,
+      "FR_exposure_ratio": 0.6662325605358063,
+      "FR_screens_with_any": 0.2925,
+      "recall_delta_vs_personalized": -0.008558887057006359,
+      "recall_delta_ci95": [
+        -0.010832589119672775,
+        -0.0059318882413208485
+      ],
+      "recall_ci95": [
+        0.06540173292160034,
+        0.07009316235780716
+      ],
+      "CA_heldout_share": 0.020558276697795027,
+      "CA_demand_ratio": 0.6124864866721627,
+      "FR_heldout_share": 0.041218243140179314,
+      "FR_demand_ratio": 0.9548765385142544
+    },
+    "a0.5_K3": {
+      "recall@10": 0.06483333557844162,
+      "recall@10_eligible_holdout": 0.0659288540482521,
+      "pop_pct_mean": 85.08628743608473,
+      "head1_share": 0.21324166666666666,
+      "shelf_used": 5850,
+      "shelf_used_share": 0.5341490138787436,
+      "slot_gini": 0.9051974936084733,
+      "share_1990s": 0.24944166666666667,
+      "genre_spread": 0.7127840518951416,
+      "CA_catalog_share": 0.03798392987582177,
+      "CA_slot_share": 0.013258333333333334,
+      "CA_exposure_ratio": 0.3490511217948718,
+      "CA_screens_with_any": 0.09941666666666667,
+      "FR_catalog_share": 0.059075967859751645,
+      "FR_slot_share": 0.038808333333333334,
+      "FR_exposure_ratio": 0.6569225141679547,
+      "FR_screens_with_any": 0.287,
+      "recall_delta_vs_personalized": -0.010355405509471893,
+      "recall_delta_ci95": [
+        -0.012787921354174614,
+        -0.007661014795303345
+      ],
+      "recall_ci95": [
+        0.06367868930101395,
+        0.06828431785106659
+      ],
+      "CA_heldout_share": 0.020558276697795027,
+      "CA_demand_ratio": 0.6449146262709536,
+      "FR_heldout_share": 0.041218243140179314,
+      "FR_demand_ratio": 0.941532932428728
+    }
+  }
+}
